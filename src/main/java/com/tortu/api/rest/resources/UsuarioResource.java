@@ -1,21 +1,16 @@
-package com.tortu.api.models;
+package com.tortu.api.rest.resources;
+
+import java.util.Date;
 
 /**
- * Modelo - usuario. Usualmente representa una entidad de la base de datos.
+ * Esta clase representa el recurso (Rest) de un usuario.
  * @author visilva
  */
-public class Usuario {
-    private Integer idUsuario;
+public class UsuarioResource {
     private String nombre;
     private String email;
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    private Integer id;
+    private Date fecha = new Date();
 
     public String getNombre() {
         return nombre;
@@ -31,5 +26,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
