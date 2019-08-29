@@ -4,6 +4,8 @@ import com.tortu.api.daos.UsuarioDao;
 import com.tortu.api.models.Usuario;
 import com.tortu.api.services.UsuarioService;
 import com.tortu.api.utils.GeneralException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import sun.management.AgentConfigurationError;
 
 import java.util.List;
@@ -12,8 +14,10 @@ import java.util.List;
  * Implementacion del Servicio de Usuario. Esta clase deberia de llamar a los DAOs de usuario.
  * @author visilva
  */
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+    @Autowired
     private UsuarioDao usuarioDao;
 
     @Override

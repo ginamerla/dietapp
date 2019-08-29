@@ -7,13 +7,17 @@ import com.tortu.api.models.Usuario;
 import com.tortu.api.utils.GeneralException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class UsuarioDaoImpl implements UsuarioDao {
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
     private static final Logger LOG = LoggerFactory.getLogger(DietAppApplication.class);
 

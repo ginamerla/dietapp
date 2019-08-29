@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller de la entidad de usuarios.
@@ -30,11 +29,47 @@ public class UsuarioRestService {
     private UsuarioResourceMapper converter;
 
     @GET
-    @Path("/{usuarioId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAllUsuarios(){
+        List<Usuario>usuarioList = usuarioService.findAllUsuarios();
+        List<UsuarioResource> usuarioResourceList = new ArrayList<UsuarioResource>();
+        for(Usuario usuario:usuarioList){
+            UsuarioResource resource = new UsuarioResource(usuario);
+            usuarioResourceList.add(resource);
+        }
+        return  Response.ok(usuarioResourceList).build();
+    }
+
+    @GET
+    @Path("/{usuario}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response obtenerInfoUsuarioPorId(@PathParam("usuarioId") Integer usuarioId) {
-        Usuario usuario =  usuarioService.obtenerUsuarioPorId(usuarioId);
+    public Response findUsuarioById(@PathParam("usuario") Usuario usuario) {
+        Usuario usuarioResponse =  usuarioService.findUsuario(usuario);
         UsuarioResource resource = converter.mapper(usuario);
         return Response.ok(resource).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createUsuario(Usuario usuario){
+        Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
+        UsuarioResource resource = new UsuarioResource(usuarioResponse);
+        return Response.ok(resource).build();
+    }
+
+    @PUT
+    @Path("/usuario")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateUsuario( @PathParam("usuario") Usuario usuario ){
+        Usuario usuarioResponse = usuarioService.updateUsuario(usuario);
+        UsuarioResource resource = new UsuarioResource(usuarioResponse);
+        return Response.ok(resource).build();
+    }
+
+    @DELETE
+    @Path("/usuarioId")
+    public Response deleteUsuario(@PathParam("usuarioId") Integer id){
+        usuarioService.deleteUsuario(id);
+        return Response.ok().build();
     }
 }
