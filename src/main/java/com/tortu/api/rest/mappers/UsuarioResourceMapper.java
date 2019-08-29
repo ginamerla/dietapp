@@ -1,4 +1,4 @@
-package com.tortu.api.rest.converters;
+package com.tortu.api.rest.mappers;
 
 import com.tortu.api.models.Usuario;
 import com.tortu.api.rest.resources.UsuarioResource;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
  * @author visilva
  */
 @Component
-public class UsuarioResourceConverter implements DefaultResourceConverter<Usuario, UsuarioResource> {
+public class UsuarioResourceMapper implements DefaultResourceMapper<Usuario, UsuarioResource> {
     @Override
-    public UsuarioResource convert(Usuario model) {
+    public UsuarioResource mapper(Usuario model) {
         if (model == null) {
             return null;
         }

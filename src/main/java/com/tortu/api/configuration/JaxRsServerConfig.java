@@ -3,7 +3,7 @@ package com.tortu.api.configuration;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.tortu.api.rest.controllers.UsuarioController;
+import com.tortu.api.rest.restservices.UsuarioRestService;
 import com.tortu.api.utils.CustomFasterJacksonObjectMapperFactory;
 import com.tortu.api.utils.ExceptionMapperImplementation;
 import org.apache.cxf.Bus;
@@ -92,9 +92,9 @@ public class JaxRsServerConfig {
      * @return UsuarioController bean.
      */
     @Bean
-    public UsuarioController usuarioController() {
+    public UsuarioRestService usuarioController() {
         LOG.debug("JaxRsServerConfig : UsuarioController bean created");
-        return new UsuarioController();
+        return new UsuarioRestService();
     }
 
 

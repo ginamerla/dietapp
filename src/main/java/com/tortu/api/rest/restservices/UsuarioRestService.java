@@ -1,7 +1,7 @@
-package com.tortu.api.rest.controllers;
+package com.tortu.api.rest.restservices;
 
 import com.tortu.api.models.Usuario;
-import com.tortu.api.rest.converters.UsuarioResourceConverter;
+import com.tortu.api.rest.mappers.UsuarioResourceMapper;
 import com.tortu.api.rest.resources.UsuarioResource;
 import com.tortu.api.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +21,20 @@ import javax.ws.rs.core.Response;
  */
 @Service
 @Path("/usuarios")
-public class UsuarioController {
+public class UsuarioRestService {
 
     @Autowired
-    @Qualifier("fakeUsuarioService")
     private UsuarioService usuarioService;
 
     @Autowired
-    private UsuarioResourceConverter converter;
+    private UsuarioResourceMapper converter;
 
     @GET
     @Path("/{usuarioId}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response obtenerInfoUsuarioPorId(@PathParam("usuarioId") Integer usuarioId) {
         Usuario usuario =  usuarioService.obtenerUsuarioPorId(usuarioId);
-        UsuarioResource resource = converter.convert(usuario);
+        UsuarioResource resource = converter.mapper(usuario);
         return Response.ok(resource).build();
     }
 }

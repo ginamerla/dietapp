@@ -1,0 +1,26 @@
+package com.tortu.api.utils;
+
+/**
+ * Excepcion personalizada.
+ * @author visilva
+ *
+ */
+public class GeneralException extends RuntimeException {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    public GeneralException(String message){
+        super(message);
+    }
+
+    public GeneralException(Throwable e) {
+        super(e);
+    }
+
+    public GeneralException(String message, Throwable e) {
+        super(message, e);
+    }
+}
