@@ -2,6 +2,9 @@ package com.tortu.api.daos;
 
 import com.tortu.api.models.CategoriaIngrediente;
 
+/**
+ * Interface que contiene los queries de la tabla categoria_ingrediente
+ */
 public interface CategoriaIngredienteDao extends GenericDao<CategoriaIngrediente, Integer>{
 
     public static final String FIND_ALL =

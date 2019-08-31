@@ -52,7 +52,7 @@ public class UsuarioRestService {
         List<Usuario>usuarioList = usuarioService.findAllUsuarios();
         List<UsuarioResource> usuarioResourceList = new ArrayList<UsuarioResource>();
         for(Usuario usuario:usuarioList){
-            UsuarioResource resource = usuarioResourceMapper.mapper(usuario);
+            UsuarioResource resource = usuarioResourceMapper.map(usuario);
             usuarioResourceList.add(resource);
         }
         return  Response.ok(usuarioResourceList).build();
@@ -64,7 +64,7 @@ public class UsuarioRestService {
     public Response findUsuarioById(@PathParam("usuario") Usuario usuario) {
         findUsuarioByIdValidator.validate(usuario);
         Usuario usuarioResponse =  usuarioService.findUsuario(usuario);
-        UsuarioResource resource = converter.mapper(usuario);
+        UsuarioResource resource = converter.map(usuario);
         return Response.ok(resource).build();
     }
 
@@ -73,7 +73,7 @@ public class UsuarioRestService {
     public Response createUsuario(Usuario usuario){
         createUsuarioValidator.validate(usuario);
         Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.mapper(usuarioResponse);
+        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
         return Response.ok(resource).build();
     }
 
@@ -83,7 +83,7 @@ public class UsuarioRestService {
     public Response updateUsuario( @PathParam("usuario") Usuario usuario ){
         updateUsuarioValidator.validate(usuario);
         Usuario usuarioResponse = usuarioService.updateUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.mapper(usuarioResponse);
+        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
         return Response.ok(resource).build();
     }
 

@@ -100,7 +100,7 @@ public class JaxRsServerConfig {
      */
     @Bean
     public UsuarioRestService usuarioRestService() {
-        LOG.debug("JaxRsServerConfig : UsuarioController bean created");
+        LOG.debug("JaxRsServerConfig : UsuarioRestService bean created");
         return new UsuarioRestService();
     }
 

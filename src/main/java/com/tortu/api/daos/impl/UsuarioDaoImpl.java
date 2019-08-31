@@ -24,7 +24,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void save(Usuario model) throws GeneralException {
-        LOG.info("Creando el usuario");
+        LOG.info(String.format("Creando el usuario: %s",model));
         jdbcTemplate.update(SAVE, new Object[]{
                 model.getIdUsuario(),
                 model.getNombre(),
@@ -35,7 +35,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void update(Usuario model) throws GeneralException {
-        LOG.info("Actualizando el usuario");
+        LOG.info(String.format("Actualizando el usuario: %s",model));
         jdbcTemplate.update(UPDATE, new Object[]{
                 model.getNombre(),
                 model.getEmail(),
@@ -45,14 +45,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void delete(Integer id) throws GeneralException {
-        LOG.info("Eliminando el usuario");
+        LOG.info(String.format("Eliminando el usuario: %d",id));
         jdbcTemplate.update(DELETE, new Object[]{
                 id});
     }
 
     @Override
     public Usuario findByiD(Usuario model) throws GeneralException {
-        LOG.info("Consultando el Usuario por id_usuario");
+        LOG.info(String.format("Consultando el usuario: %s",model));
         Usuario usuario = new Usuario();
         usuario = jdbcTemplate.queryForObject(FINDBYID, new UsuarioRowMapper(), new Object[]{model.getIdUsuario()});
         return usuario;

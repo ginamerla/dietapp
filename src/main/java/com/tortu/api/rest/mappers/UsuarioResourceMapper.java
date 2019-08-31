@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsuarioResourceMapper implements DefaultResourceMapper<Usuario, UsuarioResource> {
     @Override
-    public UsuarioResource mapper(Usuario model) {
+    public UsuarioResource map(Usuario model) {
         if (model == null) {
             return null;
         }

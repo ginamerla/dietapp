@@ -9,6 +9,15 @@ public class Usuario {
     private String nombre;
     private String email;
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }

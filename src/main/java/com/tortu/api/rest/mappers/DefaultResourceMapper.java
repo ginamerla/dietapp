@@ -8,5 +8,5 @@ package com.tortu.api.rest.mappers;
  */
 public interface DefaultResourceMapper<M, R> {
 
-    R mapper(M model);
+    R map(M model);
 }
