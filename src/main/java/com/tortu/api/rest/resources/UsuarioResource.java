@@ -12,17 +12,7 @@ public class UsuarioResource {
     private String nombre;
     private String email;
     private Integer id;
-    private Date fecha = new Date();
-
-    public UsuarioResource (Usuario usuario){
-        this.nombre = usuario.getNombre();
-        this.email = usuario.getEmail();
-        this.id = usuario.getIdUsuario();
-    }
-
-    public UsuarioResource() {
-
-    }
+    ///private Date fecha = new Date();
 
     public String getNombre() {
         return nombre;

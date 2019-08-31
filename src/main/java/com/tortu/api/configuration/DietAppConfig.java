@@ -34,7 +34,7 @@ public class DietAppConfig {
     @Value("${db.url}")
     private String jdbcUrl;
 
-    @Value("${db.user}")
+    @Value("${db.username}")
     private String jdbcUsername;
 
     @Value("${db.password}")

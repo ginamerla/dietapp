@@ -2,7 +2,6 @@ package com.tortu.api.utils;
 
 /**
  * Excepcion personalizada.
- * @author visilva
  *
  */
 public class GeneralException extends RuntimeException {

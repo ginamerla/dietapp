@@ -229,7 +229,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <jvmArguments>
-                            -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -DVARIABLE_ENTORNO=dev
+                            -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6005 -DVARIABLE_ENTORNO=dev -Dserver.port=8888
                         </jvmArguments>
                     </configuration>
                     <executions>
