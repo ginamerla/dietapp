@@ -4,6 +4,14 @@ public class Receta {
     private Integer idReceta;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return "Receta{" +
+                "idReceta=" + idReceta +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
+
     public Integer getIdReceta() {
         return idReceta;
     }

@@ -5,6 +5,15 @@ public class RecetaPeriodo {
     private Receta receta;
     private Periodo periodo;
 
+    @Override
+    public String toString() {
+        return "RecetaPeriodo{" +
+                "idRecetaIngrediente=" + idRecetaPeriodo +
+                ", receta='" + receta + '\'' +
+                ", periodo='" + periodo + '\'' +
+                '}';
+    }
+
     public Integer getIdRecetaPeriodo() {
         return idRecetaPeriodo;
     }

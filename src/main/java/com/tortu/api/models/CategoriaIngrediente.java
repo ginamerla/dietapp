@@ -7,6 +7,14 @@ public class CategoriaIngrediente {
     private Integer idUsuario;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return "CategoriaIngrediente{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }

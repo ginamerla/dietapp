@@ -13,8 +13,11 @@ public class CreateUsuarioValidatorImpl implements GenericValidator <Usuario> {
      */
     @Override
     public void validate(Usuario usuario) throws GeneralException {
+        if(usuario == null){
+            throw new GeneralException("El USUARIO es nulo");
+        }
         if(usuario.getNombre()==null){
-            throw new GeneralException("EL NOMBRE del usuario es nulo");
+            throw new GeneralException("El NOMBRE del usuario es nulo");
         }
         if(usuario.getNombre().isEmpty()){
             throw new GeneralException("El NOMBRE del usuario esta vacio");

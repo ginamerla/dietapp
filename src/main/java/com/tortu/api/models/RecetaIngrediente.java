@@ -7,6 +7,17 @@ public class RecetaIngrediente {
     private Medida medida;
     private Double cantidad;
 
+    @Override
+    public String toString() {
+        return "RecetaIngrediente{" +
+                "idRecetaIngrediente=" + idRecetaIngrediente +
+                ", receta='" + receta + '\'' +
+                ", ingrediente='" + ingrediente + '\'' +
+                ", medida='" + medida + '\'' +
+                ", cantidad='" + cantidad + '\'' +
+                '}';
+    }
+
     public Integer getIdRecetaIngrediente() {
         return idRecetaIngrediente;
     }

@@ -4,6 +4,14 @@ public class Medida {
     private Integer idMedida;
     private String medida;
 
+    @Override
+    public String toString() {
+        return "Medida{" +
+                "idMedida=" + idMedida +
+                ", medida='" + medida + '\'' +
+                '}';
+    }
+
     public Integer getIdMedida() {
         return idMedida;
     }

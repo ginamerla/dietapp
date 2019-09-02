@@ -5,6 +5,15 @@ public class LayoutPeriodo {
     private Layout layout;
     private Periodo periodo;
 
+    @Override
+    public String toString() {
+        return "LayoutPeriodo{" +
+                "idLayoutPeriodo=" + idLayoutPeriodo +
+                ", layout='" + layout + '\'' +
+                ", periodo='" + periodo + '\'' +
+                '}';
+    }
+
     public Integer getIdLayoutPeriodo() {
         return idLayoutPeriodo;
     }

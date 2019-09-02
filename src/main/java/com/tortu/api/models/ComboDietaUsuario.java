@@ -5,6 +5,15 @@ public class ComboDietaUsuario {
     private DietaUsuario dietaUsuario;
     private RecetaPeriodo recetaPeriodo;
 
+    @Override
+    public String toString() {
+        return "ComboDietaUsuario{" +
+                "idComboDietaUsuario=" + idComboDietaUsuario +
+                ", dietaUsuario='" + dietaUsuario + '\'' +
+                ", recetaPeriodo='" + recetaPeriodo + '\'' +
+                '}';
+    }
+
     public Integer getIdComboDietaUsuario() {
         return idComboDietaUsuario;
     }

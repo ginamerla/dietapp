@@ -5,6 +5,15 @@ public class DietaUsuario {
     private Usuario usuario;
     private String diaSemana;
 
+    @Override
+    public String toString() {
+        return "DietaUsuario{" +
+                "idDietaUsuario=" + idDietaUsuario +
+                ", usuario='" + usuario + '\'' +
+                ", diaSemana='" + diaSemana + '\'' +
+                '}';
+    }
+
     public Integer getIdDietaUsuario() {
         return idDietaUsuario;
     }

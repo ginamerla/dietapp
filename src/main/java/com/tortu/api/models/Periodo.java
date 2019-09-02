@@ -4,6 +4,14 @@ public class Periodo {
     private Integer idPeriodo;
     private String periodo;
 
+    @Override
+    public String toString() {
+        return "Periodo{" +
+                "idPeriodo=" + idPeriodo +
+                ", periodo='" + periodo + '\'' +
+                '}';
+    }
+
     public Integer getIdPeriodo() {
         return idPeriodo;
     }

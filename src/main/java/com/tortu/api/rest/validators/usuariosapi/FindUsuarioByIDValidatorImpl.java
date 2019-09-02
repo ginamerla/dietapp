@@ -14,11 +14,11 @@ public class FindUsuarioByIDValidatorImpl implements GenericValidator<Usuario> {
      */
     @Override
     public void validate(Usuario modelo) throws GeneralException {
+        if(modelo == null){
+            throw new GeneralException("El USUARIO es nulo");
+        }
         if(modelo.getIdUsuario()==null){
             throw new GeneralException("El ID del usuario es nulo");
-        }
-        if(modelo.getIdUsuario().intValue()==0){
-            throw new GeneralException("El ID del usuario es incorrecto(0)");
         }
     }
 }

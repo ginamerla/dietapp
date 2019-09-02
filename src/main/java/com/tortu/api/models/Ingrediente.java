@@ -5,6 +5,15 @@ public class Ingrediente {
     private String nombre;
     private CategoriaIngrediente categoriaIngrediente;
 
+    @Override
+    public String toString() {
+        return "Ingrediente{" +
+                "idIngrediente=" + idIngrediente +
+                ", nombre='" + nombre + '\'' +
+                ", categoriaIngrediente='" + categoriaIngrediente + '\'' +
+                '}';
+    }
+
     public Integer getIdIngrediente() {
         return idIngrediente;
     }

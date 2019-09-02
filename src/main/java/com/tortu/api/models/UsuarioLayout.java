@@ -8,6 +8,16 @@ public class UsuarioLayout {
     private Layout layout;
     private Date fecha;
 
+    @Override
+    public String toString() {
+        return "UsuarioLayout{" +
+                "idUsuarioLayout=" + idUsuarioLayout +
+                ", usuario='" + usuario + '\'' +
+                ", layout='" + layout + '\'' +
+                ", fecha='" + fecha + '\''+
+                '}';
+    }
+
     public Integer getIdUsuarioLayout() {
         return idUsuarioLayout;
     }

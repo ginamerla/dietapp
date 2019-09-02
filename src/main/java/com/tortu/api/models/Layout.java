@@ -5,6 +5,16 @@ public class Layout {
     private String layout;
     private Boolean activo;
 
+
+    @Override
+    public String toString() {
+        return "Layout{" +
+                "idLayout=" + idLayout +
+                ", layout='" + layout + '\'' +
+                ", activo='" + activo + '\'' +
+                '}';
+    }
+
     public Integer getIdLayout() {
         return idLayout;
     }
