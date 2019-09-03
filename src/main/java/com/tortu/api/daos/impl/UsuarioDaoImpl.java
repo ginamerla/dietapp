@@ -23,7 +23,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 
     @Override
-    public void save(Usuario model) throws GeneralException {
+    public void save(Usuario model)  {
         LOG.info(String.format("Creando el usuario: %s",model));
         jdbcTemplate.update(SAVE, new Object[]{
                 model.getIdUsuario(),
@@ -34,7 +34,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public void update(Usuario model) throws GeneralException {
+    public void update(Usuario model) {
         LOG.info(String.format("Actualizando el usuario: %s",model));
         jdbcTemplate.update(UPDATE, new Object[]{
                 model.getNombre(),
@@ -44,22 +44,21 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public void delete(Integer id) throws GeneralException {
+    public void delete(Integer id) {
         LOG.info(String.format("Eliminando el usuario: %d",id));
         jdbcTemplate.update(DELETE, new Object[]{
                 id});
     }
 
     @Override
-    public Usuario findByiD(Usuario model) throws GeneralException {
-        LOG.info(String.format("Consultando el usuario: %s",model));
-        Usuario usuario = new Usuario();
-        usuario = jdbcTemplate.queryForObject(FINDBYID, new UsuarioRowMapper(), new Object[]{model.getIdUsuario()});
+    public Usuario findByiD(Integer idUsuario) {
+        LOG.info(String.format("Consultando el usuario con id: %s",idUsuario));
+        Usuario usuario = jdbcTemplate.queryForObject(FINDBYID, new UsuarioRowMapper(), idUsuario);
         return usuario;
     }
 
     @Override
-    public List<Usuario> findAll() throws GeneralException {
+    public List<Usuario> findAll() {
         LOG.info("Consultando todos los usuarios");
         List<Usuario> usuarioList = new ArrayList<Usuario>();
         usuarioList = jdbcTemplate.query(FIND_ALL, new UsuarioRowMapper());

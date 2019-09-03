@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.management.AgentConfigurationError;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario saveUsuario(Usuario usuario) throws GeneralException {
+    public Usuario saveUsuario(Usuario usuario){
         usuarioDao.save(usuario);
         return usuario;
     }
@@ -48,12 +49,15 @@ public class UsuarioServiceImpl implements UsuarioService {
         if(usuario.getIdUsuario() == null){
             throw new GeneralException("Datos invalidos: El ID del usuario es nulo");
         }
-        return usuarioDao.findByiD(usuario);
+        return usuarioDao.findByiD(usuario.getIdUsuario());
     }
 
     @Override
     public List<Usuario> findAllUsuarios() {
         List<Usuario> usuarioList = usuarioDao.findAll();
+        if(usuarioList == null){
+            return new ArrayList<>();
+        }
         return usuarioList;
     }
 

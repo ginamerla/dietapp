@@ -33,11 +33,11 @@ public interface GenericDao<T, K> {
 
     /**
      * Consulta todos los datos del modelo proporcionado
-     * @param model
+     * @param id
      * @return el modelo
      * @throws GeneralException
      */
-    T findByiD(T model) throws GeneralException;
+    T findByiD(K id) throws GeneralException;
 
     /**
      * Obtener todos los datos de la entidad
