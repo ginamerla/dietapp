@@ -1,20 +1,17 @@
 package com.tortu.api.models;
 
 /**
- * Modelo - usuario. Usualmente representa una entidad de la base de datos.
- * @author visilva
+ * Modelo CategorIngrediente
  */
-public class Usuario {
+public class CategoriaIngrediente {
     private Integer idUsuario;
     private String nombre;
-    private String email;
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "CategoriaIngrediente{" +
                 "idUsuario=" + idUsuario +
                 ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -32,13 +29,5 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

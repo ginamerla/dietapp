@@ -3,7 +3,7 @@ package com.tortu.api.configuration;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.tortu.api.rest.controllers.UsuarioController;
+import com.tortu.api.rest.restservices.UsuarioRestService;
 import com.tortu.api.utils.CustomFasterJacksonObjectMapperFactory;
 import com.tortu.api.utils.ExceptionMapperImplementation;
 import org.apache.cxf.Bus;
@@ -20,6 +20,9 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.RuntimeDelegate;
 import java.util.Arrays;
 
+/**
+ * Configuracion de JaxRS y todos los beans a exponer como REST Services
+ */
 @Order(2)
 @Configuration
 @ImportResource({ "classpath:META-INF/cxf/cxf.xml" })
@@ -67,7 +70,7 @@ public class JaxRsServerConfig {
         final JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance()
                 .createEndpoint(dietAppApiV1Application(),
                         JAXRSServerFactoryBean.class);
-        factory.setServiceBeans(Arrays.<Object> asList(usuarioController()));
+        factory.setServiceBeans(Arrays.<Object> asList(usuarioRestService()));
         factory.setAddress(factory.getAddress());
         factory.setProviders(Arrays.<Object> asList(jsonProvider(), exceptionMapper()));
         factory.setBus(bus);
@@ -85,16 +88,20 @@ public class JaxRsServerConfig {
         LOG.debug("JaxRsServerConfig : DietAppApiV1Application bean created");
         return new DietAppApiV1Application();
     }
-
+/**
+ * --------------------------------------------------------------------------------
+ * Agregar los demas servicios REST y agregar a la lista dentro de JaxRsServer()
+ * --------------------------------------------------------------------------------
+ */
     /**
      * Controller for UsuarioController functionality.
      *
      * @return UsuarioController bean.
      */
     @Bean
-    public UsuarioController usuarioController() {
-        LOG.debug("JaxRsServerConfig : UsuarioController bean created");
-        return new UsuarioController();
+    public UsuarioRestService usuarioRestService() {
+        LOG.debug("JaxRsServerConfig : UsuarioRestService bean created");
+        return new UsuarioRestService();
     }
 
 

@@ -1,5 +1,7 @@
 package com.tortu.api.rest.resources;
 
+import com.tortu.api.models.Usuario;
+
 import java.util.Date;
 
 /**
@@ -10,7 +12,7 @@ public class UsuarioResource {
     private String nombre;
     private String email;
     private Integer id;
-    private Date fecha = new Date();
+    ///private Date fecha = new Date();
 
     public String getNombre() {
         return nombre;

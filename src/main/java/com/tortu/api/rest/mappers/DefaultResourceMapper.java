@@ -1,4 +1,4 @@
-package com.tortu.api.rest.converters;
+package com.tortu.api.rest.mappers;
 
 /**
  * Interface para mapear de un modelo <M> a un recurso rest <R>.
@@ -6,7 +6,7 @@ package com.tortu.api.rest.converters;
  * @param <R> Nuevo objeto basado en la info del modelo proporcionado.
  * @author visilva
  */
-public interface DefaultResourceConverter<M, R> {
+public interface DefaultResourceMapper<M, R> {
 
-    R  convert(M model);
+    R map(M model);
 }
