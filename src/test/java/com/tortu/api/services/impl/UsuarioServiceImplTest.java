@@ -24,11 +24,6 @@ public class UsuarioServiceImplTest {
     @Mock
     private UsuarioDao usuarioDao;
 
-
-    @Test
-    public void obtenerUsuarioPorId() {
-    }
-
     /**
      * Prueba que guarda un usuario
      * Happy path
@@ -78,7 +73,7 @@ public class UsuarioServiceImplTest {
         expected.setNombre("Nombre Esperado");
 
         Mockito.when(usuarioDao.findByiD(usuario.getIdUsuario())).thenReturn(expected);
-        Usuario result = usuarioService.findUsuario(usuario);
+        Usuario result = usuarioService.findUsuario(usuario.getIdUsuario());
 
         // revisa la llamada del mock (DAO) se hace por cada mock
         Mockito.verify(usuarioDao,Mockito.times(1)).findByiD(usuario.getIdUsuario());
@@ -86,14 +81,14 @@ public class UsuarioServiceImplTest {
         assertEquals(expected.getNombre(), result.getNombre());
     }
 
-    /**
-     * Prueba que valida la excepcion cuando el usuario es nulo
-     */
-    @Test(expected = GeneralException.class)
-    public void findUsuarioUsuarioNull(){
-        Usuario usuario = null;
-        usuarioService.findUsuario(usuario);
-    }
+//    /** SE ELIMINA PORQUE EL METODO CAMBIO A RECIBIR UN ID EN VEZ DEL OBJETO USUARIO
+//     * Prueba que valida la excepcion cuando el usuario es nulo
+//     */
+//    @Test(expected = GeneralException.class)
+//    public void findUsuarioUsuarioNull(){
+//        Usuario usuario = new Usuario();
+//        usuarioService.findUsuario(usuario.getIdUsuario());
+//    }
 
     /**
      * Prueba que valida la excepcion cuando el id del usuario es nulo
@@ -101,7 +96,7 @@ public class UsuarioServiceImplTest {
     @Test(expected = GeneralException.class)
     public void findUsuarioIdNull(){
         Usuario usuarioPrueba = new Usuario();
-        usuarioService.findUsuario(usuarioPrueba);
+        usuarioService.findUsuario(usuarioPrueba.getIdUsuario());
     }
 
     /**

@@ -4,8 +4,8 @@ import com.tortu.api.DietAppApplication;
 import com.tortu.api.daos.UsuarioDao;
 import com.tortu.api.daos.mappers.UsuarioRowMapper;
 import com.tortu.api.models.Usuario;
-import com.tortu.api.utils.GeneralException;
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,29 +25,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public void save(Usuario model)  {
         LOG.info(String.format("Creando el usuario: %s",model));
-        jdbcTemplate.update(SAVE, new Object[]{
-                model.getIdUsuario(),
-                model.getNombre(),
-                model.getEmail()
-        });
+        jdbcTemplate.update(SAVE, model.getIdUsuario(), model.getNombre(), model.getEmail());
 
     }
 
     @Override
     public void update(Usuario model) {
         LOG.info(String.format("Actualizando el usuario: %s",model));
-        jdbcTemplate.update(UPDATE, new Object[]{
-                model.getNombre(),
-                model.getEmail(),
-                model.getIdUsuario()
-        });
+        jdbcTemplate.update(UPDATE, model.getNombre(), model.getEmail(), model.getIdUsuario());
     }
 
     @Override
     public void delete(Integer id) {
         LOG.info(String.format("Eliminando el usuario: %d",id));
-        jdbcTemplate.update(DELETE, new Object[]{
-                id});
+        jdbcTemplate.update(DELETE, id);
     }
 
     @Override
