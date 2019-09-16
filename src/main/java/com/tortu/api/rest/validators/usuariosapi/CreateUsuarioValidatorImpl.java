@@ -3,6 +3,7 @@ package com.tortu.api.rest.validators.usuariosapi;
 import com.tortu.api.models.Usuario;
 import com.tortu.api.rest.validators.GenericValidator;
 import com.tortu.api.utils.GeneralException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component("createUsuarioValidator")
@@ -16,18 +17,15 @@ public class CreateUsuarioValidatorImpl implements GenericValidator <Usuario> {
         if(usuario == null){
             throw new GeneralException("El USUARIO es nulo");
         }
-        if(usuario.getNombre()==null){
-            throw new GeneralException("El NOMBRE del usuario es nulo");
+
+        if(StringUtils.isBlank(usuario.getNombre())){
+            throw new GeneralException("El NOMBRE del usuario es nulo o vacio");
         }
-        if(usuario.getNombre().isEmpty()){
-            throw new GeneralException("El NOMBRE del usuario esta vacio");
+
+        if(StringUtils.isBlank(usuario.getEmail())){
+            throw new GeneralException("El EMAIL del usuario es nulo o vacio");
         }
-        if(usuario.getEmail()==null){
-            throw new GeneralException("El EMAIL del usuario es nulo");
-        }
-        if (usuario.getEmail().isEmpty()) {
-            throw new GeneralException("El EMAIL del usuario esta vacio");
-        }
+
     }
 
 }

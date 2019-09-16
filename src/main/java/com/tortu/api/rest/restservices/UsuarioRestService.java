@@ -36,12 +36,8 @@ public class UsuarioRestService {
     @Qualifier("updateUsuarioValidator")
     private GenericValidator updateUsuarioValidator;
 
-
     @Autowired
     private UsuarioService usuarioService;
-
-    @Autowired
-    private UsuarioResourceMapper converter;
 
     @Autowired
     private UsuarioResourceMapper usuarioResourceMapper;
@@ -50,21 +46,25 @@ public class UsuarioRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllUsuarios(){
         List<Usuario>usuarioList = usuarioService.findAllUsuarios();
+
         List<UsuarioResource> usuarioResourceList = new ArrayList<UsuarioResource>();
-        for(Usuario usuario:usuarioList){
-            UsuarioResource resource = usuarioResourceMapper.map(usuario);
-            usuarioResourceList.add(resource);
+            for(Usuario usuario:usuarioList){
+                UsuarioResource resource = usuarioResourceMapper.map(usuario);
+                usuarioResourceList.add(resource);
         }
+
         return  Response.ok(usuarioResourceList).build();
     }
 
     @GET
-    @Path("/{usuario}")
+    @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response findUsuarioById(@PathParam("usuario") Usuario usuario) {
-        findUsuarioByIdValidator.validate(usuario);
-        Usuario usuarioResponse =  usuarioService.findUsuario(usuario);
-        UsuarioResource resource = converter.map(usuario);
+    public Response findUsuarioById(@PathParam("id") Integer id) {
+        if(id == null){
+            throw new GeneralException("El ID es nulo");
+        }
+        Usuario usuario =  usuarioService.findUsuario(id);
+        UsuarioResource resource = usuarioResourceMapper.map(usuario);
         return Response.ok(resource).build();
     }
 
@@ -78,9 +78,8 @@ public class UsuarioRestService {
     }
 
     @PUT
-    @Path("/usuario")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateUsuario( @PathParam("usuario") Usuario usuario ){
+    public Response updateUsuario(Usuario usuario){
         updateUsuarioValidator.validate(usuario);
         Usuario usuarioResponse = usuarioService.updateUsuario(usuario);
         UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
@@ -88,8 +87,8 @@ public class UsuarioRestService {
     }
 
     @DELETE
-    @Path("/usuarioId")
-    public Response deleteUsuario(@PathParam("usuarioId") Integer id){
+    @Path("/{id}")
+    public Response deleteUsuario(@PathParam("id") Integer id){
         if(id==null){
             throw new GeneralException("El ID del usuario es nulo");
         }
