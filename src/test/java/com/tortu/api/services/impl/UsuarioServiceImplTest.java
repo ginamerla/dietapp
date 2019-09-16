@@ -81,15 +81,6 @@ public class UsuarioServiceImplTest {
         assertEquals(expected.getNombre(), result.getNombre());
     }
 
-//    /** SE ELIMINA PORQUE EL METODO CAMBIO A RECIBIR UN ID EN VEZ DEL OBJETO USUARIO
-//     * Prueba que valida la excepcion cuando el usuario es nulo
-//     */
-//    @Test(expected = GeneralException.class)
-//    public void findUsuarioUsuarioNull(){
-//        Usuario usuario = new Usuario();
-//        usuarioService.findUsuario(usuario.getIdUsuario());
-//    }
-
     /**
      * Prueba que valida la excepcion cuando el id del usuario es nulo
      */
