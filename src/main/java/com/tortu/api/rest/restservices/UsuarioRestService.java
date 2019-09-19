@@ -28,9 +28,9 @@ public class UsuarioRestService {
     @Qualifier("createUsuarioValidator")
     private GenericValidator createUsuarioValidator;
 
-    @Autowired
-    @Qualifier("findUsuarioByIdValidator")
-    private GenericValidator findUsuarioByIdValidator;
+//    @Autowired
+//    @Qualifier("findUsuarioByIdValidator")
+//    private GenericValidator findUsuarioByIdValidator;
 
     @Autowired
     @Qualifier("updateUsuarioValidator")
