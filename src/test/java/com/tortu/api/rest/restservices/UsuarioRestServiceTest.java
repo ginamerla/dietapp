@@ -57,10 +57,10 @@ public class UsuarioRestServiceTest {
         Mockito.verify(usuarioService, Mockito.times(1)).findAllUsuarios();
         Mockito.verify(usuarioResourceMapper,Mockito.times(2)).map(Mockito.any(Usuario.class));
 
-        assertEquals(actualResponse.getStatus(),200);
+        assertEquals(200,actualResponse.getStatus());
         assertTrue(actualResponse.getEntity() instanceof List);
         List<UsuarioResource> entityResult = (List<UsuarioResource>) actualResponse.getEntity();
-        assertEquals(entityResult.size(), 2);
+        assertEquals(2,entityResult.size());
 
     }
 
@@ -117,7 +117,7 @@ public class UsuarioRestServiceTest {
     @Test(expected = GeneralException.class)
     public void findUsuarioByIdNull() {
         Response actualResponse = usuarioRestService.findUsuarioById(null);
-        assertEquals(actualResponse.getStatus(),500);
+
     }
 
     @Test

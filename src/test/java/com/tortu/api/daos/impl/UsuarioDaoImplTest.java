@@ -30,8 +30,15 @@ public class UsuarioDaoImplTest {
      */
     @Test
     public void save() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        usuario.setNombre("Test Name");
+        usuario.setEmail("mail@test.com");
+
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString())).thenReturn(1);
-        jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString());
+
+        usuarioDao.save(usuario);
+
         Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString());
     }
 
@@ -41,8 +48,15 @@ public class UsuarioDaoImplTest {
      */
     @Test
     public void update() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        usuario.setNombre("Test Name");
+        usuario.setEmail("mail@test.com");
+
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString())).thenReturn(1);
-        jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString());
+
+        usuarioDao.update(usuario);
+
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString());
 
     }
@@ -53,8 +67,13 @@ public class UsuarioDaoImplTest {
      */
     @Test
     public void delete() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
-        jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt());
+
+        usuarioDao.delete(usuario.getIdUsuario());
+
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
 
     }
@@ -68,7 +87,9 @@ public class UsuarioDaoImplTest {
         Usuario expected = new Usuario();
 
         Mockito.when(jdbcTemplate.queryForObject(Mockito.anyString(),Mockito.any(UsuarioRowMapper.class),Mockito.anyInt())).thenReturn(expected);
+
         Usuario result = usuarioDao.findByiD(1);
+
         Mockito.verify(jdbcTemplate, Mockito.times(1)).queryForObject(Mockito.anyString(),Mockito.any(UsuarioRowMapper.class),Mockito.anyInt());
 
         assertEquals(expected.getIdUsuario(),result.getIdUsuario());
@@ -83,7 +104,9 @@ public class UsuarioDaoImplTest {
         List<Usuario> expected = new ArrayList<>();
 
         Mockito.when(jdbcTemplate.query(Mockito.anyString(),Mockito.any(UsuarioRowMapper.class))).thenReturn(expected);
+
         List<Usuario> result = usuarioDao.findAll();
+
         Mockito.verify(jdbcTemplate, Mockito.times(1)).query(Mockito.anyString(), Mockito.any(UsuarioRowMapper.class));
 
         assertEquals(expected, result);
