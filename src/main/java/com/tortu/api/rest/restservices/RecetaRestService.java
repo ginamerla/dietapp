@@ -63,6 +63,7 @@ public class RecetaRestService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createReceta(Receta receta){
         createRecetaValidator.validate(receta);
         Receta recetaSaved = recetaService.saveReceta(receta);
@@ -72,6 +73,7 @@ public class RecetaRestService {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response updateReceta(Receta receta){
         updateRecetaValidator.validate(receta);
         Receta updatedReceta = recetaService.updateReceta(receta);

@@ -14,10 +14,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase de la capa de acceso a la BD
+ */
 @Component
 public class RecetaDaoImpl implements RecetaDao {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DietAppApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RecetaDaoImpl.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -50,8 +53,7 @@ public class RecetaDaoImpl implements RecetaDao {
     @Override
     public List<Receta> findAll() throws GeneralException {
         LOG.info("Consultando todas las recetas");
-        List<Receta> recetaList = new ArrayList<>();
-        recetaList = jdbcTemplate.query(FIND_ALL, new RecetaRowMapper());
+        List<Receta> recetaList = jdbcTemplate.query(FIND_ALL, new RecetaRowMapper());
         return recetaList;
     }
 }

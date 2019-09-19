@@ -28,10 +28,6 @@ public class UsuarioRestService {
     @Qualifier("createUsuarioValidator")
     private GenericValidator createUsuarioValidator;
 
-//    @Autowired
-//    @Qualifier("findUsuarioByIdValidator")
-//    private GenericValidator findUsuarioByIdValidator;
-
     @Autowired
     @Qualifier("updateUsuarioValidator")
     private GenericValidator updateUsuarioValidator;
@@ -70,6 +66,7 @@ public class UsuarioRestService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createUsuario(Usuario usuario){
         createUsuarioValidator.validate(usuario);
         Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
@@ -79,6 +76,7 @@ public class UsuarioRestService {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUsuario(Usuario usuario){
         updateUsuarioValidator.validate(usuario);
         Usuario usuarioResponse = usuarioService.updateUsuario(usuario);

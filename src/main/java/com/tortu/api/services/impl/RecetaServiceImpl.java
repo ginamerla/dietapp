@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class RecetaServiceImpl implements RecetaService {
 
-    public static final Logger LOG = LoggerFactory.getLogger(DietAppApplication.class);
+    public static final Logger LOG = LoggerFactory.getLogger(RecetaServiceImpl.class);
 
     @Autowired
     private RecetaDao recetaDao;

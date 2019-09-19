@@ -101,13 +101,13 @@ public class JaxRsServerConfig {
      */
     @Bean
     public UsuarioRestService usuarioRestService() {
-        LOG.debug("JaxRsServerConfig : UsuarioRestService been created");
+        LOG.debug("JaxRsServerConfig : UsuarioRestService bean created");
         return new UsuarioRestService();
     }
 
     @Bean
     public RecetaRestService recetaRestService(){
-        LOG.debug("JaxRsServerConfig : RecetaRestService been created");
+        LOG.debug("JaxRsServerConfig : RecetaRestService bean created");
         return new RecetaRestService();
     }
 

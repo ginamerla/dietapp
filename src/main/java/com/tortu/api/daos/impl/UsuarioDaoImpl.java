@@ -19,7 +19,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private static final Logger LOG = LoggerFactory.getLogger(DietAppApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UsuarioDaoImpl.class);
 
 
     @Override

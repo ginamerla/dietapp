@@ -18,10 +18,8 @@ public class RecetaRowMapper implements RowMapper<Receta> {
     @Override
     public Receta mapRow(ResultSet resultSet, int i) throws SQLException {
         Receta receta = new Receta();
-
         receta.setIdReceta(resultSet.getInt(ID_RECETA));
         receta.setNombre(resultSet.getString(NOMBRE));
-
         return receta;
     }
 }

@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioDao usuarioDao;
 
-    public static final Logger LOG = LoggerFactory.getLogger(DietAppApplication.class);
+    public static final Logger LOG = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
     @Override
     public Usuario saveUsuario(Usuario usuario){
