@@ -1,19 +1,11 @@
-package com.tortu.api.models;
+package com.tortu.api.rest.resources;
 
 /**
- * Modelo CategorIngrediente
+ * Clase que representa el recurso (de la capa rest) del modelo (categoria_ingrediente)
  */
-public class CategoriaIngrediente {
+public class CategoriaIngredienteResource {
     private Integer idCategoriaIngrediente;
     private String nombre;
-
-    @Override
-    public String toString() {
-        return "CategoriaIngrediente{" +
-                "idUsuario=" + idCategoriaIngrediente +
-                ", nombre='" + nombre + '\'' +
-                '}';
-    }
 
     public Integer getIdCategoriaIngrediente() {
         return idCategoriaIngrediente;
