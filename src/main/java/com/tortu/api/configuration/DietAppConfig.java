@@ -1,11 +1,15 @@
 package com.tortu.api.configuration;
 
+import com.tortu.api.daos.CategoriaIngredienteDao;
 import com.tortu.api.daos.RecetaDao;
 import com.tortu.api.daos.UsuarioDao;
+import com.tortu.api.daos.impl.CategoriaIngredienteDaoImpl;
 import com.tortu.api.daos.impl.RecetaDaoImpl;
 import com.tortu.api.daos.impl.UsuarioDaoImpl;
+import com.tortu.api.services.CategoriaIngredienteService;
 import com.tortu.api.services.RecetaService;
 import com.tortu.api.services.UsuarioService;
+import com.tortu.api.services.impl.CategoriaIngredienteServiceImpl;
 import com.tortu.api.services.impl.RecetaServiceImpl;
 import com.tortu.api.services.impl.UsuarioServiceImpl;
 import org.mariadb.jdbc.MariaDbDataSource;
@@ -53,15 +57,14 @@ public class DietAppConfig {
         return dataSource;
     }
 
-    /**
-     * Crea una instance singleton de Usuario service.
-     * En este caso estamos inyectando la implementacion "Fake" de usuario.
-     * @return una implementacion de Usuario Service.
+    /** ----------------------------------------------------
+     * Se crean las instancias singleton de Services y DAOs
+     -------------------------------------------------------
      */
 
     @Bean
     public UsuarioService usuarioService() {
-        LOG.info(String.format("Bean [ %s ] initicializado!", "UsuarioServiceImpl"));
+        LOG.info(String.format("Bean [ %s ] initialized!", "UsuarioServiceImpl"));
         return new UsuarioServiceImpl();
     }
     @Bean
@@ -70,11 +73,20 @@ public class DietAppConfig {
     }
     @Bean
     public RecetaService recetaService(){
-        LOG.info(String.format("Bean [ %s ] initicializado!", "RecetaServiceImpl"));
+        LOG.info(String.format("Bean [ %s ] initialized!", "RecetaServiceImpl"));
         return new RecetaServiceImpl();
     }
     @Bean
     public RecetaDao recetaDao(){
         return new RecetaDaoImpl();
+    }
+    @Bean
+    public CategoriaIngredienteService categoriaIngredienteService(){
+        LOG.info(String.format("Bean [ %s ] initialized!","CategoriaIngredienteServiceImpl"));
+        return new CategoriaIngredienteServiceImpl();
+    }
+    @Bean
+    public CategoriaIngredienteDao categoriaIngredienteDao(){
+        return new CategoriaIngredienteDaoImpl();
     }
 }

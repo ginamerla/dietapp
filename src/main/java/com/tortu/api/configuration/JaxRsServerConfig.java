@@ -3,8 +3,10 @@ package com.tortu.api.configuration;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.tortu.api.rest.restservices.CategoriaIngredienteRestService;
 import com.tortu.api.rest.restservices.RecetaRestService;
 import com.tortu.api.rest.restservices.UsuarioRestService;
+import com.tortu.api.services.CategoriaIngredienteService;
 import com.tortu.api.utils.CustomFasterJacksonObjectMapperFactory;
 import com.tortu.api.utils.ExceptionMapperImplementation;
 import org.apache.cxf.Bus;
@@ -71,7 +73,7 @@ public class JaxRsServerConfig {
         final JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance()
                 .createEndpoint(dietAppApiV1Application(),
                         JAXRSServerFactoryBean.class);
-        factory.setServiceBeans(Arrays.<Object> asList(usuarioRestService(), recetaRestService()));
+        factory.setServiceBeans(Arrays.<Object> asList(usuarioRestService(), recetaRestService(), categoriaIngredienteRestService()));
         factory.setAddress(factory.getAddress());
         factory.setProviders(Arrays.<Object> asList(jsonProvider(), exceptionMapper()));
         factory.setBus(bus);
@@ -109,6 +111,11 @@ public class JaxRsServerConfig {
     public RecetaRestService recetaRestService(){
         LOG.debug("JaxRsServerConfig : RecetaRestService bean created");
         return new RecetaRestService();
+    }
+    @Bean
+    public CategoriaIngredienteRestService categoriaIngredienteRestService(){
+        LOG.debug("JaxRSServiceConfig : CategoriaIngredienteRestService bean created");
+        return new CategoriaIngredienteRestService();
     }
 
 

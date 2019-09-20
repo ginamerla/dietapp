@@ -1,6 +1,5 @@
 package com.tortu.api.services.impl;
 
-import com.tortu.api.DietAppApplication;
 import com.tortu.api.daos.UsuarioDao;
 import com.tortu.api.models.Usuario;
 import com.tortu.api.services.UsuarioService;
@@ -9,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.management.AgentConfigurationError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +52,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuario> findAllUsuarios() {
-        LOG.info("Buscando todos los usuarios: %s");
+        LOG.info("Buscando todos los usuarios: ");
         List<Usuario> usuarioList = usuarioDao.findAll();
         if(usuarioList == null){
             return new ArrayList<>();
