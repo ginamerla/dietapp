@@ -25,20 +25,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public static final Logger LOG = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
     @Override
-    public Usuario saveUsuario(Usuario usuario){
+    public void saveUsuario(Usuario usuario){
         LOG.info(String.format("Creando el usuario: %s",usuario));
         usuarioDao.save(usuario);
-        return usuario;
     }
 
     @Override
-    public Usuario updateUsuario(Usuario usuario) throws GeneralException {
+    public void updateUsuario(Usuario usuario) throws GeneralException {
         LOG.info(String.format("Actualizando el usuario: %s",usuario));
         if(usuario.getIdUsuario()==null){
             throw new GeneralException("Datos invalidos: ID del usuario es nulo");
         }
         usuarioDao.update(usuario);
-        return usuario;
     }
 
     @Override

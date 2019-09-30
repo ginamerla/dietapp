@@ -1,4 +1,4 @@
-package com.tortu.api.rest.validators.categoriasIngredienteapi;
+package com.tortu.api.rest.validators.categoriasingredienteapi;
 
 import com.tortu.api.models.CategoriaIngrediente;
 import com.tortu.api.rest.validators.GenericValidator;

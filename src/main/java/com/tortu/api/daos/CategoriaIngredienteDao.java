@@ -12,7 +12,7 @@ public interface CategoriaIngredienteDao extends GenericDao<CategoriaIngrediente
     public static final String FINDBYID =
             "select * from categoria_ingrediente where id_categoria_ingrediente=?";
     public static final String SAVE =
-            "insert into categoria_ingrediente (id_categoria_ingrediente, nombre) values (?, ?)";
+            "insert into categoria_ingrediente (nombre) values (?)";
     public static final String UPDATE =
             "update categoria_ingrediente set nombre = ? where id_categoria_ingrediente = ?";
     public static final String DELETE =

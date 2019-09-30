@@ -3,6 +3,7 @@ package com.tortu.api.daos.impl;
 import com.tortu.api.daos.CategoriaIngredienteDao;
 import com.tortu.api.daos.mappers.CategoriaIngredienteRowMapper;
 import com.tortu.api.models.CategoriaIngrediente;
+import com.tortu.api.utils.GeneralException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -27,11 +28,20 @@ public class CategoriaIngredienteDaoImplTest {
     @Test
     public void save() {
         CategoriaIngrediente categoria = new CategoriaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyString())).thenReturn(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(1);
 
         categoriaIngredienteDaoImpl.save(categoria);
 
-        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyString());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyString());
+    }
+    @Test(expected = GeneralException.class)
+    public void saveException() {
+        CategoriaIngrediente categoria = new CategoriaIngrediente();
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(0);
+
+        categoriaIngredienteDaoImpl.save(categoria);
+
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
@@ -44,11 +54,31 @@ public class CategoriaIngredienteDaoImplTest {
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt());
 
     }
+    @Test(expected = GeneralException.class)
+    public void updateException() {
+        CategoriaIngrediente categoria = new CategoriaIngrediente();
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
+
+        categoriaIngredienteDaoImpl.update(categoria);
+
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt());
+
+    }
 
     @Test
     public void delete() {
         Integer categoryID = 1;
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt())).thenReturn(1);
+
+        categoriaIngredienteDaoImpl.delete(categoryID);
+
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
+
+    }
+    @Test(expected = GeneralException.class)
+    public void deleteException() {
+        Integer categoryID = 1;
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
 
         categoriaIngredienteDaoImpl.delete(categoryID);
 

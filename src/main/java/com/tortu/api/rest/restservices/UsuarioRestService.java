@@ -69,9 +69,8 @@ public class UsuarioRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUsuario(Usuario usuario){
         createUsuarioValidator.validate(usuario);
-        Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
-        return Response.ok(resource).build();
+        usuarioService.saveUsuario(usuario);
+        return Response.ok().build();
     }
 
     @PUT
@@ -79,9 +78,8 @@ public class UsuarioRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUsuario(Usuario usuario){
         updateUsuarioValidator.validate(usuario);
-        Usuario usuarioResponse = usuarioService.updateUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
-        return Response.ok(resource).build();
+        usuarioService.updateUsuario(usuario);
+        return Response.ok().build();
     }
 
     @DELETE

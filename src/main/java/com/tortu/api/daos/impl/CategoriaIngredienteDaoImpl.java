@@ -25,21 +25,28 @@ public class CategoriaIngredienteDaoImpl implements CategoriaIngredienteDao {
     @Override
     public void save(CategoriaIngrediente model) throws GeneralException {
         LOG.info(String.format("Creando categoria_ingrediente: %s", model));
-        jdbcTemplate.update(SAVE, model.getIdCategoriaIngrediente(), model.getNombre());
-
+        int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
+        if(updatedRows==0){
+            throw  new GeneralException("La CATEGORIA_INGREDIENTE no pudo ser guardada");
+        }
     }
 
     @Override
     public void update(CategoriaIngrediente model) throws GeneralException {
         LOG.info(String.format("Actualizando categoria_ingrediente: %s", model));
-        jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente());
-
+        int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente());
+        if(updatedRows==0){
+            throw  new GeneralException("El CATEGORIA_INGREDIENTE no pudo ser actualizada");
+        }
     }
 
     @Override
     public void delete(Integer id) throws GeneralException {
         LOG.info(String.format("Eliminando categoria_ingrediente %d",id));
-        jdbcTemplate.update(DELETE,id);
+        int updatedRows = jdbcTemplate.update(DELETE,id);
+        if(updatedRows==0){
+            throw  new GeneralException("El CATEGORIA_INGREDIENTE no pudo ser eliminada");
+        }
     }
 
     @Override

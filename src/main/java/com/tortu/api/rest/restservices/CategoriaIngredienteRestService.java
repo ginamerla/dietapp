@@ -62,9 +62,9 @@ public class CategoriaIngredienteRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente){
         createCategoriaIngredienteValidator.validate(categoriaIngrediente);
-        CategoriaIngrediente savedCategoria = categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
-        CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(savedCategoria);
-        return Response.ok(resource).build();
+        categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
+        //CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
+        return Response.ok().build();
     }
 
     @PUT
@@ -72,9 +72,9 @@ public class CategoriaIngredienteRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente){
         updateCategoriaIngredienteValidator.validate(categoriaIngrediente);
-        CategoriaIngrediente updatedCategoria = categoriaIngredienteService.updateCategoriaIngrediente(categoriaIngrediente);
-        CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(updatedCategoria);
-        return Response.ok(resource).build();
+        categoriaIngredienteService.updateCategoriaIngrediente(categoriaIngrediente);
+        //CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
+        return Response.ok().build();
     }
 
     @DELETE

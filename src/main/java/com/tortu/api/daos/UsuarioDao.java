@@ -9,7 +9,7 @@ public interface UsuarioDao extends GenericDao<Usuario, Integer>{
     public static final String FINDBYID =
             "select * from usuario where id_usuario=?";
     public static final String SAVE =
-            "insert into usuario (id_usuario, nombre, email) values (?, ?, ?)";
+            "insert into usuario (nombre, email) values (?, ?)";
     public static final String UPDATE =
             "update usuario set nombre = ?, email = ? where id_usuario = ?";
     public static final String DELETE =

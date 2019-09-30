@@ -4,6 +4,7 @@ import com.tortu.api.daos.RecetaDao;
 import com.tortu.api.daos.mappers.RecetaRowMapper;
 import com.tortu.api.models.Receta;
 import com.tortu.api.models.Usuario;
+import com.tortu.api.utils.GeneralException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -40,11 +41,18 @@ public class RecetaDaoImplTest {
         receta.setNombre("Banana bowl");
         receta.setIdReceta(1);
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString())).thenReturn(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(1);
 
         recetaDao.save(receta);
 
-        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString());
+    }
+    @Test(expected = GeneralException.class)
+    public void saveException() {
+        Receta receta = new Receta();
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(0);
+        recetaDao.save(receta);
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString());
     }
 
     @Test
@@ -61,6 +69,15 @@ public class RecetaDaoImplTest {
                 .update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt());
 
     }
+    @Test(expected = GeneralException.class)
+    public void updateException() {
+        Receta receta = new Receta();
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
+        recetaDao.update(receta);
+        Mockito.verify(jdbcTemplate, Mockito.times(1))
+                .update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt());
+
+    }
 
     @Test
     public void delete() {
@@ -71,6 +88,14 @@ public class RecetaDaoImplTest {
 
         recetaDao.delete(usuario.getIdUsuario());
 
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
+    }
+    @Test(expected = GeneralException.class)
+    public void deleteException() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
+        recetaDao.delete(usuario.getIdUsuario());
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
     }
 

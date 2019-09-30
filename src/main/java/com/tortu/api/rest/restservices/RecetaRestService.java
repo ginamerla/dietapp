@@ -66,9 +66,8 @@ public class RecetaRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createReceta(Receta receta){
         createRecetaValidator.validate(receta);
-        Receta recetaSaved = recetaService.saveReceta(receta);
-        RecetaResource resource = recetaResourceMapper.map(recetaSaved);
-        return Response.ok(resource).build();
+        recetaService.saveReceta(receta);
+        return Response.ok().build();
     }
 
     @PUT
@@ -76,9 +75,8 @@ public class RecetaRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateReceta(Receta receta){
         updateRecetaValidator.validate(receta);
-        Receta updatedReceta = recetaService.updateReceta(receta);
-        RecetaResource resource = recetaResourceMapper.map(updatedReceta);
-        return Response.ok(resource).build();
+        recetaService.updateReceta(receta);
+        return Response.ok().build();
     }
 
     @DELETE
