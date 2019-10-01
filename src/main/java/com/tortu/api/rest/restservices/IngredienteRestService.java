@@ -27,6 +27,7 @@ public class IngredienteRestService {
     @Autowired
     private IngredienteResourceMapper ingredienteResourceMapper;
     @Autowired
+    @Qualifier("createIngredienteValidator")
     private GenericValidator createIngredienteValidator;
     @Autowired
     @Qualifier("updateIngredienteValidator")
@@ -52,6 +53,9 @@ public class IngredienteRestService {
             throw new GeneralException("El id es nulo");
         }
         Ingrediente ingrediente = ingredienteService.findIngrediente(id);
+        if(ingrediente==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         IngredienteResource ingredienteResource = ingredienteResourceMapper.map(ingrediente);
         return Response.ok(ingredienteResource).build();
     }

@@ -53,6 +53,9 @@ public class LayoutPeriodoRestService {
             throw new GeneralException("El id es nulo");
         }
         LayoutPeriodo layoutPeriodo = layoutPeriodoService.findLayoutPeriodo(id);
+        if(layoutPeriodo==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         LayoutPeriodoResource resource = resourceMapper.map(layoutPeriodo);
         return Response.ok(resource).build();
     }

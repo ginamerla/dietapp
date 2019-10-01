@@ -14,8 +14,8 @@ public class UpdateCategoriaIngredienteValidatorImpl implements GenericValidator
     /**
      * Valida que los datos sean correctos
      * El id o el nombre de la categoria no puede ser nulo
-     * @param modelo
-     * @throws GeneralException
+     * @param modelo la CategoriaIngrediente que se quiere crear
+     * @throws GeneralException cuando alguno de los datos requeridos es nulo/vacio
      */
     @Override
     public void validate(CategoriaIngrediente modelo) throws GeneralException {

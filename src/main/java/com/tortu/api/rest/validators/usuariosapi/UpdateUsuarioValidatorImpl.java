@@ -6,13 +6,16 @@ import com.tortu.api.utils.GeneralException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * Valida los datos para actualizar un Usuario
+ */
 @Component("updateUsuarioValidator")
 public class UpdateUsuarioValidatorImpl implements GenericValidator<Usuario> {
     /**
      * Al actualizar un usuario se debe validar que los nuevos datos no vengan nulos
      * No es posible dejar alguno de los campos en blanco
-     * @param modelo
-     * @throws GeneralException
+     * @param modelo el usuario que se quiere actualizar
+     * @throws GeneralException cuando alguno de los datos requeridos es nulo/vacio
      */
     @Override
     public void validate(Usuario modelo) throws GeneralException {

@@ -22,7 +22,7 @@ public class DietaUsuarioResourceMapperTest {
     public void map() {
         DietaUsuario dietaUsuario = new DietaUsuario();
         dietaUsuario.setIdDietaUsuario(1);
-        dietaUsuario.setIdUsuario(1);
+        dietaUsuario.setIdUsuario(2);
         dietaUsuario.setDiaSemana("Lunes");
 
         DietaUsuarioResource dietaUsuarioResource = dietaUsuarioResourceMapper.map(dietaUsuario);

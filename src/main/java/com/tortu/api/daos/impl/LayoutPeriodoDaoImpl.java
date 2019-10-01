@@ -28,6 +28,7 @@ public class LayoutPeriodoDaoImpl implements LayoutPeriodoDao {
         LOG.info(String.format("Insertando LayoutPeriodo: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getIdLayout(), model.getIdPeriodo());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw new GeneralException("No se pudo insertar el nuevo regitro LayoutPeriodo");
         }
     }
@@ -37,6 +38,7 @@ public class LayoutPeriodoDaoImpl implements LayoutPeriodoDao {
         LOG.info(String.format("Actualizando el LayoutPeriodo: %s",model));
         int updatedRows = jdbcTemplate.update(UPDATE,model.getIdLayout(),model.getIdPeriodo(),model.getIdLayoutPeriodo());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw new GeneralException("No se pudo actualizar el registro LayoutPeriodo");
         }
     }
@@ -46,6 +48,7 @@ public class LayoutPeriodoDaoImpl implements LayoutPeriodoDao {
         LOG.info(String.format("Eliminando el layoutPeriodo con id: %d",id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw new GeneralException("No se pudo eliminar el layoutPeriodo");
         }
     }

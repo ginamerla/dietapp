@@ -43,7 +43,6 @@ public class IngredienteServiceImpl implements IngredienteService {
         if(id==null){
             throw new GeneralException("El id del ingrediente es nulo");
         }
-
         return ingredienteDao.findByiD(id);
     }
 

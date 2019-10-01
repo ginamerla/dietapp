@@ -6,12 +6,15 @@ import com.tortu.api.utils.GeneralException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * Valida los datos para poder actualizar una nueva DietaUsuario
+ */
 @Component("updateDietaUsuarioValidator")
 public class UpdateDietaUsuarioValidatorImpl implements GenericValidator<DietaUsuario> {
     /**
      * AL actualizar la dieta_usuario el ID_DIETA_USUARIO, ID_USUARIO y/o DIA_SEMANA no pueden ser vacios/nulos
-      * @param modelo
-     * @throws GeneralException
+      * @param modelo La dieta_usuario que se va a actualizar
+     * @throws GeneralException cuando alguno de los datos requeridos es nulo/vacio
      */
     @Override
     public void validate(DietaUsuario modelo) throws GeneralException {

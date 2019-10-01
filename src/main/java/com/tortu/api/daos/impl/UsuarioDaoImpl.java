@@ -26,6 +26,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         LOG.info(String.format("Creando el usuario: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getNombre(), model.getEmail());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El USUARIO no pudo ser guardado");
         }
     }
@@ -35,6 +36,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         LOG.info(String.format("Actualizando el usuario: %s",model));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getEmail(), model.getIdUsuario());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El USUARIO no pudo ser actualizado");
         }
     }
@@ -44,6 +46,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         LOG.info(String.format("Eliminando el usuario: %d",id));
         int updatedRows = jdbcTemplate.update(DELETE, id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El USUARIO no pudo ser eliminado");
         }
     }

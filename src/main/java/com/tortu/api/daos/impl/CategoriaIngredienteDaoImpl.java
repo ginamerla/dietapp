@@ -27,6 +27,7 @@ public class CategoriaIngredienteDaoImpl implements CategoriaIngredienteDao {
         LOG.info(String.format("Creando categoria_ingrediente: %s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("La CATEGORIA_INGREDIENTE no pudo ser guardada");
         }
     }
@@ -36,6 +37,7 @@ public class CategoriaIngredienteDaoImpl implements CategoriaIngredienteDao {
         LOG.info(String.format("Actualizando categoria_ingrediente: %s", model));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El CATEGORIA_INGREDIENTE no pudo ser actualizada");
         }
     }
@@ -45,6 +47,7 @@ public class CategoriaIngredienteDaoImpl implements CategoriaIngredienteDao {
         LOG.info(String.format("Eliminando categoria_ingrediente %d",id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El CATEGORIA_INGREDIENTE no pudo ser eliminada");
         }
     }

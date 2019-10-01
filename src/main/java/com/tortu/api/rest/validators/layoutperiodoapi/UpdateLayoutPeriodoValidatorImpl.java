@@ -7,10 +7,14 @@ import org.springframework.stereotype.Component;
 
 /**
  * Implmentacion del validador para actualizar un LayoutPeriodo
- * Ninguno de los campos pueden ser vacios/nulos
  */
 @Component("updateLayoutPeriodoValidator")
 public class UpdateLayoutPeriodoValidatorImpl implements GenericValidator<LayoutPeriodo> {
+    /**
+     * Al actualizar un LayoutPeriodo ninguno de los campos puede ser vacio/nulo
+     * @param modelo el Layout_Periodo que se va a actualizar
+     * @throws GeneralException cuando alguno de los campos requeridos es vacio/nulo
+     */
     @Override
     public void validate(LayoutPeriodo modelo) throws GeneralException {
         if(modelo==null){

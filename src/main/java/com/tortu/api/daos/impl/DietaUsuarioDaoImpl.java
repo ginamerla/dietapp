@@ -19,13 +19,14 @@ import java.util.List;
 public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
     private static final Logger LOG = LoggerFactory.getLogger(DietaUsuarioDaoImpl.class);
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(DietaUsuario model) throws GeneralException {
         LOG.info(String.format("Creando DIETA_USUARIO: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getIdUsuario(),model.getDiaSemana());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("La DIETA_USUARIO no pudo ser guardada");
         }
     }
@@ -35,6 +36,7 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
         LOG.info(String.format("Actualizando DIETA_USUARIO: %s",model));
         int updatedRows = jdbcTemplate.update(UPDATE,model.getIdUsuario(), model.getDiaSemana(), model.getIdDietaUsuario());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar la BD");
             throw  new GeneralException("La DIETA_USUARIO no pudo ser actualizada");
         }
     }
@@ -44,6 +46,7 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
         LOG.info("Eliminando DIETA_USUARIO: %d", id);
         int updatedRows = jdbcTemplate.update(DELETE, id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar de la BD");
             throw  new GeneralException("La DIETA_USUARIO no pudo ser eliminada");
         }
     }

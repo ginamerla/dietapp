@@ -6,6 +6,9 @@ import com.tortu.api.utils.GeneralException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * Validador para crear un nuevo DIETA_USUARIO
+ */
 @Component("createDietaUsuarioValidator")
 public class CreateDietaUsuarioValidatorImpl implements GenericValidator<DietaUsuario> {
     /**
@@ -19,7 +22,7 @@ public class CreateDietaUsuarioValidatorImpl implements GenericValidator<DietaUs
             throw new GeneralException("La DIETA_USUARIO es nulo");
         }
         if(modelo.getIdUsuario()==null){
-            throw new GeneralException("El ID de la dieta_usuario es nulo");
+            throw new GeneralException("El ID del Usuario es nulo");
         }
         if(StringUtils.isBlank(modelo.getDiaSemana())){
             throw new GeneralException("El DIA_SEMANA de la dieta_usuario es nulo o vacio");

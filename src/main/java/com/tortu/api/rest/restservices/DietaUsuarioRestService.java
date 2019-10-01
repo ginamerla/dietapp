@@ -52,6 +52,9 @@ public class DietaUsuarioRestService {
             throw new GeneralException("El ID de la dieta_usuario es nulo");
         }
         DietaUsuario dietaUsuario = dietaUsuarioService.findDietaUsuario(idDietaUsuario);
+        if(dietaUsuario==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         DietaUsuarioResource resource = resourceMapper.map(dietaUsuario);
         return Response.ok(resource).build();
     }

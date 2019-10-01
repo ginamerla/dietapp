@@ -21,8 +21,8 @@ public class LayoutPeriodoResourceMapperTest {
     public void map() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
         layoutPeriodo.setIdLayoutPeriodo(1);
-        layoutPeriodo.setIdLayout(1);
-        layoutPeriodo.setIdPeriodo(1);
+        layoutPeriodo.setIdLayout(2);
+        layoutPeriodo.setIdPeriodo(3);
 
         LayoutPeriodoResource actual = resourceMapper.map(layoutPeriodo);
         assertEquals(layoutPeriodo.getIdLayoutPeriodo(), actual.getIdLayoutPeriodo());

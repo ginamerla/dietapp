@@ -28,10 +28,10 @@ public class UsuarioLayoutRestService {
     private UsuarioLayoutResourceMapper usuarioLayoutResourceMapper;
     @Autowired
     @Qualifier("createUsuarioLayoutValidator")
-    private GenericValidator createUsuarioLayoutValidator;
+    private GenericValidator<UsuarioLayout> createUsuarioLayoutValidator;
     @Autowired
     @Qualifier("updateUsuarioLayoutValidator")
-    private GenericValidator updateUsuarioLayoutValidator;
+    private GenericValidator<UsuarioLayout> updateUsuarioLayoutValidator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,6 +53,9 @@ public class UsuarioLayoutRestService {
             throw new GeneralException("El idUsuarioLayout es nulo");
         }
         UsuarioLayout usuarioLayout = usuarioLayoutService.findUsuarioLayout(idUsuarioLayout);
+        if(usuarioLayout==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         UsuarioLayoutResource resource = usuarioLayoutResourceMapper.map(usuarioLayout);
         return Response.ok(resource).build();
     }

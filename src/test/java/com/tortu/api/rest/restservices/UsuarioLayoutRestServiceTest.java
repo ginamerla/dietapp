@@ -46,6 +46,8 @@ public class UsuarioLayoutRestServiceTest {
         Mockito.verify(mapper,Mockito.times(2)).map(Mockito.any(UsuarioLayout.class));
         assertEquals(200, response.getStatus());
         assertTrue(response.getEntity() instanceof List);
+        List<UsuarioLayout> responseList = (List<UsuarioLayout>) response.getEntity();
+        assertEquals(2,responseList.size());
     }
     @Test
     public void findAllUsuarioLayoutEmptyList() {

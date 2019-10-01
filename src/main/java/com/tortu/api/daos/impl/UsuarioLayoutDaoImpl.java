@@ -18,15 +18,16 @@ import java.util.List;
 @Component
 public class UsuarioLayoutDaoImpl implements UsuarioLayoutDao {
 
-    public static final Logger LOG = LoggerFactory.getLogger(UsuarioDaoImpl.class);
+    public static final Logger LOG = LoggerFactory.getLogger(UsuarioLayoutDaoImpl.class);
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(UsuarioLayout model) throws GeneralException {
         LOG.info(String.format("Guardando usuarioLayout: %s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getIdUsuario(), model.getIdLayout(), model.getFecha());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El USUARIO_LAYOUT no pudo ser guardado");
         }
     }
@@ -36,6 +37,7 @@ public class UsuarioLayoutDaoImpl implements UsuarioLayoutDao {
         LOG.info(String.format("Actualizando UsuarioLayout: %s",model));
         int updatedRows = jdbcTemplate.update(UPDATE,model.getIdUsuario(),model.getIdLayout(),model.getFecha(),model.getIdUsuarioLayout());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El USUARIO_LAYOUT no pudo ser actualizado");
         }
     }
@@ -45,6 +47,7 @@ public class UsuarioLayoutDaoImpl implements UsuarioLayoutDao {
         LOG.info(String.format("Eliminando UsuarioLayout con id: %d", id));
         int updatedRows = jdbcTemplate.update(DELETE, id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El USUARIO_LAYOUT no pudo ser eliminado");
         }
     }

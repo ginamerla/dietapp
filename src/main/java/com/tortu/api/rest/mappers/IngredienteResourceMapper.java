@@ -4,6 +4,9 @@ import com.tortu.api.models.Ingrediente;
 import com.tortu.api.rest.resources.IngredienteResource;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementacion del convertidor que mapea las propiedades de Ingrediente con el recurso para la capa REST
+ */
 @Component
 public class IngredienteResourceMapper implements DefaultResourceMapper<Ingrediente, IngredienteResource> {
     @Override

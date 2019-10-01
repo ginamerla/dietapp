@@ -20,13 +20,14 @@ import java.util.List;
 public class IngredienteDaoImpl implements IngredienteDao {
     public static final Logger LOG = LoggerFactory.getLogger(IngredienteDaoImpl.class);
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(Ingrediente model) throws GeneralException {
         LOG.info(String.format("Creando INGREDIENTE: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getNombre(), model.getIdCategoriaIngrediente());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser guardado");
         }
     }
@@ -36,6 +37,7 @@ public class IngredienteDaoImpl implements IngredienteDao {
         LOG.info((String.format("Actualizando INGREDIENTE: %s", model)));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente(), model.getIdIngrediente());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser actualizado");
         }
     }
@@ -45,6 +47,7 @@ public class IngredienteDaoImpl implements IngredienteDao {
         LOG.info(String.format("Eliminando INGREDIENTE con id: %d", id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser eliminado");
         }
     }

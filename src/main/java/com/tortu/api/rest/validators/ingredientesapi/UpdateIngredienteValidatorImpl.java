@@ -6,13 +6,16 @@ import com.tortu.api.utils.GeneralException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+/**
+ * Valida los datos para actualizar un Ingrediente
+ */
 @Component("updateIngredienteValidator")
 public class UpdateIngredienteValidatorImpl implements GenericValidator<Ingrediente> {
     /**
      * Valida la informacion para actualizar un ingrediente
      * El Id, el nombre y el id de la categoria no pueden ser vacios/nulos
-     * @param modelo
-     * @throws GeneralException
+     * @param modelo el ingrediente que se va a actualizar
+     * @throws GeneralException cuando alguno de los campos requeridos es vacio/nulo
      */
     @Override
     public void validate(Ingrediente modelo) throws GeneralException {

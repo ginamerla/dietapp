@@ -57,6 +57,9 @@ public class RecetaRestService {
             throw new GeneralException("El ID de la receta es nulo");
         }
         Receta receta = recetaService.findReceta(id);
+        if(receta==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         RecetaResource resource = recetaResourceMapper.map(receta);
         return Response.ok(resource).build();
     }

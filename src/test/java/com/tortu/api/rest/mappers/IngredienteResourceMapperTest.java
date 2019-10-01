@@ -22,7 +22,7 @@ public class IngredienteResourceMapperTest {
         Ingrediente ingrediente = new Ingrediente();
         ingrediente.setIdIngrediente(1);
         ingrediente.setNombre("Tomate");
-        ingrediente.setIdCategoriaIngrediente(1);
+        ingrediente.setIdCategoriaIngrediente(3);
 
         IngredienteResource result = ingredienteResourceMapper.map(ingrediente);
 

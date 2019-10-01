@@ -30,6 +30,7 @@ public class RecetaDaoImpl implements RecetaDao {
         LOG.info(String.format("Creando RECETA :%s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
         if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("La RECETA no pudo ser guardada");
         }
     }
@@ -39,6 +40,7 @@ public class RecetaDaoImpl implements RecetaDao {
         LOG.info(String.format("Actualizando RECETA: %s", model));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(),model.getIdReceta());
         if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("La RECETA no pudo ser actualizada");
         }
     }
@@ -48,6 +50,7 @@ public class RecetaDaoImpl implements RecetaDao {
         LOG.info(String.format("Eliminando RECETA ID: %s", id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("La RECETA no pudo ser eliminada");
         }
     }

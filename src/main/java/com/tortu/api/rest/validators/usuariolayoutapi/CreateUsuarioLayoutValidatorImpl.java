@@ -7,11 +7,15 @@ import org.springframework.stereotype.Component;
 
 /**
  * Valida los datos de UsuarioLayout para crear uno nuevo
- * El idUsuario, idLayout y/o fecha no pueden ser nulos o vacios
+
  */
 @Component("createUsuarioLayoutValidator")
 public class CreateUsuarioLayoutValidatorImpl implements GenericValidator<UsuarioLayout> {
-
+    /**
+     * Valida El idUsuario, idLayout y/o fecha no pueden ser nulos o vacios
+     * @param modelo el UsuarioLayout que se quiere crear
+     * @throws GeneralException cuando alguno de los datos requeridos es nulo/vacio
+     */
     @Override
     public void validate(UsuarioLayout modelo) throws GeneralException {
         if(modelo== null){

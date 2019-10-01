@@ -53,6 +53,9 @@ public class CategoriaIngredienteRestService {
             throw new GeneralException("El ID de la categoria_ingrediente es nulo");
         }
         CategoriaIngrediente categoriaIngrediente = categoriaIngredienteService.findCategoriaIngrediente(id);
+        if(categoriaIngrediente==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
         return Response.ok(resource).build();
     }
@@ -63,7 +66,6 @@ public class CategoriaIngredienteRestService {
     public Response createCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente){
         createCategoriaIngredienteValidator.validate(categoriaIngrediente);
         categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
-        //CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
         return Response.ok().build();
     }
 

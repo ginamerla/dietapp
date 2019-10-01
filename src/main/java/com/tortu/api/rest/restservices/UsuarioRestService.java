@@ -26,11 +26,11 @@ public class UsuarioRestService {
 
     @Autowired
     @Qualifier("createUsuarioValidator")
-    private GenericValidator createUsuarioValidator;
+    private GenericValidator<Usuario> createUsuarioValidator;
 
     @Autowired
     @Qualifier("updateUsuarioValidator")
-    private GenericValidator updateUsuarioValidator;
+    private GenericValidator<Usuario> updateUsuarioValidator;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -60,6 +60,9 @@ public class UsuarioRestService {
             throw new GeneralException("El ID es nulo");
         }
         Usuario usuario =  usuarioService.findUsuario(id);
+        if(usuario==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         UsuarioResource resource = usuarioResourceMapper.map(usuario);
         return Response.ok(resource).build();
     }

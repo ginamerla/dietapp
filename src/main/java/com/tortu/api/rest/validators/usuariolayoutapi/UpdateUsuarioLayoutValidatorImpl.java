@@ -7,10 +7,14 @@ import org.springframework.stereotype.Component;
 
 /**
  * Valida los campos para actualizar un UsuarioLayout
- * Ninguno de los campos puede estar vacio/nulo
  */
 @Component("updateUsuarioLayoutValidator")
 public class UpdateUsuarioLayoutValidatorImpl implements GenericValidator<UsuarioLayout> {
+    /**
+     * Al momento de actualizar un UsuarioLayout Ninguno de los campos puede ser vacio/nulo
+     * @param modelo el UsuarioLayout que se quiere actualizar
+     * @throws GeneralException cuando alguno de los campos requeridos es vacio/nulo
+     */
     @Override
     public void validate(UsuarioLayout modelo) throws GeneralException {
         if(modelo==null){
