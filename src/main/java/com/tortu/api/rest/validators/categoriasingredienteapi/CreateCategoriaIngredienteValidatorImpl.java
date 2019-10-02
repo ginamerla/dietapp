@@ -1,4 +1,4 @@
-package com.tortu.api.rest.validators.categoriasIngredienteapi;
+package com.tortu.api.rest.validators.categoriasingredienteapi;
 
 import com.tortu.api.models.CategoriaIngrediente;
 import com.tortu.api.rest.validators.GenericValidator;
@@ -7,13 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 /**
- * Valida que los datos sean validos para actualizar la categoria_ingrediente
+ * Valida que todos los datos de categoria ingrediente sean validos para poder agregar una nueva
  */
-@Component("updateCategoriaIngredienteValidator")
-public class UpdateCategoriaIngredienteValidatorImpl implements GenericValidator<CategoriaIngrediente> {
+@Component("createCategoriaIngredienteValidator")
+public class CreateCategoriaIngredienteValidatorImpl implements GenericValidator<CategoriaIngrediente> {
     /**
      * Valida que los datos sean correctos
-     * El id o el nombre de la categoria no puede ser nulo
+     * No es posible agregar una categoria con ID o nombre nulo
      * @param modelo
      * @throws GeneralException
      */
@@ -22,11 +22,8 @@ public class UpdateCategoriaIngredienteValidatorImpl implements GenericValidator
         if(modelo==null){
             throw new GeneralException("La CATEGORIA_INGREDIENTE es nula");
         }
-        if(modelo.getIdCategoriaIngrediente()==null){
-            throw new GeneralException("El ID de categoria_ingrediente es nulo");
-        }
         if(StringUtils.isBlank(modelo.getNombre())){
-            throw new GeneralException("El NOMBRE de categoria_ingrediente es nulo o vacio");
+            throw new GeneralException("El NOMBRE de la categoria_ingrediente es nulo o vacio");
         }
     }
 }

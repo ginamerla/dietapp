@@ -3,14 +3,14 @@ package com.tortu.api.models;
 public class Ingrediente {
     private Integer idIngrediente;
     private String nombre;
-    private CategoriaIngrediente categoriaIngrediente;
+    private Integer idCategoriaIngrediente;
 
     @Override
     public String toString() {
         return "Ingrediente{" +
                 "idIngrediente=" + idIngrediente +
                 ", nombre='" + nombre + '\'' +
-                ", categoriaIngrediente='" + categoriaIngrediente + '\'' +
+                ", categoriaIngrediente='" + idCategoriaIngrediente + '\'' +
                 '}';
     }
 
@@ -30,11 +30,11 @@ public class Ingrediente {
         this.nombre = nombre;
     }
 
-    public CategoriaIngrediente getCategoriaIngrediente() {
-        return categoriaIngrediente;
+    public Integer getIdCategoriaIngrediente() {
+        return idCategoriaIngrediente;
     }
 
-    public void setCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) {
-        this.categoriaIngrediente = categoriaIngrediente;
+    public void setIdCategoriaIngrediente(Integer idCategoriaIngrediente) {
+        this.idCategoriaIngrediente = idCategoriaIngrediente;
     }
 }

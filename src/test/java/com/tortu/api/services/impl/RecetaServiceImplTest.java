@@ -31,46 +31,47 @@ public class RecetaServiceImplTest {
 
         Mockito.doNothing().when(recetaDao).save(receta);
 
-        Receta recetaResult = recetaService.saveReceta(receta);
+        recetaService.saveReceta(receta);
 
         Mockito.verify(recetaDao,Mockito.times(1)).save(receta);
 
-        assertEquals(recetaResult, receta);
+    }
+    @Test(expected = GeneralException.class)
+    public void saveRecetaException() {
+        Receta receta = new Receta();
+        Mockito.doThrow(GeneralException.class).when(recetaDao).save(receta);
+        recetaService.saveReceta(receta);
+        Mockito.verify(recetaDao,Mockito.times(1)).save(receta);
     }
 
     @Test
     public void updateReceta() {
         Receta receta = new Receta();
         receta.setIdReceta(1);
-
         Mockito.doNothing().when(recetaDao).update(receta);
-
-        Receta result = recetaService.updateReceta(receta);
-
+        recetaService.updateReceta(receta);
         Mockito.verify(recetaDao,Mockito.times(1)).update(receta);
-
-        assertEquals(result,receta);
     }
 
     @Test(expected = GeneralException.class)
     public void updateRecetaExceptionNull(){
         Receta receta = new Receta();
-
         recetaService.updateReceta(receta);
-
+    }
+    @Test(expected = GeneralException.class)
+    public void updateRecetaException(){
+        Receta receta = new Receta();
+        Mockito.doThrow(GeneralException.class).when(recetaDao).update(receta);
+        recetaService.updateReceta(receta);
     }
 
     @Test
     public void findReceta() {
         Receta expected = new Receta();
         expected.setIdReceta(1);
-
         Mockito.when(recetaDao.findByiD(Mockito.anyInt())).thenReturn(expected);
-
         Receta result = recetaService.findReceta(expected.getIdReceta());
-
         Mockito.verify(recetaDao,Mockito.times(1)).findByiD(Mockito.anyInt());
-
         assertEquals(expected,result);
     }
 
@@ -116,6 +117,11 @@ public class RecetaServiceImplTest {
 
     @Test(expected = GeneralException.class)
     public void deleteRecetaExceptionNull(){
+        recetaService.deleteReceta(null);
+    }
+    @Test(expected = GeneralException.class)
+    public void deleteRecetaException(){
+        Mockito.doThrow(GeneralException.class).when(recetaDao).delete(Mockito.anyInt());
         recetaService.deleteReceta(null);
     }
 }

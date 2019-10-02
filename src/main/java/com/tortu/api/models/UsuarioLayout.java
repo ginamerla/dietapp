@@ -2,18 +2,21 @@ package com.tortu.api.models;
 
 import java.util.Date;
 
+/**
+ * Modelo UsuarioLayout.  Representa la entidad usuario_layout en BD
+ */
 public class UsuarioLayout {
     private Integer idUsuarioLayout;
-    private Usuario usuario;
-    private Layout layout;
+    private Integer idUsuario;
+    private Integer idLayout;
     private Date fecha;
 
     @Override
     public String toString() {
         return "UsuarioLayout{" +
                 "idUsuarioLayout=" + idUsuarioLayout +
-                ", usuario='" + usuario + '\'' +
-                ", layout='" + layout + '\'' +
+                ", usuario='" + idUsuario + '\'' +
+                ", layout='" + idLayout + '\'' +
                 ", fecha='" + fecha + '\''+
                 '}';
     }
@@ -26,20 +29,20 @@ public class UsuarioLayout {
         this.idUsuarioLayout = idUsuarioLayout;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Layout getLayout() {
-        return layout;
+    public Integer getIdLayout() {
+        return idLayout;
     }
 
-    public void setLayout(Layout layout) {
-        this.layout = layout;
+    public void setIdLayout(Integer idLayout) {
+        this.idLayout = idLayout;
     }
 
     public Date getFecha() {

@@ -125,70 +125,52 @@ public class UsuarioRestServiceTest {
         //Primero la llamada real, despues cada una de las lineas de codigo del metodo
         // se van creando su llamada, despues los objetos y despues el verify
         Usuario usuarioNuevo = new Usuario();
-
         Mockito.doNothing().when(validator).validate(usuarioNuevo);
-        Usuario usuarioGuardado = new Usuario();
-        Mockito.when(usuarioService.saveUsuario(usuarioNuevo)).thenReturn(usuarioGuardado);
-
-        UsuarioResource usuarioResource = new UsuarioResource();
-        Mockito.when(usuarioResourceMapper.map(usuarioGuardado)).thenReturn(usuarioResource);
+        Mockito.doNothing().when(usuarioService).saveUsuario(usuarioNuevo);
 
         Response actualResponse = usuarioRestService.createUsuario(usuarioNuevo);
 
         Mockito.verify(validator,Mockito.times(1)).validate(usuarioNuevo);
         Mockito.verify(usuarioService,Mockito.times(1)).saveUsuario(usuarioNuevo);
-        Mockito.verify(usuarioResourceMapper,Mockito.times(1)).map(usuarioGuardado);
-
         assertEquals(200,actualResponse.getStatus());
-
     }
 
     @Test(expected = GeneralException.class)
     public void createUsuarioException(){
         Usuario usuario = new Usuario();
-
         Mockito.doNothing().when(validator).validate(usuario);
         //para crear la excepcion en el servicio
-        Mockito.when(usuarioService.saveUsuario(usuario)).thenThrow(GeneralException.class);
+        Mockito.doThrow(GeneralException.class).when(usuarioService).saveUsuario(usuario);
 
-        Response actualResponse = usuarioRestService.createUsuario(usuario);
+        usuarioRestService.createUsuario(usuario);
 
         Mockito.verify(validator, Mockito.times(1)).validate(usuario);
         Mockito.verify(usuarioService,Mockito.times(1)).saveUsuario(usuario);
-
     }
 
     @Test
     public void updateUsuario() {
         Usuario usuarioActualizado = new Usuario();
         Mockito.doNothing().when(updateUsuarioValidator).validate(usuarioActualizado);
-
-        Mockito.when(usuarioService.updateUsuario(usuarioActualizado)).thenReturn(usuarioActualizado);
-
-        UsuarioResource usuarioResource = new UsuarioResource();
-        Mockito.when(usuarioResourceMapper.map(usuarioActualizado)).thenReturn(usuarioResource);
+        Mockito.doNothing().when(usuarioService).updateUsuario(usuarioActualizado);
 
         Response actualResponse = usuarioRestService.updateUsuario(usuarioActualizado);
 
         Mockito.verify(updateUsuarioValidator,Mockito.times(1)).validate(usuarioActualizado);
         Mockito.verify(usuarioService,Mockito.times(1)).updateUsuario(usuarioActualizado);
-        Mockito.verify(usuarioResourceMapper,Mockito.times(1)).map(usuarioActualizado);
-
         assertEquals(200, actualResponse.getStatus());
-
     }
 
     @Test(expected = GeneralException.class)
     public void updateUsuarioException() {
         Usuario usuarioActualizado = new Usuario();
         Mockito.doNothing().when(updateUsuarioValidator).validate(usuarioActualizado);
-        Mockito.when(usuarioService.updateUsuario(usuarioActualizado)).thenThrow(GeneralException.class);
+        Mockito.doThrow(GeneralException.class).when(usuarioService).updateUsuario(usuarioActualizado);
 
-        Response actualResponse = usuarioRestService.updateUsuario(usuarioActualizado);
+        usuarioRestService.updateUsuario(usuarioActualizado);
 
         Mockito.verify(updateUsuarioValidator,Mockito.times(1)).validate(usuarioActualizado);
         Mockito.verify(usuarioService,Mockito.times(1)).updateUsuario(usuarioActualizado);
-
     }
 
     @Test
@@ -199,7 +181,6 @@ public class UsuarioRestServiceTest {
         Response actualResponse = usuarioRestService.deleteUsuario(usuarioEliminado.getIdUsuario());
 
         assertEquals(200, actualResponse.getStatus());
-
     }
 
     @Test(expected = GeneralException.class)

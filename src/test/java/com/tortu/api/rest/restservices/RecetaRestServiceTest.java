@@ -110,18 +110,12 @@ public class RecetaRestServiceTest {
     public void createReceta() {
         Receta receta = new Receta();
         Mockito.doNothing().when(validator).validate(receta);
-
-        Receta recetaResult = new Receta();
-        Mockito.when(recetaService.saveReceta(receta)).thenReturn(recetaResult);
-
-        RecetaResource resource = new RecetaResource();
-        Mockito.when(recetaResourceMapper.map(recetaResult)).thenReturn(resource);
+        Mockito.doNothing().when(recetaService).saveReceta(receta);
 
         Response response = recetaRestService.createReceta(receta);
 
         Mockito.verify(validator,Mockito.times(1)).validate(receta);
         Mockito.verify(recetaService,Mockito.times(1)).saveReceta(receta);
-        Mockito.verify(recetaResourceMapper,Mockito.times(1)).map(recetaResult);
 
         assertEquals(200, response.getStatus());
     }
@@ -130,30 +124,23 @@ public class RecetaRestServiceTest {
     public void createRecetaException(){
         Receta receta = new Receta();
         Mockito.doNothing().when(validator).validate(receta);
-        Mockito.when(recetaService.saveReceta(receta)).thenThrow(GeneralException.class);
+        Mockito.doThrow(GeneralException.class).when(recetaService).saveReceta(receta);
 
         Response response = recetaRestService.createReceta(receta);
 
         Mockito.verify(validator,Mockito.times(1)).validate(receta);
         Mockito.verify(recetaService,Mockito.times(1)).saveReceta(receta);
+        assertEquals(200,response.getStatus());
     }
 
     @Test
     public void updateReceta() {
         Receta receta = new Receta();
         Mockito.doNothing().when(validator).validate(receta);
-
-        Mockito.when(recetaService.updateReceta(receta)).thenReturn(receta);
-
-        RecetaResource resource = new RecetaResource();
-        Mockito.when(recetaResourceMapper.map(receta)).thenReturn(resource);
-
+        Mockito.doNothing().when(recetaService).updateReceta(receta);
         Response response = recetaRestService.updateReceta(receta);
-
         Mockito.verify(updateRecetaValidator,Mockito.times(1)).validate(receta);
         Mockito.verify(recetaService,Mockito.times(1)).updateReceta(receta);
-        Mockito.verify(recetaResourceMapper,Mockito.times(1)).map(receta);
-
         assertEquals(200, response.getStatus());
     }
 
@@ -161,8 +148,7 @@ public class RecetaRestServiceTest {
     public void updateRecetaException(){
         Receta receta = new Receta();
         Mockito.doNothing().when(updateRecetaValidator).validate(receta);
-
-        Mockito.when(recetaService.updateReceta(receta)).thenThrow(GeneralException.class);
+        Mockito.doThrow(GeneralException.class).when(recetaService).updateReceta(receta);
 
         recetaRestService.updateReceta(receta);
 
@@ -185,6 +171,12 @@ public class RecetaRestServiceTest {
     @Test(expected = GeneralException.class)
     public void deleteRecetaExceptionIdNull(){
         Integer idReceta = null;
+        recetaRestService.deleteReceta(idReceta);
+    }
+    @Test(expected = GeneralException.class)
+    public void deleteRecetaException(){
+        Integer idReceta = 1;
+        Mockito.doThrow(GeneralException.class).when(recetaService).deleteReceta(idReceta);
         recetaRestService.deleteReceta(idReceta);
     }
 }

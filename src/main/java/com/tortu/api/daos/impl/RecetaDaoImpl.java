@@ -28,19 +28,31 @@ public class RecetaDaoImpl implements RecetaDao {
     @Override
     public void save(Receta model) throws GeneralException {
         LOG.info(String.format("Creando RECETA :%s", model));
-        jdbcTemplate.update(SAVE, model.getIdReceta(), model.getNombre());
+        int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
+        if(updatedRows==0){
+            LOG.error("No se pudo insertar en la BD");
+            throw  new GeneralException("La RECETA no pudo ser guardada");
+        }
     }
 
     @Override
     public void update(Receta model) throws GeneralException {
         LOG.info(String.format("Actualizando RECETA: %s", model));
-        jdbcTemplate.update(UPDATE, model.getNombre(),model.getIdReceta());
+        int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(),model.getIdReceta());
+        if(updatedRows==0){
+            LOG.error("No se pudo actualizar en la BD");
+            throw  new GeneralException("La RECETA no pudo ser actualizada");
+        }
     }
 
     @Override
     public void delete(Integer id) throws GeneralException {
         LOG.info(String.format("Eliminando RECETA ID: %s", id));
-        jdbcTemplate.update(DELETE,id);
+        int updatedRows = jdbcTemplate.update(DELETE,id);
+        if(updatedRows==0){
+            LOG.error("No se pudo eliminar en la BD");
+            throw  new GeneralException("La RECETA no pudo ser eliminada");
+        }
     }
 
     @Override

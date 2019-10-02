@@ -25,20 +25,18 @@ public class RecetaServiceImpl implements RecetaService {
     private RecetaDao recetaDao;
 
     @Override
-    public Receta saveReceta(Receta receta) throws GeneralException {
+    public void saveReceta(Receta receta) throws GeneralException {
         LOG.info(String.format("Guardando la receta: %s", receta));
         recetaDao.save(receta);
-        return receta;
     }
 
     @Override
-    public Receta updateReceta(Receta receta) throws GeneralException {
+    public void updateReceta(Receta receta) throws GeneralException {
         LOG.info("Actualizando la receta: %s",receta);
         if(receta.getIdReceta()==null){
             throw new GeneralException("El id de la receta es nulo");
         }
         recetaDao.update(receta);
-        return receta;
     }
 
     @Override

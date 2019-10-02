@@ -8,7 +8,7 @@ public interface RecetaDao extends GenericDao<Receta, Integer> {
     public static final String FINDBYID =
             "select * from receta where id_receta=?";
     public static final String SAVE =
-            "insert into receta (id_receta, nombre) values (?, ?)";
+            "insert into receta (nombre) values (?)";
     public static final String UPDATE =
             "update receta set nombre = ? where id_receta = ?";
     public static final String DELETE =

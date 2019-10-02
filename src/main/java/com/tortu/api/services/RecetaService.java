@@ -13,18 +13,16 @@ public interface RecetaService {
     /**
      * Guarda la receta enviada y regresa la misma informacion
      * @param receta nueva que se debe guardar
-     * @return la nueva receta guardada
      * @throws GeneralException
      */
-    Receta saveReceta(Receta receta) throws GeneralException;
+    void saveReceta(Receta receta) throws GeneralException;
 
     /**
      * Actualiza la informacion de la receta
      * @param receta con la informacion a actualizar
-     * @return la receta actualizada
      * @throws GeneralException
      */
-    Receta updateReceta(Receta receta) throws GeneralException;
+    void updateReceta(Receta receta) throws GeneralException;
 
     /**
      * Busca la receta con el id enviado

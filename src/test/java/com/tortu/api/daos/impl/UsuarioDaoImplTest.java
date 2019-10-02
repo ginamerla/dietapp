@@ -2,6 +2,7 @@ package com.tortu.api.daos.impl;
 
 import com.tortu.api.daos.mappers.UsuarioRowMapper;
 import com.tortu.api.models.Usuario;
+import com.tortu.api.utils.GeneralException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -35,11 +36,21 @@ public class UsuarioDaoImplTest {
         usuario.setNombre("Test Name");
         usuario.setEmail("mail@test.com");
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString())).thenReturn(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(1);
 
         usuarioDao.save(usuario);
 
-        Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyString());
+        Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
+    }
+    @Test(expected = GeneralException.class)
+    public void saveException() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        usuario.setNombre("Test Name");
+        usuario.setEmail("mail@test.com");
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(0);
+        usuarioDao.save(usuario);
+        Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
     }
 
     /**
@@ -60,6 +71,16 @@ public class UsuarioDaoImplTest {
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString());
 
     }
+    @Test(expected = GeneralException.class)
+    public void updateException() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        usuario.setNombre("Test Name");
+        usuario.setEmail("mail@test.com");
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString())).thenReturn(0);
+        usuarioDao.update(usuario);
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString());
+    }
 
     /**
      * Prueba el eliminar un usuario con el ID
@@ -76,6 +97,14 @@ public class UsuarioDaoImplTest {
 
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
 
+    }
+    @Test(expected = GeneralException.class)
+    public void deleteException() {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
+        usuarioDao.delete(usuario.getIdUsuario());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt());
     }
 
     /**

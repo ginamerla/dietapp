@@ -2,14 +2,14 @@ package com.tortu.api.models;
 
 public class DietaUsuario {
     private Integer idDietaUsuario;
-    private Usuario usuario;
+    private Integer idUsuario;
     private String diaSemana;
 
     @Override
     public String toString() {
         return "DietaUsuario{" +
                 "idDietaUsuario=" + idDietaUsuario +
-                ", usuario='" + usuario + '\'' +
+                ", usuario='" + idUsuario + '\'' +
                 ", diaSemana='" + diaSemana + '\'' +
                 '}';
     }
@@ -22,12 +22,12 @@ public class DietaUsuario {
         this.idDietaUsuario = idDietaUsuario;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getDiaSemana() {

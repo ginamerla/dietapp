@@ -3,9 +3,8 @@ package com.tortu.api.configuration;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.tortu.api.rest.restservices.CategoriaIngredienteRestService;
-import com.tortu.api.rest.restservices.RecetaRestService;
-import com.tortu.api.rest.restservices.UsuarioRestService;
+import com.tortu.api.models.Ingrediente;
+import com.tortu.api.rest.restservices.*;
 import com.tortu.api.services.CategoriaIngredienteService;
 import com.tortu.api.utils.CustomFasterJacksonObjectMapperFactory;
 import com.tortu.api.utils.ExceptionMapperImplementation;
@@ -73,7 +72,14 @@ public class JaxRsServerConfig {
         final JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance()
                 .createEndpoint(dietAppApiV1Application(),
                         JAXRSServerFactoryBean.class);
-        factory.setServiceBeans(Arrays.<Object> asList(usuarioRestService(), recetaRestService(), categoriaIngredienteRestService()));
+        factory.setServiceBeans(Arrays.<Object> asList(
+                usuarioRestService(),
+                recetaRestService(),
+                categoriaIngredienteRestService(),
+                ingredienteRestService(),
+                dietaUsuarioRestService(),
+                usuarioLayoutRestService(),
+                layoutPeriodoRestService()));
         factory.setAddress(factory.getAddress());
         factory.setProviders(Arrays.<Object> asList(jsonProvider(), exceptionMapper()));
         factory.setBus(bus);
@@ -106,7 +112,6 @@ public class JaxRsServerConfig {
         LOG.debug("JaxRsServerConfig : UsuarioRestService bean created");
         return new UsuarioRestService();
     }
-
     @Bean
     public RecetaRestService recetaRestService(){
         LOG.debug("JaxRsServerConfig : RecetaRestService bean created");
@@ -116,6 +121,26 @@ public class JaxRsServerConfig {
     public CategoriaIngredienteRestService categoriaIngredienteRestService(){
         LOG.debug("JaxRSServiceConfig : CategoriaIngredienteRestService bean created");
         return new CategoriaIngredienteRestService();
+    }
+    @Bean
+    public IngredienteRestService ingredienteRestService(){
+        LOG.debug("JaxRSServiceCongif : IngredienteRestService bean created");
+        return new IngredienteRestService();
+    }
+    @Bean
+    public DietaUsuarioRestService dietaUsuarioRestService(){
+        LOG.debug("JaxRsServiceConfig: DietaUsuarioRestService bean created");
+        return new DietaUsuarioRestService();
+    }
+    @Bean
+    public UsuarioLayoutRestService usuarioLayoutRestService(){
+        LOG.debug("JaxRsServiceConfig: UsuarioLayoutRestService bean created");
+        return new UsuarioLayoutRestService();
+    }
+    @Bean
+    public LayoutPeriodoRestService layoutPeriodoRestService(){
+        LOG.debug("JaxRsServiceConfig: LayoutPeriodoRestService bean created");
+        return new LayoutPeriodoRestService();
     }
 
 

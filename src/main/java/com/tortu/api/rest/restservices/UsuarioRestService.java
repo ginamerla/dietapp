@@ -26,11 +26,11 @@ public class UsuarioRestService {
 
     @Autowired
     @Qualifier("createUsuarioValidator")
-    private GenericValidator createUsuarioValidator;
+    private GenericValidator<Usuario> createUsuarioValidator;
 
     @Autowired
     @Qualifier("updateUsuarioValidator")
-    private GenericValidator updateUsuarioValidator;
+    private GenericValidator<Usuario> updateUsuarioValidator;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -60,6 +60,9 @@ public class UsuarioRestService {
             throw new GeneralException("El ID es nulo");
         }
         Usuario usuario =  usuarioService.findUsuario(id);
+        if(usuario==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         UsuarioResource resource = usuarioResourceMapper.map(usuario);
         return Response.ok(resource).build();
     }
@@ -69,9 +72,8 @@ public class UsuarioRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUsuario(Usuario usuario){
         createUsuarioValidator.validate(usuario);
-        Usuario usuarioResponse = usuarioService.saveUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
-        return Response.ok(resource).build();
+        usuarioService.saveUsuario(usuario);
+        return Response.ok().build();
     }
 
     @PUT
@@ -79,9 +81,8 @@ public class UsuarioRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUsuario(Usuario usuario){
         updateUsuarioValidator.validate(usuario);
-        Usuario usuarioResponse = usuarioService.updateUsuario(usuario);
-        UsuarioResource resource = usuarioResourceMapper.map(usuarioResponse);
-        return Response.ok(resource).build();
+        usuarioService.updateUsuario(usuario);
+        return Response.ok().build();
     }
 
     @DELETE

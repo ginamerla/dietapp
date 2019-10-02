@@ -53,6 +53,9 @@ public class CategoriaIngredienteRestService {
             throw new GeneralException("El ID de la categoria_ingrediente es nulo");
         }
         CategoriaIngrediente categoriaIngrediente = categoriaIngredienteService.findCategoriaIngrediente(id);
+        if(categoriaIngrediente==null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
         return Response.ok(resource).build();
     }
@@ -62,9 +65,8 @@ public class CategoriaIngredienteRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente){
         createCategoriaIngredienteValidator.validate(categoriaIngrediente);
-        CategoriaIngrediente savedCategoria = categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
-        CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(savedCategoria);
-        return Response.ok(resource).build();
+        categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
+        return Response.ok().build();
     }
 
     @PUT
@@ -72,9 +74,9 @@ public class CategoriaIngredienteRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente){
         updateCategoriaIngredienteValidator.validate(categoriaIngrediente);
-        CategoriaIngrediente updatedCategoria = categoriaIngredienteService.updateCategoriaIngrediente(categoriaIngrediente);
-        CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(updatedCategoria);
-        return Response.ok(resource).build();
+        categoriaIngredienteService.updateCategoriaIngrediente(categoriaIngrediente);
+        //CategoriaIngredienteResource resource = categoriaIngredienteResourceMapper.map(categoriaIngrediente);
+        return Response.ok().build();
     }
 
     @DELETE

@@ -12,18 +12,16 @@ public interface CategoriaIngredienteService {
     /**
      * Guarda la informacion de una nueva categoria para ingredientes
      * @param categoriaIngrediente
-     * @return el objeto con la informacion guardada
      * @throws GeneralException
      */
-    CategoriaIngrediente saveCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException;
+    void saveCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException;
 
     /**
      * Actualiza la informacion de una categoria_ingrediente
      * @param categoriaIngrediente
-     * @return el objeto con la informacion actualizada
      * @throws GeneralException
      */
-    CategoriaIngrediente updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException;
+    void updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException;
 
     /**
      * Consulta la categoria_ingrediente con el id especificado

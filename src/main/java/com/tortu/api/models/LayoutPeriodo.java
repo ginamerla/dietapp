@@ -2,15 +2,15 @@ package com.tortu.api.models;
 
 public class LayoutPeriodo {
     private Integer idLayoutPeriodo;
-    private Layout layout;
-    private Periodo periodo;
+    private Integer idLayout;
+    private Integer idPeriodo;
 
     @Override
     public String toString() {
         return "LayoutPeriodo{" +
                 "idLayoutPeriodo=" + idLayoutPeriodo +
-                ", layout='" + layout + '\'' +
-                ", periodo='" + periodo + '\'' +
+                ", idLayout='" + idLayout + '\'' +
+                ", idPeriodo='" + idPeriodo + '\'' +
                 '}';
     }
 
@@ -22,19 +22,19 @@ public class LayoutPeriodo {
         this.idLayoutPeriodo = idLayoutPeriodo;
     }
 
-    public Layout getLayout() {
-        return layout;
+    public Integer getIdLayout() {
+        return idLayout;
     }
 
-    public void setLayout(Layout layout) {
-        this.layout = layout;
+    public void setIdLayout(Integer idLayout) {
+        this.idLayout = idLayout;
     }
 
-    public Periodo getPeriodo() {
-        return periodo;
+    public Integer getIdPeriodo() {
+        return idPeriodo;
     }
 
-    public void setPeriodo(Periodo periodo) {
-        this.periodo = periodo;
+    public void setIdPeriodo(Integer idPeriodo) {
+        this.idPeriodo = idPeriodo;
     }
 }

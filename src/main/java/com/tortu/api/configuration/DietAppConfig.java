@@ -1,17 +1,9 @@
 package com.tortu.api.configuration;
 
-import com.tortu.api.daos.CategoriaIngredienteDao;
-import com.tortu.api.daos.RecetaDao;
-import com.tortu.api.daos.UsuarioDao;
-import com.tortu.api.daos.impl.CategoriaIngredienteDaoImpl;
-import com.tortu.api.daos.impl.RecetaDaoImpl;
-import com.tortu.api.daos.impl.UsuarioDaoImpl;
-import com.tortu.api.services.CategoriaIngredienteService;
-import com.tortu.api.services.RecetaService;
-import com.tortu.api.services.UsuarioService;
-import com.tortu.api.services.impl.CategoriaIngredienteServiceImpl;
-import com.tortu.api.services.impl.RecetaServiceImpl;
-import com.tortu.api.services.impl.UsuarioServiceImpl;
+import com.tortu.api.daos.*;
+import com.tortu.api.daos.impl.*;
+import com.tortu.api.services.*;
+import com.tortu.api.services.impl.*;
 import org.mariadb.jdbc.MariaDbDataSource;
 import org.mariadb.jdbc.MySQLDataSource;
 import org.slf4j.Logger;
@@ -71,6 +63,7 @@ public class DietAppConfig {
     public UsuarioDao usuarioDao(){
         return new UsuarioDaoImpl();
     }
+
     @Bean
     public RecetaService recetaService(){
         LOG.info(String.format("Bean [ %s ] initialized!", "RecetaServiceImpl"));
@@ -80,6 +73,7 @@ public class DietAppConfig {
     public RecetaDao recetaDao(){
         return new RecetaDaoImpl();
     }
+
     @Bean
     public CategoriaIngredienteService categoriaIngredienteService(){
         LOG.info(String.format("Bean [ %s ] initialized!","CategoriaIngredienteServiceImpl"));
@@ -88,5 +82,44 @@ public class DietAppConfig {
     @Bean
     public CategoriaIngredienteDao categoriaIngredienteDao(){
         return new CategoriaIngredienteDaoImpl();
+    }
+
+    @Bean
+    public IngredienteService ingredienteService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "IngredienteServiceImpl"));
+        return new IngredienteServiceImpl();
+    }
+    @Bean
+    public IngredienteDao ingredienteDao(){
+        return new IngredienteDaoImpl();
+    }
+
+    @Bean
+    public DietaUsuarioService dietaUsuarioService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "DietaUsuarioServiceImpl"));
+        return new DietaUsuarioServiceImpl();
+    }
+    @Bean
+    public DietaUsuarioDao dietaUsuarioDao(){
+        return new DietaUsuarioDaoImpl();
+    }
+
+    @Bean
+    public UsuarioLayoutService usuarioLayoutService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "UsuarioLayoutServiceImpl"));
+        return new UsuarioLayoutServiceImpl();
+    }
+    @Bean UsuarioLayoutDao usuarioLayoutDao(){
+        return new UsuarioLayoutDaoImpl();
+    }
+
+    @Bean
+    public LayoutPeriodoService layoutPeriodoService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "LayoutPeriodoServiceImpl"));
+        return new LayoutPeriodoServiceImpl();
+    }
+    @Bean
+    public LayoutPeriodoDao layoutPeriodoDao(){
+        return new LayoutPeriodoDaoImpl();
     }
 }

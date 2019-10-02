@@ -23,20 +23,18 @@ public class CategoriaIngredienteServiceImpl implements CategoriaIngredienteServ
     public static final Logger LOG = LoggerFactory.getLogger(CategoriaIngredienteServiceImpl.class);
 
     @Override
-    public CategoriaIngrediente saveCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException {
+    public  void saveCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException {
         LOG.info(String.format("Creando categoria_ingrediente: %s", categoriaIngrediente));
         categoriaIngredienteDao.save(categoriaIngrediente);
-        return categoriaIngrediente;
     }
 
     @Override
-    public CategoriaIngrediente updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException {
+    public  void updateCategoriaIngrediente(CategoriaIngrediente categoriaIngrediente) throws GeneralException {
         LOG.info("Actualizando categoria_ingrediente: %s",categoriaIngrediente);
         if(categoriaIngrediente.getIdCategoriaIngrediente()==null){
             throw new GeneralException("El ID de la categoria_ingrediente es nulo");
         }
         categoriaIngredienteDao.update(categoriaIngrediente);
-        return categoriaIngrediente;
     }
 
     @Override

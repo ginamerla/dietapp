@@ -36,6 +36,13 @@ public class UsuarioServiceImplTest {
         usuarioService.saveUsuario(usuarioTest);
         Mockito.verify(usuarioDao,Mockito.times(1)).save(usuarioTest);
     }
+    @Test(expected = GeneralException.class)
+    public void saveUsuarioException() {
+        Usuario usuarioTest = new Usuario();
+        Mockito.doThrow(GeneralException.class).when(usuarioDao).save(usuarioTest);
+        usuarioService.saveUsuario(usuarioTest);
+        Mockito.verify(usuarioDao,Mockito.times(1)).save(usuarioTest);
+    }
 
     /**
      * Prueba actualizar un usuario en base a su id
