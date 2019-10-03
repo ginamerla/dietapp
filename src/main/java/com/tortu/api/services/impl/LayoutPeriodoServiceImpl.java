@@ -30,6 +30,10 @@ public class LayoutPeriodoServiceImpl implements LayoutPeriodoService {
     @Override
     public void updateLayoutPeriodo(LayoutPeriodo layoutPeriodo) throws GeneralException {
         LOG.info(String.format("Actualizando el LayoutPeriodo: %s", layoutPeriodo));
+        if(layoutPeriodo.getIdLayoutPeriodo()==null){
+            LOG.error("idLayoutPeriodo es nulo");
+            throw new GeneralException("El Id de LayoutPeriodo es nulo");
+        }
         layoutPeriodoDao.update(layoutPeriodo);
     }
 
@@ -37,6 +41,7 @@ public class LayoutPeriodoServiceImpl implements LayoutPeriodoService {
     public void deleteLayoutPeriodo(Integer id) throws GeneralException {
         LOG.info(String.format("Eliminando el LayoutPeriodo con id: %d",id));
         if(id==null){
+            LOG.error("ID de LayoutPeriodo es nulo");
             throw new GeneralException("El id del LayoutPeriodo es nulo");
         }
         layoutPeriodoDao.delete(id);
@@ -46,10 +51,12 @@ public class LayoutPeriodoServiceImpl implements LayoutPeriodoService {
     public LayoutPeriodo findLayoutPeriodo(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando el LayoutPeriodo con id: %d",id));
         if(id==null){
+            LOG.error("idLayoutPeriodo es nulo");
             throw new GeneralException("El id del LayoutPeriodo es nulo");
         }
         LayoutPeriodo layoutPeriodo = layoutPeriodoDao.findByiD(id);
         if(layoutPeriodo==null){
+            LOG.warn(String.format("No se encontro el LayoutPeriodo con id",id));
             throw new GeneralException("El LayoutPeriodo no fue encontrado");
         }
         return layoutPeriodo;
@@ -60,6 +67,7 @@ public class LayoutPeriodoServiceImpl implements LayoutPeriodoService {
         LOG.info("Consultando todos los LayoutPeriodo");
         List<LayoutPeriodo> layoutPeriodoList = layoutPeriodoDao.findAll();
         if(layoutPeriodoList==null){
+            LOG.warn("No se encontaron LayoutPeriodo");
             return new ArrayList<>();
         }
         return layoutPeriodoList;

@@ -122,4 +122,14 @@ public class DietAppConfig {
     public LayoutPeriodoDao layoutPeriodoDao(){
         return new LayoutPeriodoDaoImpl();
     }
+
+    @Bean
+    public RecetaPeriodoService recetaPeriodoService(){
+        LOG.info(String.format("Bean [ %s] initialized", "RecetaPeriodoServiceImpl"));
+        return new RecetaPeriodoServiceImpl();
+    }
+    @Bean
+    public RecetaPeriodoDao recetaPeriodoDao(){
+        return new RecetaPeriodoDaoImpl();
+    }
 }

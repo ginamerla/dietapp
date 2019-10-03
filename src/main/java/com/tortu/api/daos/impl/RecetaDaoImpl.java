@@ -58,14 +58,12 @@ public class RecetaDaoImpl implements RecetaDao {
     @Override
     public Receta findByiD(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando receta con id: %s",id));
-        Receta receta = jdbcTemplate.queryForObject(FINDBYID, new RecetaRowMapper(), id);
-        return receta;
+        return jdbcTemplate.queryForObject(FINDBYID, new RecetaRowMapper(), id);
     }
 
     @Override
     public List<Receta> findAll() throws GeneralException {
         LOG.info("Consultando todas las recetas");
-        List<Receta> recetaList = jdbcTemplate.query(FIND_ALL, new RecetaRowMapper());
-        return recetaList;
+        return jdbcTemplate.query(FIND_ALL, new RecetaRowMapper());
     }
 }

@@ -31,6 +31,7 @@ public class UsuarioLayoutServiceImpl implements UsuarioLayoutService {
     public void updateUsuarioLayout(UsuarioLayout usuarioLayout) throws GeneralException {
         LOG.info(String.format("Actualizando el UsuarioLayout: %s", usuarioLayout));
         if(usuarioLayout.getIdUsuarioLayout()==null){
+            LOG.error("idUsuarioLayout nulo");
             throw new GeneralException("Datos invalidos: el ID del UsuarioLayout es nulo");
         }
         usuarioLayoutDao.update(usuarioLayout);
@@ -40,6 +41,7 @@ public class UsuarioLayoutServiceImpl implements UsuarioLayoutService {
     public UsuarioLayout findUsuarioLayout(Integer idUsuarioLayout) throws GeneralException {
         LOG.info(String.format("Consultando el UsuarioLayout con id: %d",idUsuarioLayout));
         if (idUsuarioLayout==null){
+            LOG.error("idUsuarioLayout nulo");
             throw new GeneralException("Datos invalidos: el ID del UsuarioLayout es nulo");
         }
         return usuarioLayoutDao.findByiD(idUsuarioLayout);
@@ -50,6 +52,7 @@ public class UsuarioLayoutServiceImpl implements UsuarioLayoutService {
         LOG.info("Consultando todos los UsuarioLayout");
         List<UsuarioLayout> usuarioLayoutList = usuarioLayoutDao.findAll();
         if(usuarioLayoutList==null){
+            LOG.warn("No se encontraron UsuarioLayout");
             return new ArrayList<>();
         }
         return usuarioLayoutList;
@@ -59,6 +62,7 @@ public class UsuarioLayoutServiceImpl implements UsuarioLayoutService {
     public void deleteUsuarioLayout(Integer idUsuarioLayout) throws GeneralException {
         LOG.info(String.format("Eliminando el UsuarioLayout con id: %d", idUsuarioLayout));
         if(idUsuarioLayout==null){
+            LOG.error("idUsuarioLayout nulo");
             throw new GeneralException("Datos invalidos: El ID del usuarioLayout es nulo");
         }
         usuarioLayoutDao.delete(idUsuarioLayout);

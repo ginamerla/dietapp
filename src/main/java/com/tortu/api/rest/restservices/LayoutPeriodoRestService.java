@@ -61,6 +61,7 @@ public class LayoutPeriodoRestService {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createLayoutPeriodo(LayoutPeriodo layoutPeriodo){
         createLayoutPeriodoValidator.validate(layoutPeriodo);
         layoutPeriodoService.saveLayoutPeriodo(layoutPeriodo);
@@ -68,6 +69,7 @@ public class LayoutPeriodoRestService {
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateLayoutPeriodo(LayoutPeriodo layoutPeriodo){
         updateLayoutPeriodoValidator.validate(layoutPeriodo);
         layoutPeriodoService.updateLayoutPeriodo(layoutPeriodo);
