@@ -1,22 +1,14 @@
-package com.tortu.api.models;
+package com.tortu.api.rest.resources;
 
-public class RecetaIngrediente {
+/**
+ * Recurso que representa al modelo RecetaIngrediente en la capa REST
+ */
+public class RecetaIngredienteResource {
     private Integer idRecetaIngrediente;
     private Integer idReceta;
     private Integer idIngrediente;
     private Integer idMedida;
     private Double cantidad;
-
-    @Override
-    public String toString() {
-        return "RecetaIngrediente{" +
-                "idRecetaIngrediente=" + idRecetaIngrediente +
-                ", idReceta='" + idReceta + '\'' +
-                ", idIngrediente='" + idIngrediente + '\'' +
-                ", idMedida='" + idMedida + '\'' +
-                ", cantidad='" + cantidad + '\'' +
-                '}';
-    }
 
     public Integer getIdRecetaIngrediente() {
         return idRecetaIngrediente;
