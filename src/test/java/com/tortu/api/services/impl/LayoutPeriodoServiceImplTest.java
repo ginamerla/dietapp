@@ -33,6 +33,7 @@ public class LayoutPeriodoServiceImplTest {
     @Test
     public void updateLayoutPeriodo() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
+        layoutPeriodo.setIdLayoutPeriodo(1);
         Mockito.doNothing().when(dao).update(layoutPeriodo);
         service.updateLayoutPeriodo(layoutPeriodo);
         Mockito.verify(dao,Mockito.times(1)).update(layoutPeriodo);

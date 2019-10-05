@@ -56,14 +56,12 @@ public class LayoutPeriodoDaoImpl implements LayoutPeriodoDao {
     @Override
     public LayoutPeriodo findByiD(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando el layoutPeriod con id: %d",id));
-        LayoutPeriodo layoutPeriodo = jdbcTemplate.queryForObject(FINDBYID, new LayoutPeriodoRowMapper(),id);
-        return layoutPeriodo;
+        return jdbcTemplate.queryForObject(FINDBYID, new LayoutPeriodoRowMapper(),id);
     }
 
     @Override
     public List<LayoutPeriodo> findAll() throws GeneralException {
         LOG.info("Consultando todos los LayoutPeriodo");
-        List<LayoutPeriodo> layoutPeriodoList = jdbcTemplate.query(FIND_ALL,new LayoutPeriodoRowMapper());
-        return layoutPeriodoList;
+        return jdbcTemplate.query(FIND_ALL,new LayoutPeriodoRowMapper());
     }
 }

@@ -10,9 +10,9 @@ import java.sql.SQLException;
  * Asigna las propiedades del modelo ingrediente con las propiedades de la base de datos
  */
 public class IngredienteRowMapper implements RowMapper<Ingrediente> {
-    public static final String ID_INGREDIENTE = "id_ingrediente";
-    public static final String NOMBRE = "nombre";
-    public static final String ID_CATEGORIA_INGREDIENTE = "id_categoria_ingrediente";
+    private static final String ID_INGREDIENTE = "id_ingrediente";
+    private static final String NOMBRE = "nombre";
+    private static final String ID_CATEGORIA_INGREDIENTE = "id_categoria_ingrediente";
 
     @Override
     public Ingrediente mapRow(ResultSet resultSet, int i) throws SQLException {

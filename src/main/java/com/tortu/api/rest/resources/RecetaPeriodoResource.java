@@ -1,18 +1,12 @@
-package com.tortu.api.models;
+package com.tortu.api.rest.resources;
 
-public class RecetaPeriodo {
+/**
+ * Representa el recurso RecetaPeriodo para la capa de REST
+ */
+public class RecetaPeriodoResource {
     private Integer idRecetaPeriodo;
     private Integer idReceta;
     private Integer idPeriodo;
-
-    @Override
-    public String toString() {
-        return "RecetaPeriodo{" +
-                "idRecetaIngrediente=" + idRecetaPeriodo +
-                ", idReceta='" + idReceta + '\'' +
-                ", idPeriodo='" + idPeriodo + '\'' +
-                '}';
-    }
 
     public Integer getIdRecetaPeriodo() {
         return idRecetaPeriodo;
