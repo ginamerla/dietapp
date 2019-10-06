@@ -1,18 +1,12 @@
-package com.tortu.api.models;
+package com.tortu.api.rest.resources;
 
-public class ComboDietaUsuario {
+/**
+ * Representa el modelo ComboDietaUsuario en la capa REST
+ */
+public class ComboDietaUsuarioResource {
     private Integer idComboDietaUsuario;
     private Integer idDietaUsuario;
     private Integer idRecetaPeriodo;
-
-    @Override
-    public String toString() {
-        return "ComboDietaUsuario{" +
-                "idComboDietaUsuario=" + idComboDietaUsuario +
-                ", idDietaUsuario='" + idDietaUsuario + '\'' +
-                ", idRecetaPeriodo='" + idRecetaPeriodo + '\'' +
-                '}';
-    }
 
     public Integer getIdComboDietaUsuario() {
         return idComboDietaUsuario;
