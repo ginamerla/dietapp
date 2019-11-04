@@ -34,6 +34,7 @@ public class RecetaServiceImpl implements RecetaService {
     public void updateReceta(Receta receta) throws GeneralException {
         LOG.info("Actualizando la receta: %s",receta);
         if(receta.getIdReceta()==null){
+            LOG.error("IdReceta es nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         recetaDao.update(receta);
@@ -43,6 +44,7 @@ public class RecetaServiceImpl implements RecetaService {
     public Receta findReceta(Integer idReceta) throws GeneralException {
         LOG.info("Consultando la receta con id: %s", idReceta);
         if(idReceta==null){
+            LOG.error("idReceta es nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         return recetaDao.findByiD(idReceta);
@@ -53,6 +55,7 @@ public class RecetaServiceImpl implements RecetaService {
         LOG.info("Consultando todas las recetas");
         List<Receta> recetaList = recetaDao.findAll();
         if(recetaList==null){
+            LOG.warn("No se encontraron Recetas");
             return new ArrayList<>();
         }
         return recetaList;
@@ -62,6 +65,7 @@ public class RecetaServiceImpl implements RecetaService {
     public void deleteReceta(Integer idReceta) throws GeneralException {
         LOG.info(String.format("Eliminando la receta con id: %s",idReceta));
         if(idReceta==null){
+            LOG.error("idReceta nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         recetaDao.delete(idReceta);

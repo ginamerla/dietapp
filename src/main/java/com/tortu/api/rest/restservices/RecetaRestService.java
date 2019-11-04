@@ -31,11 +31,11 @@ public class RecetaRestService {
 
     @Autowired
     @Qualifier("createRecetaValidator")
-    private GenericValidator createRecetaValidator;
+    private GenericValidator<Receta> createRecetaValidator;
 
     @Autowired
     @Qualifier("updateRecetaValidator")
-    private GenericValidator updateRecetaValidator;
+    private GenericValidator<Receta> updateRecetaValidator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

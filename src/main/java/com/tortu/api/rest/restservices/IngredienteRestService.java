@@ -28,10 +28,10 @@ public class IngredienteRestService {
     private IngredienteResourceMapper ingredienteResourceMapper;
     @Autowired
     @Qualifier("createIngredienteValidator")
-    private GenericValidator createIngredienteValidator;
+    private GenericValidator<Ingrediente> createIngredienteValidator;
     @Autowired
     @Qualifier("updateIngredienteValidator")
-    private GenericValidator updateIngredienteValidator;
+    private GenericValidator<Ingrediente> updateIngredienteValidator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
