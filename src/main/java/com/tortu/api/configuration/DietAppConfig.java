@@ -124,6 +124,16 @@ public class DietAppConfig {
     }
 
     @Bean
+    public ComboDietaUsuarioService comboDietaUsuarioService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "ComboDietaUsuarioServceImpl"));
+        return new ComboDietaUsuarioServiceImpl();
+    }
+    @Bean
+    public ComboDietaUsuarioDao comboDietaUsuarioDao(){
+        return new ComboDietaUsuarioDaoImpl();
+    }
+
+    @Bean
     public RecetaPeriodoService recetaPeriodoService(){
         LOG.info(String.format("Bean [ %s] initialized", "RecetaPeriodoServiceImpl"));
         return new RecetaPeriodoServiceImpl();

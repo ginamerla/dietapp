@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.tortu.api.models.Ingrediente;
-import com.tortu.api.models.RecetaIngrediente;
 import com.tortu.api.rest.restservices.*;
 import com.tortu.api.services.CategoriaIngredienteService;
-import com.tortu.api.services.RecetaIngredienteService;
 import com.tortu.api.utils.CustomFasterJacksonObjectMapperFactory;
 import com.tortu.api.utils.ExceptionMapperImplementation;
 import org.apache.cxf.Bus;
@@ -82,6 +80,7 @@ public class JaxRsServerConfig {
                 dietaUsuarioRestService(),
                 usuarioLayoutRestService(),
                 layoutPeriodoRestService(),
+                comboDietaUsuarioRestService(),
                 recetaPeriodoRestService(),
                 recetaIngredienteRestService()));
         factory.setAddress(factory.getAddress());
@@ -155,6 +154,12 @@ public class JaxRsServerConfig {
     public RecetaIngredienteRestService recetaIngredienteRestService(){
         LOG.debug("JaxRsServiceConfig: RecetaIngredienteRestService bean created");
         return new RecetaIngredienteRestService();
+    }
+
+    @Bean
+    public ComboDietaUsuarioRestService comboDietaUsuarioRestService(){
+        LOG.debug("JaxRsServiceConfig: ComboDietaUsuarioRestService bean created");
+        return new ComboDietaUsuarioRestService();
     }
 
 
