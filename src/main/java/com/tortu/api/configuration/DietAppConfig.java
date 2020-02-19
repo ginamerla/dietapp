@@ -122,4 +122,34 @@ public class DietAppConfig {
     public LayoutPeriodoDao layoutPeriodoDao(){
         return new LayoutPeriodoDaoImpl();
     }
+
+    @Bean
+    public ComboDietaUsuarioService comboDietaUsuarioService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "ComboDietaUsuarioServceImpl"));
+        return new ComboDietaUsuarioServiceImpl();
+    }
+    @Bean
+    public ComboDietaUsuarioDao comboDietaUsuarioDao(){
+        return new ComboDietaUsuarioDaoImpl();
+    }
+
+    @Bean
+    public RecetaPeriodoService recetaPeriodoService(){
+        LOG.info(String.format("Bean [ %s] initialized", "RecetaPeriodoServiceImpl"));
+        return new RecetaPeriodoServiceImpl();
+    }
+    @Bean
+    public RecetaPeriodoDao recetaPeriodoDao(){
+        return new RecetaPeriodoDaoImpl();
+    }
+
+    @Bean
+    public RecetaIngredienteService recetaIngredienteService(){
+        LOG.info(String.format("Bean [ %s ] initialized", "RecetaIngredienteServiceImpl"));
+        return new RecetaIngredienteServiceImpl();
+    }
+    @Bean
+    public RecetaIngredienteDao recetaIngredienteDao(){
+        return new RecetaIngredienteDaoImpl();
+    }
 }

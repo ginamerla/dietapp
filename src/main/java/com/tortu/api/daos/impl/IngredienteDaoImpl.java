@@ -55,14 +55,12 @@ public class IngredienteDaoImpl implements IngredienteDao {
     @Override
     public Ingrediente findByiD(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando INGREDIENTE con id: %d",id));
-        Ingrediente  ingrediente = jdbcTemplate.queryForObject(FINDBYID,new IngredienteRowMapper(),id);
-        return ingrediente;
+        return jdbcTemplate.queryForObject(FINDBYID,new IngredienteRowMapper(),id);
     }
 
     @Override
     public List<Ingrediente> findAll() throws GeneralException {
         LOG.info("Consultando todos los INGREDIENTES");
-        List<Ingrediente> ingredienteList = jdbcTemplate.query(FIND_ALL, new IngredienteRowMapper());
-        return ingredienteList;
+        return  jdbcTemplate.query(FIND_ALL, new IngredienteRowMapper());
     }
 }

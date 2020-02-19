@@ -79,7 +79,10 @@ public class JaxRsServerConfig {
                 ingredienteRestService(),
                 dietaUsuarioRestService(),
                 usuarioLayoutRestService(),
-                layoutPeriodoRestService()));
+                layoutPeriodoRestService(),
+                comboDietaUsuarioRestService(),
+                recetaPeriodoRestService(),
+                recetaIngredienteRestService()));
         factory.setAddress(factory.getAddress());
         factory.setProviders(Arrays.<Object> asList(jsonProvider(), exceptionMapper()));
         factory.setBus(bus);
@@ -141,6 +144,22 @@ public class JaxRsServerConfig {
     public LayoutPeriodoRestService layoutPeriodoRestService(){
         LOG.debug("JaxRsServiceConfig: LayoutPeriodoRestService bean created");
         return new LayoutPeriodoRestService();
+    }
+    @Bean
+    public RecetaPeriodoRestService recetaPeriodoRestService(){
+        LOG.debug("JaxRsServiceConfig: RecetaPeriodoRestService bean created");
+        return new RecetaPeriodoRestService();
+    }
+    @Bean
+    public RecetaIngredienteRestService recetaIngredienteRestService(){
+        LOG.debug("JaxRsServiceConfig: RecetaIngredienteRestService bean created");
+        return new RecetaIngredienteRestService();
+    }
+
+    @Bean
+    public ComboDietaUsuarioRestService comboDietaUsuarioRestService(){
+        LOG.debug("JaxRsServiceConfig: ComboDietaUsuarioRestService bean created");
+        return new ComboDietaUsuarioRestService();
     }
 
 

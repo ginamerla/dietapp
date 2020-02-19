@@ -54,14 +54,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public Usuario findByiD(Integer idUsuario) {
         LOG.info(String.format("Consultando el usuario con id: %s",idUsuario));
-        Usuario usuario = jdbcTemplate.queryForObject(FINDBYID, new UsuarioRowMapper(), idUsuario);
-        return usuario;
+        return  jdbcTemplate.queryForObject(FINDBYID, new UsuarioRowMapper(), idUsuario);
     }
 
     @Override
     public List<Usuario> findAll() {
         LOG.info("Consultando todos los usuarios");
-        List<Usuario> usuarioList = jdbcTemplate.query(FIND_ALL, new UsuarioRowMapper());
-        return usuarioList;
+        return  jdbcTemplate.query(FIND_ALL, new UsuarioRowMapper());
     }
 }

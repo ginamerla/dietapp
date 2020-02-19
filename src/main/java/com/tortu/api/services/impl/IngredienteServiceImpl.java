@@ -32,6 +32,7 @@ public class IngredienteServiceImpl implements IngredienteService {
     public void updateIngrediente(Ingrediente ingrediente) throws GeneralException {
         LOG.info(String.format("Actualizando el ingrediente: %s", ingrediente));
         if(ingrediente.getIdIngrediente()==null){
+            LOG.error("idIngrediente es nulo");
             throw new GeneralException("El ID del ingrediente es nulo");
         }
         ingredienteDao.update(ingrediente);
@@ -41,6 +42,7 @@ public class IngredienteServiceImpl implements IngredienteService {
     public Ingrediente findIngrediente(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando el ingrediente con id: %d", id));
         if(id==null){
+            LOG.error("idIngrediente nulo");
             throw new GeneralException("El id del ingrediente es nulo");
         }
         return ingredienteDao.findByiD(id);
@@ -51,6 +53,7 @@ public class IngredienteServiceImpl implements IngredienteService {
         LOG.info("Consultando todos los ingredientes");
         List<Ingrediente> ingredienteList = ingredienteDao.findAll();
         if(ingredienteList==null){
+            LOG.warn("No se encontraron ingredientes");
             return new ArrayList<>();
         }
         return ingredienteList;
@@ -60,6 +63,7 @@ public class IngredienteServiceImpl implements IngredienteService {
     public void deleteIngrediente(Integer id) throws GeneralException {
         LOG.info(String.format("Eliminando el ingrediente con id: %d",id));
         if(id==null){
+            LOG.error("idingrediente nulo");
             throw new GeneralException("El id del ingrediente es nulo");
         }
         ingredienteDao.delete(id);
