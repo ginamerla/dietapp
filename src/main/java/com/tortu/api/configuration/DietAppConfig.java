@@ -152,4 +152,14 @@ public class DietAppConfig {
     public RecetaIngredienteDao recetaIngredienteDao(){
         return new RecetaIngredienteDaoImpl();
     }
+
+    @Bean
+    public ShoppingIngredientService shoppingIngredientService(){
+        LOG.info(String.format("Bean [%s] initialized", "ShoppingIngredientServiceImpl"));
+        return new ShoppingIngredientServiceImpl();
+    }
+    @Bean
+    public ShoppingIngredientDao shoppingIngredientDao(){
+        return new ShoppingIngredientDaoImpl();
+    }
 }

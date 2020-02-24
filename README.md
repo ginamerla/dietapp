@@ -22,3 +22,7 @@ ejecutar comando:
 4.- Tenemos otro endpoint de prueba, donde se ejecuta una consulta en "memoria" de un usuario, si se hace esta llamada:
 http://localhost:8080/api/v1/usuarios/1
 
+## Como crear la BD
+1.- Ejecutar archivo 001_ de la carpeta /db
+2.- Ejecutar archivo 002_ de la misma carpeta
+
