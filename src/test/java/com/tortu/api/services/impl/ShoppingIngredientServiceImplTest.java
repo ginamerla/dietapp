@@ -28,13 +28,14 @@ public class ShoppingIngredientServiceImplTest {
     @Test
     public void findUserShoppingList(){
         List<ShoppingIngredientDTO> expectedList = new ArrayList<>();
+        expectedList.add(new ShoppingIngredientDTO());
+        expectedList.add(new ShoppingIngredientDTO());
         Integer userId=1;
         Mockito.when(shoppingIngredientDao.getShoppingList(userId)).thenReturn(expectedList);
-
         List<ShoppingIngredientDTO> resultList = shoppingIngredientService.findUserShoppingList(userId);
-
         Mockito.verify(shoppingIngredientDao,Mockito.times(1)).getShoppingList(userId);
         assertEquals(expectedList,resultList);
+        assertEquals(2, resultList.size());
     }
 
     @Test(expected = GeneralException.class)

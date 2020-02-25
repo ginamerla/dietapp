@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Capa de acceso a la BD
+ * Consulta la informacion de los ingredientes necesarios para las recetas de la semana de un solo usuario
  */
 @Component
 public class ShoppingIngredientDaoImpl implements ShoppingIngredientDao {

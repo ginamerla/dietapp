@@ -19,15 +19,22 @@ import java.util.List;
 
 /**
  * Controlador de ShoppingIngredient
+ * Consulta los ingredientes necesarios para las recetas de una semana de un usuario
+ * Regresa la lista de compras de un usuario
  */
 @Service
 @Path("/shoppinglists")
 public class ShoppingIngredientRestService {
     @Autowired
-    ShoppingIngredientService shoppingIngredientService;
+    private ShoppingIngredientService shoppingIngredientService;
     @Autowired
-    ShoppingIngredientResourceMapper mapper;
+    private ShoppingIngredientResourceMapper mapper;
 
+    /**
+     * Consulta los ingredientes para las recetas de una semana del usuario
+     * @param userId id del usuario
+     * @return lista de compras con los ingredientes y cantidades necesarias para las recetas de la semana
+     */
     @GET
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,7 +44,7 @@ public class ShoppingIngredientRestService {
         }
         List<ShoppingIngredientDTO> dtoShoppingList = shoppingIngredientService.findUserShoppingList(userId);
         List<ShoppingIngredientResource> resourceShoppingList = new ArrayList<>();
-        if(dtoShoppingList.size()==0){
+        if(dtoShoppingList==null || dtoShoppingList.size()==0){
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         for(ShoppingIngredientDTO ingredientDTO:dtoShoppingList){

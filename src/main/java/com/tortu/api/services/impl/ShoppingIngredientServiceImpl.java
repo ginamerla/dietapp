@@ -21,7 +21,6 @@ public class ShoppingIngredientServiceImpl implements ShoppingIngredientService 
     @Autowired
     private ShoppingIngredientDao shoppingIngredientDao;
 
-
     @Override
     public List<ShoppingIngredientDTO> findUserShoppingList(Integer userId) {
         LOG.info(String.format("Consultando la lista de compras del usuario: %d", userId));

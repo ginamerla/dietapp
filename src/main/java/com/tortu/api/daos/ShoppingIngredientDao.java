@@ -33,5 +33,10 @@ public interface ShoppingIngredientDao {
             "group by m.medida , i.nombre \n" +
             "order by ci.nombre, i.nombre";
 
+    /**
+     * Obtiene la lista de ingredientes para las recetas de la semana de un usario
+     * @param userId el id del usuario que va a consultar su lista de compras
+     * @return lista de ingredientes necesarios para las recetas de la semana
+     */
     public List<ShoppingIngredientDTO> getShoppingList(Integer userId);
 }

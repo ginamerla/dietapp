@@ -220,7 +220,7 @@ inner join receta_periodo rp on cdu.id_receta_periodo = rp.id_receta_periodo
 inner join receta r on rp.id_receta = r.id_receta
 inner join periodo p on rp.id_periodo=p.id_periodo
 where du.id_usuario = 4
-order by FIELD(du.dia_semana , "lunes", "martes", "miercoles", "jueves", "viernes", "sabado","doming");
+order by FIELD(du.dia_semana , "lunes", "martes", "miercoles", "jueves", "viernes", "sabado","domingo");
 
 
 
