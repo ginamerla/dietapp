@@ -61,6 +61,7 @@ public class DietAppConfig {
     }
     @Bean
     public UsuarioDao usuarioDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "UsuarioDaoImpl"));
         return new UsuarioDaoImpl();
     }
 
@@ -71,6 +72,7 @@ public class DietAppConfig {
     }
     @Bean
     public RecetaDao recetaDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "RecetaDaoImpl"));
         return new RecetaDaoImpl();
     }
 
@@ -81,6 +83,7 @@ public class DietAppConfig {
     }
     @Bean
     public CategoriaIngredienteDao categoriaIngredienteDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "CategoriaIngredienteDaoImpl"));
         return new CategoriaIngredienteDaoImpl();
     }
 
@@ -91,6 +94,7 @@ public class DietAppConfig {
     }
     @Bean
     public IngredienteDao ingredienteDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "IngredienteDaoImpl"));
         return new IngredienteDaoImpl();
     }
 
@@ -101,6 +105,7 @@ public class DietAppConfig {
     }
     @Bean
     public DietaUsuarioDao dietaUsuarioDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "DietaUsuarioDaoImpl"));
         return new DietaUsuarioDaoImpl();
     }
 
@@ -110,6 +115,7 @@ public class DietAppConfig {
         return new UsuarioLayoutServiceImpl();
     }
     @Bean UsuarioLayoutDao usuarioLayoutDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "UsuarioLayoutDaoImpl"));
         return new UsuarioLayoutDaoImpl();
     }
 
@@ -120,6 +126,7 @@ public class DietAppConfig {
     }
     @Bean
     public LayoutPeriodoDao layoutPeriodoDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "LayoutPeriodoDaoImpl"));
         return new LayoutPeriodoDaoImpl();
     }
 
@@ -130,6 +137,7 @@ public class DietAppConfig {
     }
     @Bean
     public ComboDietaUsuarioDao comboDietaUsuarioDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "ComboDietaUsuarioDaoImpl"));
         return new ComboDietaUsuarioDaoImpl();
     }
 
@@ -140,6 +148,7 @@ public class DietAppConfig {
     }
     @Bean
     public RecetaPeriodoDao recetaPeriodoDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "RecetaPeriodoDaoImpl"));
         return new RecetaPeriodoDaoImpl();
     }
 
@@ -150,6 +159,18 @@ public class DietAppConfig {
     }
     @Bean
     public RecetaIngredienteDao recetaIngredienteDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "RecetaIngredienteDaoImpl"));
         return new RecetaIngredienteDaoImpl();
+    }
+
+    @Bean
+    public ShoppingIngredientService shoppingIngredientService(){
+        LOG.info(String.format("Bean [%s] initialized", "ShoppingIngredientServiceImpl"));
+        return new ShoppingIngredientServiceImpl();
+    }
+    @Bean
+    public ShoppingIngredientDao shoppingIngredientDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "ShoppingIngredientDaoImpl"));
+        return new ShoppingIngredientDaoImpl();
     }
 }

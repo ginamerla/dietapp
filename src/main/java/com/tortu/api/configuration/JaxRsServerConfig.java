@@ -82,6 +82,7 @@ public class JaxRsServerConfig {
                 layoutPeriodoRestService(),
                 comboDietaUsuarioRestService(),
                 recetaPeriodoRestService(),
+                shoppingIngredientRestService(),
                 recetaIngredienteRestService()));
         factory.setAddress(factory.getAddress());
         factory.setProviders(Arrays.<Object> asList(jsonProvider(), exceptionMapper()));
@@ -160,6 +161,12 @@ public class JaxRsServerConfig {
     public ComboDietaUsuarioRestService comboDietaUsuarioRestService(){
         LOG.debug("JaxRsServiceConfig: ComboDietaUsuarioRestService bean created");
         return new ComboDietaUsuarioRestService();
+    }
+
+    @Bean
+    public ShoppingIngredientRestService shoppingIngredientRestService(){
+        LOG.debug("JaxRsServiceConfig: shoppingIngredientRestService bean created");
+        return new ShoppingIngredientRestService();
     }
 
 
