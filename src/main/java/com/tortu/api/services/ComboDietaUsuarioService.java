@@ -43,4 +43,13 @@ public interface ComboDietaUsuarioService {
      * @return una lista con los objetos encontrados
      */
     List<ComboDietaUsuario> findAllComboDietaUsuario();
+
+    /**
+     * Consulta la lista de IDs de combo_dieta_usuario que contengan los id_dieta_usuario de la lista enviada
+     * @param dietaUsuarioIdList lista con id_dieta_usuario a consultar
+     * @return lista de IDs combo_dieta_usuario encontrada
+     * @throws GeneralException
+     */
+    List<Integer> getComboDietaUsuarioIdsByDietaUsuario(List<Integer> dietaUsuarioIdList) throws GeneralException;
+
 }

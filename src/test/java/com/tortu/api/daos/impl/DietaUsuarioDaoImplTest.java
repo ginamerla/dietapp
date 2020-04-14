@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class DietaUsuarioDaoImplTest {
     @InjectMocks
@@ -98,5 +98,16 @@ public class DietaUsuarioDaoImplTest {
 
         Mockito.verify(jdbcTemplate,Mockito.times(1)).query(Mockito.anyString(),Mockito.any(DietaUsuarioRowMapper.class));
         assertEquals(expectedList,actualList);
+    }
+    @Test
+    public void findIdDietaUsuarioListByUser(){
+        //TODO: Test pending
+//        List<Integer> expectedList = new ArrayList<>();
+//        Mockito.when(jdbcTemplate.queryForList(Mockito.anyString(), Mockito.any(Integer.class), Mockito.anyInt())).thenReturn(expectedList);
+//
+//        List<Integer> actualList = dietaUsuarioDao.findIdDietaUsuarioListByUser(1);
+//
+//        Mockito.verify(jdbcTemplate,Mockito.times(1)).queryForList(Mockito.anyString(), Mockito.any(Integer.class), Mockito.anyInt());
+//        assertEquals(expectedList,actualList);
     }
 }

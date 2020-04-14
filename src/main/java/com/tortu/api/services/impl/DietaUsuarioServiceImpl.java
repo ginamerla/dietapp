@@ -63,4 +63,15 @@ public class DietaUsuarioServiceImpl implements DietaUsuarioService {
         }
         dietaUsuarioDao.delete(idDietaUsuario);
     }
+
+    @Override
+    public List<Integer> getDietaUsuarioIdListByUser(Integer userId) throws GeneralException {
+        LOG.info(String.format("Consultando ids de dieta_usuario con el id de usuario: %d", userId));
+        List<Integer> idList = dietaUsuarioDao.findIdDietaUsuarioListByUser(userId);
+        if(idList==null){
+            return new ArrayList<>();
+        }
+        return idList;
+    }
+
 }

@@ -123,4 +123,23 @@ public class DietaUsuarioServiceImplTest {
         Mockito.doThrow(GeneralException.class).when(dietaUsuarioDao).delete(dietaUsuario.getIdUsuario());
         dietaUsuarioService.deleteDietaUsuario(dietaUsuario.getIdDietaUsuario());
     }
+    @Test
+    public void getDietaUsuarioIdListByUser(){
+        List<Integer> expectedList = new ArrayList<>();
+
+        Mockito.when(dietaUsuarioDao.findIdDietaUsuarioListByUser(Mockito.anyInt())).thenReturn(expectedList);
+
+        List<Integer> actualList = dietaUsuarioService.getDietaUsuarioIdListByUser(1);
+
+        assertEquals(expectedList,actualList);
+    }
+    @Test
+    public void getDietaUsuarioIdListByUserEmptyList(){
+        Mockito.when(dietaUsuarioDao.findIdDietaUsuarioListByUser(Mockito.anyInt())).thenReturn(null);
+
+        List<Integer> actualList = dietaUsuarioService.getDietaUsuarioIdListByUser(1);
+
+        assertNotNull(actualList);
+        assertEquals(0,actualList.size());
+    }
 }

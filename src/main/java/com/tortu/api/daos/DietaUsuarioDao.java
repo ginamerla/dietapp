@@ -2,6 +2,8 @@ package com.tortu.api.daos;
 
 import com.tortu.api.models.DietaUsuario;
 
+import java.util.List;
+
 public interface DietaUsuarioDao extends GenericDao<DietaUsuario, Integer> {
     public static final String FIND_ALL =
             "select * from dieta_usuario inner join usuario on dieta_usuario.id_usuario = usuario.id_usuario";
@@ -13,4 +15,9 @@ public interface DietaUsuarioDao extends GenericDao<DietaUsuario, Integer> {
             "update dieta_usuario set id_usuario = ?, dia_semana = ? where id_dieta_usuario = ?";
     public static final String DELETE =
             "delete from dieta_usuario where id_dieta_usuario = ?";
+
+    public static final String FIND_ID_LIST_BY_USER =
+            "select id_dieta_usuario from dieta_usuario where id_usuario = ?";
+
+    List<Integer> findIdDietaUsuarioListByUser (Integer userId);
 }

@@ -98,4 +98,26 @@ public class RecetaPeriodoServiceImplTest {
         Mockito.verify(dao,Mockito.times(1)).findAll();
         assertNotNull(resultList);
     }
+    @Test
+    public void getRecetaPeriodoIdList(){
+        List<Integer> expectedList = new ArrayList<>();
+
+        Mockito.when(dao.findRecetaPeriodoIdListByPeriodoReceta(Mockito.anyInt(), Mockito.anyList())).thenReturn(expectedList);
+
+        List<Integer> idList = new ArrayList<>();
+        List<Integer> actualList = service.getRecetaPeriodoIdList(1, idList);
+
+        Mockito.verify(dao,Mockito.times(1)).findRecetaPeriodoIdListByPeriodoReceta(Mockito.anyInt(), Mockito.anyList());
+        assertEquals(expectedList,actualList);
+    }
+    @Test
+    public void getRecetaPeriodoIdListEmpty(){
+        Mockito.when(dao.findRecetaPeriodoIdListByPeriodoReceta(Mockito.anyInt(), Mockito.anyList())).thenReturn(null);
+
+        List<Integer> idList = new ArrayList<>();
+        List<Integer> actualList = service.getRecetaPeriodoIdList(1, idList);
+
+        Mockito.verify(dao,Mockito.times(1)).findRecetaPeriodoIdListByPeriodoReceta(Mockito.anyInt(), Mockito.anyList());
+        assertEquals(0, actualList.size());
+    }
 }

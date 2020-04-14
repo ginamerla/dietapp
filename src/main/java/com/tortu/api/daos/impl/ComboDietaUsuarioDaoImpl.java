@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -61,5 +63,14 @@ public class ComboDietaUsuarioDaoImpl implements ComboDietaUsuarioDao {
     public List<ComboDietaUsuario> findAll() throws GeneralException {
         LOG.info("Consultando todos los ComboDietaUsuario");
         return jdbcTemplate.query(FIND_ALL, new ComboDietaUsuarioRowMapper());
+    }
+
+    @Override
+    public List<Integer> findComboDietaUsuarioIdListByDietaUsuario(List<Integer> dietaUsuarioIdList) {
+        LOG.info("Consultando lista de IDs en combo_dieta_usuario con lista de dieta_usuario_id enviada");
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("ids", dietaUsuarioIdList);
+        return namedParameterJdbcTemplate.queryForList(FIND_ID_LIST_BY_DIETA_USUARIO, parameters, Integer.class);
     }
 }
