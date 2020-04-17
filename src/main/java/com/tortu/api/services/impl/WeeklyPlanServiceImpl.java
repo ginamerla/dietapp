@@ -35,6 +35,10 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
     @Autowired
     private ComboDietaUsuarioService comboDietaUsuarioService;
 
+    private static final int BREAKFAST_MEAL_PERIOD_ID = 1;
+    private static final int LUNCH_MEAL_PERIOD_ID = 1;
+    private static final int DINNER_MEAL_PERIOD_ID = 1;
+
     @Override
     public void saveWeeklyPlan(WeeklyPlanResource weeklyPlanResource) throws GeneralException {
         LOG.info("Creando nuevo WeeklyPlan...");
@@ -65,19 +69,19 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
         // por cada periodo se obtien el id y se busca la lista de recetas que incluye
         for(WeeklyPlanPeriodRecipeResource wpPeriodRecipe : wpPeriodRecipeResourceList){
             Integer periodId = wpPeriodRecipe.getPeriodId(); // id del periodo
-            if(periodId==1){//desayuno
+            if(periodId==BREAKFAST_MEAL_PERIOD_ID){//desayuno
                 for(WeeklyPlanRecipeResource wpRecipe: wpPeriodRecipe.getWeeklyPlanRecipes()){
                     bRecipeList.add(wpRecipe.getRecipeId()); // se agrega el id de la receta a la lista
                 }
                 breakfastRecipeIdList.addAll(recetaPeriodoService.getRecetaPeriodoIdList(periodId, bRecipeList));
                 bRecipeList.clear();
-            }else if(periodId==2){//Comida
+            }else if(periodId==LUNCH_MEAL_PERIOD_ID){//Comida
                 for(WeeklyPlanRecipeResource wpRecipe: wpPeriodRecipe.getWeeklyPlanRecipes()){
                     bRecipeList.add(wpRecipe.getRecipeId()); // se agrega el id de la receta a la lista
                 }
                 lunchRecipeIdList.addAll(recetaPeriodoService.getRecetaPeriodoIdList(periodId, bRecipeList));
                 bRecipeList.clear();
-            }else if(periodId==3){//Cena
+            }else if(periodId==DINNER_MEAL_PERIOD_ID){//Cena
                 for(WeeklyPlanRecipeResource wpRecipe: wpPeriodRecipe.getWeeklyPlanRecipes()){
                     bRecipeList.add(wpRecipe.getRecipeId()); // se agrega el id de la receta a la lista
                 }

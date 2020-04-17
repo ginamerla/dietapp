@@ -1,5 +1,8 @@
 package com.tortu.api.models;
 
+/**
+ * Dias de la semana default que se tomaran en cuenta para la dieta semanal.
+ */
 public enum DayEnum {
     LUNES("Lunes"),
     MARTES("Martes"),

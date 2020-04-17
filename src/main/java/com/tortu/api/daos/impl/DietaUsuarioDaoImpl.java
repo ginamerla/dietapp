@@ -43,7 +43,7 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
 
     @Override
     public void delete(Integer id) throws GeneralException {
-        LOG.info(String.format("Eliminando DIETA_USUARIO: %d", id));
+        LOG.info("Eliminando DIETA_USUARIO: {}", id);
         int updatedRows = jdbcTemplate.update(DELETE, id);
         if(updatedRows==0){
             LOG.error("No se pudo eliminar de la BD");
@@ -65,7 +65,7 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
 
     @Override
     public List<Integer> findIdDietaUsuarioListByUser (Integer userId){
-        LOG.info(String.format("Consultando lista de ids del usuario: %d", userId));
+        LOG.info("Eliminando DIETA_USUARIO: {}", userId);
         return jdbcTemplate.queryForList(FIND_ID_LIST_BY_USER, Integer.class, userId);
     }
 }
