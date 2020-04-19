@@ -36,8 +36,8 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
     private ComboDietaUsuarioService comboDietaUsuarioService;
 
     private static final int BREAKFAST_MEAL_PERIOD_ID = 1;
-    private static final int LUNCH_MEAL_PERIOD_ID = 1;
-    private static final int DINNER_MEAL_PERIOD_ID = 1;
+    private static final int LUNCH_MEAL_PERIOD_ID = 2;
+    private static final int DINNER_MEAL_PERIOD_ID = 3;
 
     @Override
     public void saveWeeklyPlan(WeeklyPlanResource weeklyPlanResource) throws GeneralException {
