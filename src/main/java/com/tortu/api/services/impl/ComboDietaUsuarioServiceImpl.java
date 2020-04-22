@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,5 +68,18 @@ public class ComboDietaUsuarioServiceImpl implements ComboDietaUsuarioService {
             return new ArrayList<>();
         }
         return comboDietaUsuarioList;
+    }
+
+    @Override
+    public List<Integer> getComboDietaUsuarioIdsByDietaUsuario(List<Integer> dietaUsuarioIdList) throws GeneralException {
+        if(! CollectionUtils.isEmpty(dietaUsuarioIdList)){
+            List<Integer> idList = comboDietaUsuarioDao.findComboDietaUsuarioIdListByDietaUsuario(dietaUsuarioIdList);
+            if(idList == null){
+                LOG.warn("no se encontraron COMBO_DIETA_USUARIO ids con los id_dieta_usuario enviados");
+                return new ArrayList<>();
+            }
+            return idList;
+        }
+        return new ArrayList<>();
     }
 }

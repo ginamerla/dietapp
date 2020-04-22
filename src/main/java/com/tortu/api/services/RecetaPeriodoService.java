@@ -43,4 +43,13 @@ public interface RecetaPeriodoService {
      * @return lista con los objetos encontrados
      */
     List<RecetaPeriodo> findAllRecetaPeriodo();
+
+    /**
+     * Obtiene la lista de ids de RECETA_PERIODO para las recetas y periodo enviados.
+     * @param periodId id del periodo de la lista de recetas
+     * @param recipeIdList lista con id de recetas
+     * @return lista de ids de RECETA_PERIODO
+     * @throws GeneralException
+     */
+    List<Integer> getRecetaPeriodoIdList(Integer periodId, List<Integer> recipeIdList) throws GeneralException;
 }

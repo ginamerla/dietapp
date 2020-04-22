@@ -8,9 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Implementacion de la capa de acceso a la Base de Datos del modelo RecetaPeriodo
@@ -61,5 +66,15 @@ public class RecetaPeriodoDaoImpl implements RecetaPeriodoDao {
     public List<RecetaPeriodo> findAll() throws GeneralException {
         LOG.info("Consultando todos los Receta_Periodo");
         return jdbcTemplate.query(FIND_ALL, new RecetaPeriodoRowMapper());
+    }
+
+    @Override
+    public List<Integer> findRecetaPeriodoIdListByPeriodoReceta(Integer periodId, List<Integer> recipeIdList) {
+        LOG.info("Consultando la lista de ids con periodId y recipeId");
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("ids", recipeIdList);
+        parameters.addValue("periodId", periodId);
+        return namedParameterJdbcTemplate.queryForList(FIND_ID_LIST_BY_PERIODO_RECETA, parameters, Integer.class);
     }
 }

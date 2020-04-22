@@ -173,4 +173,9 @@ public class DietAppConfig {
         LOG.info(String.format("Bean [ %s ] initialized!", "ShoppingIngredientDaoImpl"));
         return new ShoppingIngredientDaoImpl();
     }
+    @Bean
+    public WeeklyPlanService weeklyPlanService(){
+        LOG.info(String.format("Bean [%s] initialized", "WeeklyPlanServiceImpl"));
+        return new WeeklyPlanServiceImpl();
+    }
 }

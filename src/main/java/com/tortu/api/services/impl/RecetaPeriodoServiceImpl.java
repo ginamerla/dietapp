@@ -72,4 +72,15 @@ public class RecetaPeriodoServiceImpl implements RecetaPeriodoService {
         }
         return recetaPeriodoList;
     }
+
+    @Override
+    public List<Integer> getRecetaPeriodoIdList(Integer periodId, List<Integer> recipeIdList) throws GeneralException {
+        LOG.info("Consultando lista de ids de RECETA_PERIODO por periodo y recetas");
+        List<Integer> idList = recetaPeriodoDao.findRecetaPeriodoIdListByPeriodoReceta(periodId, recipeIdList);
+        if(idList == null){
+            LOG.warn("no se encontraron RECETA_PERIODO ids con esas recetas y periodo enviados");
+            return new ArrayList<>();
+        }
+        return idList;
+    }
 }

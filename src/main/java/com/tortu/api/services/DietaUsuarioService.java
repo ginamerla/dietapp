@@ -43,4 +43,12 @@ public interface DietaUsuarioService {
      * @throws GeneralException
      */
     void deleteDietaUsuario(Integer idDietaUsuario) throws GeneralException;
+
+    /**
+     * Obtiene la lista de Ids de dieta_usuario que contenga el id_usuario enviado
+     * @param userId Id del usuario para la consulta
+     * @return lista de ids encontrados en dieta_usuario con el id de usuario enviado
+     * @throws GeneralException
+     */
+    List<Integer> getDietaUsuarioIdListByUser(Integer userId) throws GeneralException;
 }

@@ -88,4 +88,8 @@ public class RecetaPeriodoDaoImplTest {
         List<RecetaPeriodo> resultList = dao.findAll();
         assertEquals(recetaPeriodoList.size(), resultList.size());
     }
+    @Test
+    public void findRecetaPeriodoIdListByPeriodoReceta(){
+        //TODO: Test pending
+    }
 }

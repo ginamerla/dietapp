@@ -43,7 +43,7 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
 
     @Override
     public void delete(Integer id) throws GeneralException {
-        LOG.info("Eliminando DIETA_USUARIO: %d", id);
+        LOG.info("Eliminando DIETA_USUARIO: {}", id);
         int updatedRows = jdbcTemplate.update(DELETE, id);
         if(updatedRows==0){
             LOG.error("No se pudo eliminar de la BD");
@@ -54,14 +54,18 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
     @Override
     public DietaUsuario findByiD(Integer id) throws GeneralException {
         LOG.info(String.format("Consultando DIETA_USUARIO con id: %d",id));
-        DietaUsuario dietaUsuario = jdbcTemplate.queryForObject(FINDBYID,new DietaUsuarioRowMapper(), id);
-        return dietaUsuario;
+        return jdbcTemplate.queryForObject(FINDBYID,new DietaUsuarioRowMapper(), id);
     }
 
     @Override
     public List<DietaUsuario> findAll() throws GeneralException {
         LOG.info("Consultando todos los DIETAS_USUARIO");
-        List<DietaUsuario> dietaUsuarioList = jdbcTemplate.query(FIND_ALL, new DietaUsuarioRowMapper());
-        return dietaUsuarioList;
+        return jdbcTemplate.query(FIND_ALL, new DietaUsuarioRowMapper());
+    }
+
+    @Override
+    public List<Integer> findIdDietaUsuarioListByUser (Integer userId){
+        LOG.info("Eliminando DIETA_USUARIO: {}", userId);
+        return jdbcTemplate.queryForList(FIND_ID_LIST_BY_USER, Integer.class, userId);
     }
 }
