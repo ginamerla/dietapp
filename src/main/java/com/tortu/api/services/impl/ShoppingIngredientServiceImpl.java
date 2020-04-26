@@ -1,6 +1,7 @@
 package com.tortu.api.services.impl;
 
-import com.tortu.api.daos.ShoppingIngredientDao;
+import com.tortu.api.daos.CommonDao;
+import com.tortu.api.daos.impl.CommonDaoImpl;
 import com.tortu.api.dto.ShoppingIngredientDTO;
 import com.tortu.api.services.ShoppingIngredientService;
 import com.tortu.api.utils.GeneralException;
@@ -19,7 +20,7 @@ public class ShoppingIngredientServiceImpl implements ShoppingIngredientService 
 
     public static final Logger LOG= LoggerFactory.getLogger(ShoppingIngredientServiceImpl.class);
     @Autowired
-    private ShoppingIngredientDao shoppingIngredientDao;
+    private CommonDao commonDao;
 
     @Override
     public List<ShoppingIngredientDTO> findUserShoppingList(Integer userId) {
@@ -28,6 +29,6 @@ public class ShoppingIngredientServiceImpl implements ShoppingIngredientService 
             LOG.error("userId is null");
             throw new GeneralException("El id del usuario es nulo");
         }
-        return shoppingIngredientDao.getShoppingList(userId);
+        return commonDao.getShoppingList(userId);
     }
 }

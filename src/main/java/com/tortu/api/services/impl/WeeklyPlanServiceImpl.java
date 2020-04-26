@@ -1,12 +1,13 @@
 package com.tortu.api.services.impl;
 
+import com.tortu.api.daos.CommonDao;
+import com.tortu.api.dto.WPIngredientResultDTO;
+import com.tortu.api.dto.WPResultDTO;
 import com.tortu.api.models.ComboDietaUsuario;
 import com.tortu.api.models.DayEnum;
 import com.tortu.api.models.DietaUsuario;
 import com.tortu.api.models.UsuarioLayout;
-import com.tortu.api.rest.resources.WeeklyPlanPeriodRecipeResource;
-import com.tortu.api.rest.resources.WeeklyPlanRecipeResource;
-import com.tortu.api.rest.resources.WeeklyPlanResource;
+import com.tortu.api.rest.resources.*;
 import com.tortu.api.services.*;
 import com.tortu.api.utils.GeneralException;
 import org.slf4j.Logger;
@@ -15,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Implementacion de los servicios de WeeklyPlan
@@ -34,6 +33,8 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
     private RecetaPeriodoService recetaPeriodoService;
     @Autowired
     private ComboDietaUsuarioService comboDietaUsuarioService;
+    @Autowired
+    private CommonDao commonDao;
 
     private static final int BREAKFAST_MEAL_PERIOD_ID = 1;
     private static final int LUNCH_MEAL_PERIOD_ID = 2;
@@ -107,6 +108,56 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
                 dinnerRecipeIdList.addLast(recipeIdElement);
             }
         }
+    }
+
+    @Override
+    public List<WPWeekDayResultResource> getWeeklyPlan(Integer userId) throws GeneralException {
+        LOG.info(String.format("Consultando plan semanal del usuario: %d", userId));
+        if(userId==null){
+            LOG.error("userId is null");
+            throw new GeneralException("El id del usuario es nulo");
+        }
+        List<WPResultDTO> wpResultDTOList = commonDao.getWeeklyPlanByUser(userId);
+        List<WPWeekDayResultResource> weeklyPlanResultList = new ArrayList<>();
+        Map<String, WPWeekDayResultResource> map = new LinkedHashMap<>();
+
+        for(WPResultDTO weeklyPlan : wpResultDTOList){
+            WPWeekDayResultResource weekDayResource = null;
+            if(!map.containsKey(weeklyPlan.getWeekDay())){
+                weekDayResource = new WPWeekDayResultResource();
+                weekDayResource.setRecipeResultList(new ArrayList<>());
+                map.put(weeklyPlan.getWeekDay(), weekDayResource);
+            } else {
+                weekDayResource = map.get(weeklyPlan.getWeekDay());
+            }
+            List<WPRecipeResultResource> recipeResultList = new ArrayList<>();
+            WPRecipeResultResource wpRecipeResultResource = new WPRecipeResultResource();
+
+            List<WPIngredientResultResource> ingredientResultList = new ArrayList<>();
+            List<WPIngredientResultDTO> wpIngredientDTOList = commonDao.getRecipeIngredients(weeklyPlan.getRecipeId());
+
+            for(WPIngredientResultDTO wpIngredientResultDTO : wpIngredientDTOList){
+                WPIngredientResultResource wpIngredientResultResource = new WPIngredientResultResource();
+                wpIngredientResultResource.setQuantity(wpIngredientResultDTO.getQuantity());
+                wpIngredientResultResource.setUnit(wpIngredientResultDTO.getUnit());
+                wpIngredientResultResource.setItem(wpIngredientResultDTO.getItem());
+                ingredientResultList.add(wpIngredientResultResource);
+            }
+            wpRecipeResultResource.setRecipeName(weeklyPlan.getRecipeName());
+            wpRecipeResultResource.setPeriod(weeklyPlan.getPeriodName());
+            wpRecipeResultResource.setIngredientResultList(ingredientResultList);
+
+            recipeResultList.add(wpRecipeResultResource);
+
+            weekDayResource.getRecipeResultList().addAll(recipeResultList);
+            weekDayResource.setWeekDay(weeklyPlan.getWeekDay());
+
+//            weeklyPlanResultList.add(weekDayResource);
+        }
+
+        weeklyPlanResultList= map.entrySet().stream().map(weekDayPlan -> weekDayPlan.getValue()).collect(Collectors.toList());
+
+        return weeklyPlanResultList;
     }
 
     /**
