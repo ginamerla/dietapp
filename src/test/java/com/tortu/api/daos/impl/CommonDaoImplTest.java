@@ -16,9 +16,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ShoppingIngredientDaoImplTest {
+public class CommonDaoImplTest {
     @InjectMocks
-    private ShoppingIngredientDaoImpl dao = new ShoppingIngredientDaoImpl();
+    private CommonDaoImpl dao = new CommonDaoImpl();
     @Mock
     private JdbcTemplate jdbcTemplate;
 

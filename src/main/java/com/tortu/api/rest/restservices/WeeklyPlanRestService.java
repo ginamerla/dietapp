@@ -1,18 +1,18 @@
 package com.tortu.api.rest.restservices;
 
+import com.tortu.api.rest.resources.WPWeekDayResultResource;
 import com.tortu.api.rest.resources.WeeklyPlanResource;
 import com.tortu.api.rest.validators.GenericValidator;
 import com.tortu.api.services.WeeklyPlanService;
+import com.tortu.api.utils.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * API WeeklyPlan
@@ -33,5 +33,16 @@ public class WeeklyPlanRestService {
         createWeeklyPlanValidator.validate(weeklyPlanResource);
         weeklyPlanService.saveWeeklyPlan(weeklyPlanResource);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getWeeklyPlan (@PathParam("id") Integer userId){
+        if(userId==null){
+            throw new GeneralException("El id del usuario es nulo");
+        }
+        List<WPWeekDayResultResource> result = weeklyPlanService.getWeeklyPlan(userId);
+        return Response.ok(result).build();
     }
 }

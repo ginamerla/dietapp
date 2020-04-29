@@ -1,9 +1,8 @@
 package com.tortu.api.services.impl;
 
-import com.tortu.api.daos.ShoppingIngredientDao;
+import com.tortu.api.daos.CommonDao;
 import com.tortu.api.dto.ShoppingIngredientDTO;
 import com.tortu.api.models.Usuario;
-import com.tortu.api.services.ShoppingIngredientService;
 import com.tortu.api.utils.GeneralException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ public class ShoppingIngredientServiceImplTest {
     private ShoppingIngredientServiceImpl shoppingIngredientService = new ShoppingIngredientServiceImpl();
 
     @Mock
-    private ShoppingIngredientDao shoppingIngredientDao;
+    private CommonDao commonDao;
 
     @Test
     public void findUserShoppingList(){
@@ -31,9 +30,9 @@ public class ShoppingIngredientServiceImplTest {
         expectedList.add(new ShoppingIngredientDTO());
         expectedList.add(new ShoppingIngredientDTO());
         Integer userId=1;
-        Mockito.when(shoppingIngredientDao.getShoppingList(userId)).thenReturn(expectedList);
+        Mockito.when(commonDao.getShoppingList(userId)).thenReturn(expectedList);
         List<ShoppingIngredientDTO> resultList = shoppingIngredientService.findUserShoppingList(userId);
-        Mockito.verify(shoppingIngredientDao,Mockito.times(1)).getShoppingList(userId);
+        Mockito.verify(commonDao,Mockito.times(1)).getShoppingList(userId);
         assertEquals(expectedList,resultList);
         assertEquals(2, resultList.size());
     }

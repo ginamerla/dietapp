@@ -5,7 +5,6 @@ import com.tortu.api.daos.impl.*;
 import com.tortu.api.services.*;
 import com.tortu.api.services.impl.*;
 import org.mariadb.jdbc.MariaDbDataSource;
-import org.mariadb.jdbc.MySQLDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -169,9 +168,9 @@ public class DietAppConfig {
         return new ShoppingIngredientServiceImpl();
     }
     @Bean
-    public ShoppingIngredientDao shoppingIngredientDao(){
-        LOG.info(String.format("Bean [ %s ] initialized!", "ShoppingIngredientDaoImpl"));
-        return new ShoppingIngredientDaoImpl();
+    public CommonDao commonDao(){
+        LOG.info(String.format("Bean [ %s ] initialized!", "CommonDaoImpl"));
+        return new CommonDaoImpl();
     }
     @Bean
     public WeeklyPlanService weeklyPlanService(){
