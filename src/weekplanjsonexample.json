@@ -1,0 +1,472 @@
+{"wpResultResource":[
+  {
+    "weekDay": "lunes",
+    "recipeResultList": [
+      {
+        "recipeName": "Avena",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "avena"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pizca",
+            "item": "canela"
+          }
+        ]
+      },
+      {
+        "recipeName": "Nueces y fresas",
+        "period": "Snack AM",
+        "ingredientResultList": [
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "fresas"
+          },
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "nueces"
+          }
+        ]
+      },
+      {
+        "recipeName": "Faitas de pollo",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 100.0,
+            "unit": "gramos",
+            "item": "pollo"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "pimiento"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "cebolla"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tostadas"
+          }
+        ]
+      },
+      {
+        "recipeName": "palomitas",
+        "period": "Snack PM",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "palomitas"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tostada de champinon",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tostadas"
+          },
+          {
+            "quantity": 100.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "champinones"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "martes",
+    "recipeResultList": [
+      {
+        "recipeName": "Licuado",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "berries"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "chia"
+          }
+        ]
+      },
+      {
+        "recipeName": "Nueces y fresas",
+        "period": "Snack AM",
+        "ingredientResultList": [
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "fresas"
+          },
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "nueces"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tacos de tilapia",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 300.0,
+            "unit": "gramos",
+            "item": "pescado tilapia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "aderezo chipotle"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tortillas"
+          }
+        ]
+      },
+      {
+        "recipeName": "gelatina sin azucar",
+        "period": "Snack PM",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "gelatina"
+          }
+        ]
+      },
+      {
+        "recipeName": "huevo",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "huevos"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "espinaca"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "miercoles",
+    "recipeResultList": [
+      {
+        "recipeName": "Chia Puddin",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 0.5,
+            "unit": "taza",
+            "item": "chia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 5.0,
+            "unit": "pieza",
+            "item": "fresas"
+          }
+        ]
+      },
+      {
+        "recipeName": "Nueces y fresas",
+        "period": "Snack AM",
+        "ingredientResultList": [
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "fresas"
+          },
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "nueces"
+          }
+        ]
+      },
+      {
+        "recipeName": "sopa de apio",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 4.0,
+            "unit": "taza",
+            "item": "caldo de pollo"
+          },
+          {
+            "quantity": 8.0,
+            "unit": "pieza",
+            "item": "apio"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "cebolla"
+          }
+        ]
+      },
+      {
+        "recipeName": "palomitas",
+        "period": "Snack PM",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "palomitas"
+          }
+        ]
+      },
+      {
+        "recipeName": "sandwich",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pan"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pechuga de pavo"
+          },
+          {
+            "quantity": 30.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "jueves",
+    "recipeResultList": [
+      {
+        "recipeName": "Avena",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "avena"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pizca",
+            "item": "canela"
+          }
+        ]
+      },
+      {
+        "recipeName": "Nueces y fresas",
+        "period": "Snack AM",
+        "ingredientResultList": [
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "fresas"
+          },
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "nueces"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tacos de tilapia",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 300.0,
+            "unit": "gramos",
+            "item": "pescado tilapia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "aderezo chipotle"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tortillas"
+          }
+        ]
+      },
+      {
+        "recipeName": "gelatina sin azucar",
+        "period": "Snack PM",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "gelatina"
+          }
+        ]
+      },
+      {
+        "recipeName": "huevo",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "huevos"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "espinaca"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "viernes",
+    "recipeResultList": [
+      {
+        "recipeName": "Chia Puddin",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 0.5,
+            "unit": "taza",
+            "item": "chia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 5.0,
+            "unit": "pieza",
+            "item": "fresas"
+          }
+        ]
+      },
+      {
+        "recipeName": "Nueces y fresas",
+        "period": "Snack AM",
+        "ingredientResultList": [
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "fresas"
+          },
+          {
+            "quantity": 7.0,
+            "unit": "pieza",
+            "item": "nueces"
+          }
+        ]
+      },
+      {
+        "recipeName": "sopa de apio",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 4.0,
+            "unit": "taza",
+            "item": "caldo de pollo"
+          },
+          {
+            "quantity": 8.0,
+            "unit": "pieza",
+            "item": "apio"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "cebolla"
+          }
+        ]
+      },
+      {
+        "recipeName": "palomitas",
+        "period": "Snack PM",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "palomitas"
+          }
+        ]
+      },
+      {
+        "recipeName": "sandwich",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pan"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pechuga de pavo"
+          },
+          {
+            "quantity": 30.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          }
+        ]
+      }
+    ]
+  }
+]}

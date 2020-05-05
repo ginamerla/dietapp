@@ -2,6 +2,7 @@ package com.tortu.api.services.impl;
 
 import com.tortu.api.models.DietaUsuario;
 import com.tortu.api.models.UsuarioLayout;
+import com.tortu.api.rest.resources.WPWeekDayResultResource;
 import com.tortu.api.rest.resources.WeeklyPlanPeriodRecipeResource;
 import com.tortu.api.rest.resources.WeeklyPlanRecipeResource;
 import com.tortu.api.rest.resources.WeeklyPlanResource;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,4 +102,5 @@ public class WeeklyPlanServiceImplTest {
         Mockito.verify(dietaUsuarioService,Mockito.times(5)).saveDietaUsuario(Mockito.any(DietaUsuario.class));
         Mockito.verify(recetaPeriodoService,Mockito.times(1)).getRecetaPeriodoIdList(1, expectedLst);
     }
+
 }

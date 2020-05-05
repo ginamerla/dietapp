@@ -10,12 +10,16 @@ import com.tortu.api.models.UsuarioLayout;
 import com.tortu.api.rest.resources.*;
 import com.tortu.api.services.*;
 import com.tortu.api.utils.GeneralException;
+import com.tortu.api.utils.pdf.PdfCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,6 +39,9 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
     private ComboDietaUsuarioService comboDietaUsuarioService;
     @Autowired
     private CommonDao commonDao;
+
+    @Autowired
+    private PdfCreator pdfCreator;
 
     private static final int BREAKFAST_MEAL_PERIOD_ID = 1;
     private static final int LUNCH_MEAL_PERIOD_ID = 2;
@@ -158,6 +165,20 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService  {
         weeklyPlanResultList= map.entrySet().stream().map(weekDayPlan -> weekDayPlan.getValue()).collect(Collectors.toList());
 
         return weeklyPlanResultList;
+    }
+
+    @Override
+    public InputStream printPdf(Integer userId) throws GeneralException, IOException {
+        if(userId==null){
+            throw new GeneralException("El Id del usuario es nulo");
+        }
+        LOG.info("Obteniendo weeklyPLan");
+        List<WPWeekDayResultResource> weekDayResult = getWeeklyPlan(userId);
+        if(CollectionUtils.isEmpty(weekDayResult)){
+            LOG.info("LLista de WPWeeklyDayResultResource vacia o nula");
+            return null;
+        }
+        return pdfCreator.createPDF(weekDayResult);
     }
 
     /**
