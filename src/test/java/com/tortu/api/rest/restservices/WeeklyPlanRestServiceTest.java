@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,4 +78,12 @@ public class WeeklyPlanRestServiceTest {
         List<WPWeekDayResultResource> actualList = (List<WPWeekDayResultResource>)response.getEntity();
         assertTrue(actualList.isEmpty());
     }
+
+//    @Test
+//    public void printWeeklyPLan() throws IOException {
+//        Integer userId=1;
+//        String path = "path";
+//        Mockito.when(weeklyPlanService.printPdf(userId)).thenReturn(path);
+//
+//    }
 }

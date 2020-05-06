@@ -1,0 +1,337 @@
+[
+  {
+    "weekDay": "Lunes",
+    "recipeResultList": [
+      {
+        "recipeName": "Licuado",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "berries"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "chia"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tacos de tilapia",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 300.0,
+            "unit": "gramos",
+            "item": "pescado tilapia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "aderezo chipotle"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tortillas"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tostada de champinon",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tostadas"
+          },
+          {
+            "quantity": 100.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "champinones"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "Martes",
+    "recipeResultList": [
+      {
+        "recipeName": "Avena",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "avena"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pizca",
+            "item": "canela"
+          }
+        ]
+      },
+      {
+        "recipeName": "sopa de apio",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 4.0,
+            "unit": "taza",
+            "item": "caldo de pollo"
+          },
+          {
+            "quantity": 8.0,
+            "unit": "pieza",
+            "item": "apio"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "cebolla"
+          }
+        ]
+      },
+      {
+        "recipeName": "huevo",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "huevos"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "espinaca"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "Miercoles",
+    "recipeResultList": [
+      {
+        "recipeName": "Molletes",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "rebanada",
+            "item": "pan"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "frijol"
+          },
+          {
+            "quantity": 0.0,
+            "unit": "al gusto",
+            "item": "pico de gallo"
+          }
+        ]
+      },
+      {
+        "recipeName": "Atun",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 120.0,
+            "unit": "gramos",
+            "item": "atun"
+          },
+          {
+            "quantity": 0.25,
+            "unit": "taza",
+            "item": "ajonjoli"
+          },
+          {
+            "quantity": 0.25,
+            "unit": "pieza",
+            "item": "aguacate"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "ejotes"
+          }
+        ]
+      },
+      {
+        "recipeName": "sandwich",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pan"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "rebanada",
+            "item": "pechuga de pavo"
+          },
+          {
+            "quantity": 30.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "Jueves",
+    "recipeResultList": [
+      {
+        "recipeName": "Licuado",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "berries"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "chia"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tacos de tilapia",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 300.0,
+            "unit": "gramos",
+            "item": "pescado tilapia"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "Tbsp",
+            "item": "aderezo chipotle"
+          },
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tortillas"
+          }
+        ]
+      },
+      {
+        "recipeName": "Tostada de champinon",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "tostadas"
+          },
+          {
+            "quantity": 100.0,
+            "unit": "gramos",
+            "item": "queso panela"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "champinones"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "weekDay": "Viernes",
+    "recipeResultList": [
+      {
+        "recipeName": "Avena",
+        "period": "Desayuno",
+        "ingredientResultList": [
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "leche de almendra"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "avena"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pizca",
+            "item": "canela"
+          }
+        ]
+      },
+      {
+        "recipeName": "sopa de apio",
+        "period": "Comida",
+        "ingredientResultList": [
+          {
+            "quantity": 4.0,
+            "unit": "taza",
+            "item": "caldo de pollo"
+          },
+          {
+            "quantity": 8.0,
+            "unit": "pieza",
+            "item": "apio"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "pieza",
+            "item": "cebolla"
+          }
+        ]
+      },
+      {
+        "recipeName": "huevo",
+        "period": "Cena",
+        "ingredientResultList": [
+          {
+            "quantity": 2.0,
+            "unit": "pieza",
+            "item": "huevos"
+          },
+          {
+            "quantity": 1.0,
+            "unit": "taza",
+            "item": "espinaca"
+          }
+        ]
+      }
+    ]
+  }
+]

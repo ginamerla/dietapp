@@ -4,6 +4,9 @@ import com.tortu.api.rest.resources.WPWeekDayResultResource;
 import com.tortu.api.rest.resources.WeeklyPlanResource;
 import com.tortu.api.utils.GeneralException;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -23,4 +26,12 @@ public interface WeeklyPlanService {
      * @throws GeneralException
      */
     List<WPWeekDayResultResource> getWeeklyPlan(Integer userId) throws GeneralException;
+
+    /**
+     * Crea el PDF del plan semanal del usuario
+     * @param userId id del usuario
+     * @return archivo PDF a descargar
+     * @throws GeneralException
+     */
+    InputStream printPdf(Integer userId) throws GeneralException, IOException;
 }
