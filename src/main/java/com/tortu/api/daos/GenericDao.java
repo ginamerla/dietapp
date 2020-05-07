@@ -14,8 +14,9 @@ public interface GenericDao<T, K> {
      * Crea una nueva entidad
      * @param model
      * @throws GeneralException
+     * @return
      */
-    void save(T model) throws GeneralException;
+    int save(T model) throws GeneralException;
 
     /**
      * Actualiza los datos de la entidad

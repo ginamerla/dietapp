@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import sun.rmi.runtime.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,13 +22,14 @@ public class LayoutPeriodoDaoImpl implements LayoutPeriodoDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(LayoutPeriodo model) throws GeneralException {
+    public int save(LayoutPeriodo model) throws GeneralException {
         LOG.info(String.format("Insertando LayoutPeriodo: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getIdLayout(), model.getIdPeriodo());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw new GeneralException("No se pudo insertar el nuevo regitro LayoutPeriodo");
         }
+        return updatedRows;
     }
 
     @Override

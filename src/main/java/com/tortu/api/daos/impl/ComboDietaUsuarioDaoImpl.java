@@ -24,13 +24,14 @@ public class ComboDietaUsuarioDaoImpl implements ComboDietaUsuarioDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(ComboDietaUsuario model) throws GeneralException {
+    public int save(ComboDietaUsuario model) throws GeneralException {
         LOG.info(String.format("Insertando nuevo ComboDietaUsuario: %s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getIdDietaUsuario(), model.getIdRecetaPeriodo());
         if(updatedRows==0){
             LOG.error("No se pudo insertar ComboDietaUsuario en la base de datos");
             throw new GeneralException("El ComboDietaUsuario no se pudo guardar");
         }
+        return updatedRows;
     }
 
     @Override

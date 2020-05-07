@@ -22,9 +22,9 @@ public class RecetaPeriodoServiceImpl implements RecetaPeriodoService {
     private static final Logger LOG = LoggerFactory.getLogger(RecetaPeriodoServiceImpl.class);
 
     @Override
-    public void saveRecetaPeriodo(RecetaPeriodo recetaPeriodo) throws GeneralException {
+    public int saveRecetaPeriodo(RecetaPeriodo recetaPeriodo) throws GeneralException {
         LOG.info(String.format("Guardando RecetaPeriodo: %s", recetaPeriodo));
-        recetaPeriodoDao.save(recetaPeriodo);
+        return recetaPeriodoDao.save(recetaPeriodo);
     }
 
     @Override

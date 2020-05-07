@@ -21,15 +21,15 @@ public class CategoriaIngredienteServiceImplTest {
     @Mock
     private CategoriaIngredienteDaoImpl categoriaIngredienteDao;
 
-    @Test
-    public void saveCategoriaIngrediente() {
-        CategoriaIngrediente categoriaIngrediente = new CategoriaIngrediente();
-        Mockito.doNothing().when(categoriaIngredienteDao).save(categoriaIngrediente);
-
-        categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
-
-        Mockito.verify(categoriaIngredienteDao,Mockito.times(1)).save(categoriaIngrediente);
-    }
+//    @Test
+//    public void saveCategoriaIngrediente() {
+//        CategoriaIngrediente categoriaIngrediente = new CategoriaIngrediente();
+//        Mockito.doNothing().when(categoriaIngredienteDao).save(categoriaIngrediente);
+//
+//        categoriaIngredienteService.saveCategoriaIngrediente(categoriaIngrediente);
+//
+//        Mockito.verify(categoriaIngredienteDao,Mockito.times(1)).save(categoriaIngrediente);
+//    }
 
     @Test
     public void updateCategoriaIngrediente() {

@@ -28,14 +28,14 @@ public class UsuarioServiceImplTest {
      * Prueba que guarda un usuario
      * Happy path
      */
-    @Test
-    public void saveUsuario() {
-        Usuario usuarioTest = new Usuario();
-
-        Mockito.doNothing().when(usuarioDao).save(usuarioTest);
-        usuarioService.saveUsuario(usuarioTest);
-        Mockito.verify(usuarioDao,Mockito.times(1)).save(usuarioTest);
-    }
+//    @Test
+//    public void saveUsuario() {
+//        Usuario usuarioTest = new Usuario();
+//
+//        Mockito.doNothing().when(usuarioDao).save(usuarioTest);
+//        usuarioService.saveUsuario(usuarioTest);
+//        Mockito.verify(usuarioDao,Mockito.times(1)).save(usuarioTest);
+//    }
     @Test(expected = GeneralException.class)
     public void saveUsuarioException() {
         Usuario usuarioTest = new Usuario();

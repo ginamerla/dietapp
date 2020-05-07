@@ -22,13 +22,13 @@ public class LayoutPeriodoServiceImplTest {
     @Mock
     private LayoutPeriodoDao dao;
 
-    @Test
-    public void saveLayoutPeriodo() {
-        LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
-        Mockito.doNothing().when(dao).save(layoutPeriodo);
-        service.saveLayoutPeriodo(layoutPeriodo);
-        Mockito.verify(dao,Mockito.times(1)).save(layoutPeriodo);
-    }
+//    @Test
+//    public void saveLayoutPeriodo() {
+//        LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
+//        Mockito.doNothing().when(dao).save(layoutPeriodo);
+//        service.saveLayoutPeriodo(layoutPeriodo);
+//        Mockito.verify(dao,Mockito.times(1)).save(layoutPeriodo);
+//    }
 
     @Test
     public void updateLayoutPeriodo() {

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +22,14 @@ public class CategoriaIngredienteDaoImpl implements CategoriaIngredienteDao {
     private static final Logger LOG = LoggerFactory.getLogger(CategoriaIngredienteDaoImpl.class);
 
     @Override
-    public void save(CategoriaIngrediente model) throws GeneralException {
+    public int save(CategoriaIngrediente model) throws GeneralException {
         LOG.info(String.format("Creando categoria_ingrediente: %s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("La CATEGORIA_INGREDIENTE no pudo ser guardada");
         }
+        return updatedRows;
     }
 
     @Override

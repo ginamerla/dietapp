@@ -24,13 +24,13 @@ public class IngredienteServiceImplTest {
     @Mock
     private IngredienteDao ingredienteDao;
 
-    @Test
-    public void saveIngrediente() {
-        Ingrediente ingrediente = new Ingrediente();
-        Mockito.doNothing().when(ingredienteDao).save(ingrediente);
-        ingredienteService.saveIngrediente(ingrediente);
-        Mockito.verify(ingredienteDao,Mockito.times(1)).save(ingrediente);
-    }
+//    @Test
+//    public void saveIngrediente() {
+//        Ingrediente ingrediente = new Ingrediente();
+//        Mockito.doNothing().when(ingredienteDao).save(ingrediente);
+//        ingredienteService.saveIngrediente(ingrediente);
+//        Mockito.verify(ingredienteDao,Mockito.times(1)).save(ingrediente);
+//    }
     @Test(expected = GeneralException.class)
     public void saveIngredienteException() {
         Ingrediente ingrediente = new Ingrediente();

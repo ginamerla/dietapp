@@ -21,13 +21,14 @@ public class RecetaIngredienteDaoImpl implements RecetaIngredienteDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
-    public void save(RecetaIngrediente model) throws GeneralException {
+    public int save(RecetaIngrediente model) throws GeneralException {
         LOG.info(String.format("Guardando el modelo en la Base de datos: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getCantidad(), model.getIdReceta(), model.getIdMedida(), model.getIdIngrediente());
         if(updatedRows==0){
             LOG.error(String.format("No se pudo guardar el modelo en la base de datos: %s", model));
             throw new GeneralException("La RecetaIngrediente no se pudo guardar");
         }
+        return updatedRows;
     }
 
     @Override

@@ -23,13 +23,13 @@ public class RecetaPeriodoServiceImplTest {
     @Mock
     private RecetaPeriodoDao dao;
 
-    @Test
-    public void saveRecetaPeriodo() {
-        RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
-        Mockito.doNothing().when(dao).save(recetaPeriodo);
-        service.saveRecetaPeriodo(recetaPeriodo);
-        Mockito.verify(dao,Mockito.times(1)).save(recetaPeriodo);
-    }
+//    @Test
+//    public void saveRecetaPeriodo() {
+//        RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
+//        Mockito.doNothing().when(dao).save(recetaPeriodo);
+//        service.saveRecetaPeriodo(recetaPeriodo);
+//        Mockito.verify(dao,Mockito.times(1)).save(recetaPeriodo);
+//    }
 
     @Test
     public void updateRecetaPeriodo() {

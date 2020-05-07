@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Implementacion de la capa de acceso a la Base de Datos del modelo RecetaPeriodo
@@ -27,13 +27,25 @@ public class RecetaPeriodoDaoImpl implements RecetaPeriodoDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(RecetaPeriodo model) throws GeneralException {
+    public int save(RecetaPeriodo model) throws GeneralException {
         LOG.info(String.format("Guardando el Receta_Periodo: %s",model));
-        int updatedRows = jdbcTemplate.update(SAVE,model.getIdReceta(), model.getIdPeriodo());
-        if(updatedRows==0){
-            LOG.error("No se pudo insertar en la Base de Datos");
-            throw new GeneralException("RecetaPeriodo no pudo ser guardado");
-        }
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(SAVE, new String[]{
+                    "id_receta_periodo"
+            });
+            ps.setInt(1,model.getIdReceta());
+            ps.setInt(2,model.getIdPeriodo());
+            return ps;
+        }, keyHolder);
+
+//        int updatedRows = jdbcTemplate.update(SAVE,model.getIdReceta(), model.getIdPeriodo());
+//        if(updatedRows==0){
+//            LOG.error("No se pudo insertar en la Base de Datos");
+//            throw new GeneralException("RecetaPeriodo no pudo ser guardado");
+//        }
+//        return updatedRows;
+        return keyHolder.getKey().intValue();
     }
 
     @Override

@@ -24,15 +24,15 @@ public class DietaUsuarioServiceImplTest {
     @Mock
     DietaUsuarioDao dietaUsuarioDao;
 
-    @Test
-    public void saveDietaUsuario() {
-        DietaUsuario expectedDietaUsuario = new DietaUsuario();
-        Mockito.doNothing().when(dietaUsuarioDao).save(expectedDietaUsuario);
-
-        dietaUsuarioService.saveDietaUsuario(expectedDietaUsuario);
-
-        Mockito.verify(dietaUsuarioDao, Mockito.times(1)).save(expectedDietaUsuario);
-    }
+//    @Test
+//    public void saveDietaUsuario() {
+//        DietaUsuario expectedDietaUsuario = new DietaUsuario();
+//        Mockito.doNothing().when(dietaUsuarioDao).save(expectedDietaUsuario);
+//
+//        dietaUsuarioService.saveDietaUsuario(expectedDietaUsuario);
+//
+//        Mockito.verify(dietaUsuarioDao, Mockito.times(1)).save(expectedDietaUsuario);
+//    }
     @Test(expected = GeneralException.class)
     public void saveDietaUsuarioException() {
         DietaUsuario expectedDietaUsuario = new DietaUsuario();

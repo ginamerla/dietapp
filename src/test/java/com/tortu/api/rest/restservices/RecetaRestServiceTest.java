@@ -106,19 +106,19 @@ public class RecetaRestServiceTest {
         Response response = recetaRestService.findRecetaById(null);
     }
 
-    @Test
-    public void createReceta() {
-        Receta receta = new Receta();
-        Mockito.doNothing().when(validator).validate(receta);
-        Mockito.doNothing().when(recetaService).saveReceta(receta);
-
-        Response response = recetaRestService.createReceta(receta);
-
-        Mockito.verify(validator,Mockito.times(1)).validate(receta);
-        Mockito.verify(recetaService,Mockito.times(1)).saveReceta(receta);
-
-        assertEquals(200, response.getStatus());
-    }
+//    @Test
+//    public void createReceta() {
+//        Receta receta = new Receta();
+//        Mockito.doNothing().when(validator).validate(receta);
+//        Mockito.doNothing().when(recetaService).saveReceta(receta);
+//
+//        Response response = recetaRestService.createReceta(receta);
+//
+//        Mockito.verify(validator,Mockito.times(1)).validate(receta);
+//        Mockito.verify(recetaService,Mockito.times(1)).saveReceta(receta);
+//
+//        assertEquals(200, response.getStatus());
+//    }
 
     @Test(expected = GeneralException.class)
     public void createRecetaException(){

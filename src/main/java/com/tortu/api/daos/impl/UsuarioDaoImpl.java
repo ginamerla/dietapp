@@ -22,13 +22,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 
     @Override
-    public void save(Usuario model)  {
+    public int save(Usuario model)  {
         LOG.info(String.format("Creando el usuario: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getNombre(), model.getEmail());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El USUARIO no pudo ser guardado");
         }
+        return updatedRows;
     }
 
     @Override

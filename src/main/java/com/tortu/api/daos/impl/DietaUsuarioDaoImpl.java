@@ -22,13 +22,14 @@ public class DietaUsuarioDaoImpl implements DietaUsuarioDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(DietaUsuario model) throws GeneralException {
+    public int save(DietaUsuario model) throws GeneralException {
         LOG.info(String.format("Creando DIETA_USUARIO: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getIdUsuario(),model.getDiaSemana());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("La DIETA_USUARIO no pudo ser guardada");
         }
+        return updatedRows;
     }
 
     @Override

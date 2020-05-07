@@ -3,6 +3,7 @@ package com.tortu.api.rest.restservices;
 import com.tortu.api.models.Receta;
 import com.tortu.api.rest.mappers.RecetaResourceMapper;
 import com.tortu.api.rest.resources.RecetaResource;
+import com.tortu.api.rest.resources.RecipeCompleteResource;
 import com.tortu.api.rest.validators.GenericValidator;
 import com.tortu.api.services.RecetaService;
 import com.tortu.api.utils.GeneralException;
@@ -36,6 +37,10 @@ public class RecetaRestService {
     @Autowired
     @Qualifier("updateRecetaValidator")
     private GenericValidator<Receta> updateRecetaValidator;
+
+    @Autowired
+    @Qualifier("createRecipeCompleteValidator")
+    private GenericValidator<RecipeCompleteResource> recipeCompleteValidator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +94,16 @@ public class RecetaRestService {
             throw new GeneralException("El ID de la receta es nulo");
         }
         recetaService.deleteReceta(idReceta);
+        return Response.ok().build();
+    }
+
+    @Path("/complete")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createRecipeComplete(RecipeCompleteResource recipeComplete){
+        recipeCompleteValidator.validate(recipeComplete);
+        recetaService.saveRecipeComplete(recipeComplete);
         return Response.ok().build();
     }
 }
