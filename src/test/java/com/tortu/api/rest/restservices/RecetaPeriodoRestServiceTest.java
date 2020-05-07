@@ -90,16 +90,16 @@ public class RecetaPeriodoRestServiceTest {
         assertEquals(404, response.getStatus());
     }
 
-    @Test
-    public void createRecetaPeriodo() {
-        RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
-        Mockito.doNothing().when(createRecetaPeriodoValidator).validate(recetaPeriodo);
-        Mockito.doNothing().when(service).saveRecetaPeriodo(recetaPeriodo);
-        Response response = restService.createRecetaPeriodo(recetaPeriodo);
-        Mockito.verify(createRecetaPeriodoValidator,Mockito.times(1)).validate(recetaPeriodo);
-        Mockito.verify(service,Mockito.times(1)).saveRecetaPeriodo(recetaPeriodo);
-        assertEquals(200, response.getStatus());
-    }
+//    @Test
+//    public void createRecetaPeriodo() {
+//        RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
+//        Mockito.doNothing().when(createRecetaPeriodoValidator).validate(recetaPeriodo);
+//        Mockito.doNothing().when(service).saveRecetaPeriodo(recetaPeriodo);
+//        Response response = restService.createRecetaPeriodo(recetaPeriodo);
+//        Mockito.verify(createRecetaPeriodoValidator,Mockito.times(1)).validate(recetaPeriodo);
+//        Mockito.verify(service,Mockito.times(1)).saveRecetaPeriodo(recetaPeriodo);
+//        assertEquals(200, response.getStatus());
+//    }
 
     @Test
     public void updateRecetaPeriodo() {

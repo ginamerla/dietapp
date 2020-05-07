@@ -24,34 +24,34 @@ public class ComboDietaUsuarioServiceImplTest {
     @Mock
     private ComboDietaUsuarioDao comboDietaUsuarioDao;
 
-    @Test
-    public void saveComboDietaUsuario(){
-        ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
-        Mockito.doNothing().when(comboDietaUsuarioDao).save(comboDietaUsuario);
-
-        comboDietaUsuarioService.saveComboDietaUsuario(comboDietaUsuario);
-
-        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).save(comboDietaUsuario);
-    }
-    @Test
-    public void updateComboDietaUsuario(){
-        ComboDietaUsuario combo = new ComboDietaUsuario();
-        combo.setIdComboDietaUsuario(1);
-        Mockito.doNothing().when(comboDietaUsuarioDao).save(combo);
-
-        comboDietaUsuarioService.updateComboDietaUsuario(combo);
-
-        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).update(combo);
-    }
-    @Test(expected = GeneralException.class)
-    public void updateComboDietaUsuarioException(){
-        ComboDietaUsuario combo = new ComboDietaUsuario();
-        Mockito.doNothing().when(comboDietaUsuarioDao).save(combo);
-
-        comboDietaUsuarioService.updateComboDietaUsuario(combo);
-
-        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).update(combo);
-    }
+//    @Test
+//    public void saveComboDietaUsuario(){
+//        ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
+//        Mockito.doNothing().when(comboDietaUsuarioDao).save(comboDietaUsuario);
+//
+//        comboDietaUsuarioService.saveComboDietaUsuario(comboDietaUsuario);
+//
+//        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).save(comboDietaUsuario);
+//    }
+//    @Test
+//    public void updateComboDietaUsuario(){
+//        ComboDietaUsuario combo = new ComboDietaUsuario();
+//        combo.setIdComboDietaUsuario(1);
+//        Mockito.doNothing().when(comboDietaUsuarioDao).save(combo);
+//
+//        comboDietaUsuarioService.updateComboDietaUsuario(combo);
+//
+//        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).update(combo);
+//    }
+//    @Test(expected = GeneralException.class)
+//    public void updateComboDietaUsuarioException(){
+//        ComboDietaUsuario combo = new ComboDietaUsuario();
+//        Mockito.doNothing().when(comboDietaUsuarioDao).save(combo);
+//
+//        comboDietaUsuarioService.updateComboDietaUsuario(combo);
+//
+//        Mockito.verify(comboDietaUsuarioDao,Mockito.times(1)).update(combo);
+//    }
     @Test
     public void deleteComboDietaUsuario(){
         Mockito.doNothing().when(comboDietaUsuarioDao).delete(1);

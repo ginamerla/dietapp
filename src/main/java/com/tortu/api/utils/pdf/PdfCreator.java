@@ -34,6 +34,7 @@ public class PdfCreator {
     private String filePath = "Dieta.pdf";
     private final Logger LOG = LoggerFactory.getLogger(PdfCreator.class);
     private ObjectMapper objectMapper = new CustomFasterJacksonObjectMapperFactory().createCustomObjectMapper();
+    private PDFont fontBold = PDType1Font.HELVETICA_BOLD;
 
     public InputStream createPDF(List<WPWeekDayResultResource> resource) throws IOException {
         if(CollectionUtils.isEmpty(resource)){
@@ -41,7 +42,6 @@ public class PdfCreator {
         }
         LOG.info("Creando PDF...");
         String outputFileName = "Dieta.pdf";
-        PDFont fontBold = PDType1Font.HELVETICA_BOLD;
         PDDocument document = new PDDocument();
         PDPage page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));// landscape
         document.addPage(page);
@@ -61,58 +61,15 @@ public class PdfCreator {
         // y position is your coordinate of top left corner of the table
         float yPosition = 550;
 
-        BaseTable table = new BaseTable(yPosition, yStartNewPage,
-                bottomMargin, tableWidth, margin, document, page, true, drawContent);
-
-        //  Titulos
-        Row<PDPage> headerRow = table.createRow(25);
+        BaseTable table = new BaseTable(yPosition, yStartNewPage, bottomMargin, tableWidth, margin, document, page, true, drawContent);
         Cell<PDPage> cell = null;
-        for (WPWeekDayResultResource wp : resource) {
-            cell = headerRow.createCell(20, wp.getWeekDay());
-            cell.setFont(fontBold);
-            cell.setFontSize(10);
-            cell.setValign(VerticalAlignment.MIDDLE);
-            cell.setTopBorderStyle(new LineStyle(Color.BLACK, 5));
-            cell.setFillColor(Color.LIGHT_GRAY);
-        }
-        table.addHeaderRow(headerRow);
 
-        int periodSize = resource.get(0).getRecipeResultList().size();//periodSize : 3 BLD o 5 BALPD
-        for (int periodIterator = 0; periodIterator < periodSize; periodIterator++) {
-            //Recetas
-            Row<PDPage> recetaRow = table.createRow(20);
-            for (int d = 0; d < resource.size(); d++) {
-                List<WPRecipeResultResource> listaRecetas = resource.get(d).getRecipeResultList();
-                String r = listaRecetas.get(periodIterator).getRecipeName();
-                cell = recetaRow.createCell(20, r);
-                cell.setFontSize(10);
-                cell.setBottomBorderStyle(new LineStyle(Color.WHITE, 1));
-                cell.setFont(fontBold);
-            }
-
-            //Ingredientes
-            Row<PDPage> recipeRow = table.createRow(20);
-            for (int d = 0; d < resource.size(); d++) {
-                List<WPRecipeResultResource> listaRecetas = resource.get(d).getRecipeResultList();
-                StringBuilder str = new StringBuilder();
-                for (WPIngredientResultResource ingrediente : listaRecetas.get(periodIterator).getIngredientResultList()) {
-                    str.append(quantityFormatter(ingrediente.getQuantity()));
-                    str.append(" ");
-                    str.append(ingrediente.getUnit());
-                    str.append(" ");
-                    str.append(ingrediente.getItem());
-                    str.append(" ");
-                    str.append("\n");
-                }
-                cell = recipeRow.createCell(20, str.toString().replace("\n", "<br>"));
-                cell.setFontSize(10);
-            }
-        }
+        createHeaderRow(table, cell, resource);
+        createContent(table, cell, resource);
 
         table.draw();
         // close the content stream
         cos.close();
-
         // Save the results and ensure that the document is properly closed:
 //        document.save(outputFileName);
 //        document.close();
@@ -132,7 +89,59 @@ public class PdfCreator {
             return in;
     }
 
+    private void createHeaderRow(BaseTable table, Cell<PDPage> cell, List<WPWeekDayResultResource> resource){
+        Row<PDPage> headerRow = table.createRow(25);
+        for (WPWeekDayResultResource wp : resource) {
+            cell = headerRow.createCell(20, wp.getWeekDay());
+            cell.setFont(fontBold);
+            cell.setFontSize(10);
+            cell.setValign(VerticalAlignment.MIDDLE);
+            cell.setTopBorderStyle(new LineStyle(Color.BLACK, 5));
+            cell.setFillColor(Color.LIGHT_GRAY);
+        }
+        table.addHeaderRow(headerRow);
+    }
 
+    private void createContent(BaseTable table, Cell<PDPage> cell, List<WPWeekDayResultResource> resource){
+        int periodSize = resource.get(0).getRecipeResultList().size();//periodSize : 3 BLD o 5 BALPD
+        for (int periodIterator = 0; periodIterator < periodSize; periodIterator++) {
+            createRecipeRow(table, cell, resource, periodIterator);
+        }
+    }
+
+    private void createRecipeRow(BaseTable table, Cell<PDPage> cell, List<WPWeekDayResultResource> resource, int periodIterator){
+        //Recetas
+        Row<PDPage> recetaRow = table.createRow(20);
+        for (int d = 0; d < resource.size(); d++) {
+            List<WPRecipeResultResource> listaRecetas = resource.get(d).getRecipeResultList();
+            String r = listaRecetas.get(periodIterator).getRecipeName();
+            cell = recetaRow.createCell(20, r);
+            cell.setFontSize(10);
+            cell.setBottomBorderStyle(new LineStyle(Color.WHITE, 1));
+            cell.setFont(fontBold);
+        }
+        createIngredientRow(table, cell, resource, periodIterator);
+    }
+
+    private void createIngredientRow(BaseTable table, Cell<PDPage> cell, List<WPWeekDayResultResource> resource, int periodIterator){
+        //Ingredientes
+        Row<PDPage> recipeRow = table.createRow(20);
+        for (int d = 0; d < resource.size(); d++) {
+            List<WPRecipeResultResource> listaRecetas = resource.get(d).getRecipeResultList();
+            StringBuilder str = new StringBuilder();
+            for (WPIngredientResultResource ingrediente : listaRecetas.get(periodIterator).getIngredientResultList()) {
+                str.append(quantityFormatter(ingrediente.getQuantity()));
+                str.append(" ");
+                str.append(ingrediente.getUnit());
+                str.append(" ");
+                str.append(ingrediente.getItem());
+                str.append(" ");
+                str.append("\n");
+            }
+            cell = recipeRow.createCell(20, str.toString().replace("\n", "<br>"));
+            cell.setFontSize(10);
+        }
+    }
 
     private String quantityFormatter(Double number) {
         Fraction g = Fraction.getFraction(number);

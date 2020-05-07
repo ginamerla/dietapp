@@ -14,7 +14,7 @@ public interface RecetaPeriodoService {
      * @param recetaPeriodo que se va a guardar
      * @throws GeneralException si no se pudo guardar
      */
-    void saveRecetaPeriodo (RecetaPeriodo recetaPeriodo) throws GeneralException;
+    int saveRecetaPeriodo (RecetaPeriodo recetaPeriodo) throws GeneralException;
 
     /**
      * Actualiza la informacion de una Receta_Periodo

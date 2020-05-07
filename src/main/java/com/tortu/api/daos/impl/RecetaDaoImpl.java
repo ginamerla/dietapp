@@ -1,6 +1,5 @@
 package com.tortu.api.daos.impl;
 
-import com.tortu.api.DietAppApplication;
 import com.tortu.api.daos.RecetaDao;
 import com.tortu.api.daos.mappers.RecetaRowMapper;
 import com.tortu.api.models.Receta;
@@ -9,9 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 /**
@@ -26,13 +27,16 @@ public class RecetaDaoImpl implements RecetaDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(Receta model) throws GeneralException {
+    public int save(Receta model) throws GeneralException {
         LOG.info(String.format("Creando RECETA :%s", model));
-        int updatedRows = jdbcTemplate.update(SAVE, model.getNombre());
-        if(updatedRows==0){
-            LOG.error("No se pudo insertar en la BD");
-            throw  new GeneralException("La RECETA no pudo ser guardada");
-        }
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(SAVE, new String[]{"id_receta"});
+                    ps.setString(1, model.getNombre());
+                    return ps;
+                }
+                , keyHolder);
+        return keyHolder.getKey().intValue();
     }
 
     @Override

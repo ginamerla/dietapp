@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +22,14 @@ public class IngredienteDaoImpl implements IngredienteDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(Ingrediente model) throws GeneralException {
+    public int save(Ingrediente model) throws GeneralException {
         LOG.info(String.format("Creando INGREDIENTE: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getNombre(), model.getIdCategoriaIngrediente());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser guardado");
         }
+        return updatedRows;
     }
 
     @Override

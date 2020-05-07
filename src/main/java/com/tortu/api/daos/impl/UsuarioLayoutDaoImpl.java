@@ -23,13 +23,14 @@ public class UsuarioLayoutDaoImpl implements UsuarioLayoutDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(UsuarioLayout model) throws GeneralException {
+    public int save(UsuarioLayout model) throws GeneralException {
         LOG.info(String.format("Guardando usuarioLayout: %s", model));
         int updatedRows = jdbcTemplate.update(SAVE, model.getIdUsuario(), model.getIdLayout(), model.getFecha());
         if(updatedRows==0){
             LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El USUARIO_LAYOUT no pudo ser guardado");
         }
+        return updatedRows;
     }
 
     @Override

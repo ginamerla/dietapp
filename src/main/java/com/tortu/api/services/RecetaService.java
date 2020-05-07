@@ -1,6 +1,7 @@
 package com.tortu.api.services;
 
 import com.tortu.api.models.Receta;
+import com.tortu.api.rest.resources.RecipeCompleteResource;
 import com.tortu.api.utils.GeneralException;
 
 import java.util.List;
@@ -13,9 +14,10 @@ public interface RecetaService {
     /**
      * Guarda la receta enviada y regresa la misma informacion
      * @param receta nueva que se debe guardar
+     * @return id de la receta guardada
      * @throws GeneralException
      */
-    void saveReceta(Receta receta) throws GeneralException;
+    int saveReceta(Receta receta) throws GeneralException;
 
     /**
      * Actualiza la informacion de la receta
@@ -44,5 +46,12 @@ public interface RecetaService {
      * @throws GeneralException
      */
     void deleteReceta(Integer idReceta) throws  GeneralException;
+
+    /**
+     * Crea una receta nueva completa con ingredientes, medidas y cantidades
+     * @param recipe recurso con la informacion necesaria
+     * @throws GeneralException
+     */
+    void saveRecipeComplete(RecipeCompleteResource recipe) throws GeneralException;
 
 }
