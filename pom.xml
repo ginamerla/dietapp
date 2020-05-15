@@ -14,7 +14,7 @@
         <spring-boot.version>1.4.3.RELEASE</spring-boot.version>
         <jvm.version>1.8</jvm.version>
         <jvm-test.version>1.8</jvm-test.version>
-        <faster.jackson.version>2.7.0</faster.jackson.version>
+        <faster.jackson.version>2.11.0</faster.jackson.version>
         <tomcat.version>8.0.41</tomcat.version>
         <spring-security.version>4.1.4.RELEASE</spring-security.version>
         <aspectj.version>1.9.1</aspectj.version>
