@@ -61,7 +61,7 @@ public class DietaUsuarioServiceImplTest {
     @Test(expected = GeneralException.class)
     public void updateDietaUsuarioException() {
         DietaUsuario expectedDietaUsuario = new DietaUsuario();
-        Mockito.doThrow(GeneralException.class).when(dietaUsuarioDao).update(expectedDietaUsuario);
+//        Mockito.doThrow(GeneralException.class).when(dietaUsuarioDao).update(expectedDietaUsuario);
         dietaUsuarioService.updateDietaUsuario(expectedDietaUsuario);
     }
 
@@ -108,7 +108,7 @@ public class DietaUsuarioServiceImplTest {
         Integer idDietaUsuario = 1;
         DietaUsuario dietaUsuario = new DietaUsuario();
         dietaUsuario.setIdDietaUsuario(idDietaUsuario);
-        Mockito.doNothing().when(dietaUsuarioDao).delete(dietaUsuario.getIdUsuario());
+//        Mockito.doNothing().when(dietaUsuarioDao).delete(dietaUsuario.getIdUsuario());
 
         dietaUsuarioService.deleteDietaUsuario(dietaUsuario.getIdDietaUsuario());
     }
@@ -120,7 +120,7 @@ public class DietaUsuarioServiceImplTest {
     @Test(expected = GeneralException.class)
     public void deleteDietaUsuarioException() {
         DietaUsuario dietaUsuario = new DietaUsuario();
-        Mockito.doThrow(GeneralException.class).when(dietaUsuarioDao).delete(dietaUsuario.getIdUsuario());
+//        Mockito.doThrow(GeneralException.class).when(dietaUsuarioDao).delete(dietaUsuario.getIdUsuario());
         dietaUsuarioService.deleteDietaUsuario(dietaUsuario.getIdDietaUsuario());
     }
     @Test

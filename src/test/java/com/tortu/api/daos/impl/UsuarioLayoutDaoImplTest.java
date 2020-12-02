@@ -26,6 +26,9 @@ public class UsuarioLayoutDaoImplTest {
     @Test
     public void save() {
         UsuarioLayout usuarioLayout = new UsuarioLayout();
+        usuarioLayout.setFecha(new Date());
+        usuarioLayout.setIdLayout(23);
+        usuarioLayout.setIdUsuario(2);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.any(Date.class))).thenReturn(1);
         usuarioLayoutDao.save(usuarioLayout);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.any(Date.class));
@@ -33,7 +36,7 @@ public class UsuarioLayoutDaoImplTest {
     @Test(expected = GeneralException.class)
     public void saveException() {
         UsuarioLayout usuarioLayout = new UsuarioLayout();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.any(Date.class))).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.any(Date.class))).thenReturn(0);
         usuarioLayoutDao.save(usuarioLayout);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.any(Date.class));
     }
@@ -41,6 +44,10 @@ public class UsuarioLayoutDaoImplTest {
     @Test
     public void update() {
         UsuarioLayout usuarioLayout = new UsuarioLayout();
+        usuarioLayout.setIdUsuario(2);
+        usuarioLayout.setIdLayout(2);
+        usuarioLayout.setFecha(new Date());
+        usuarioLayout.setIdUsuarioLayout(78);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.any(Date.class),Mockito.anyInt())).thenReturn(1);
         usuarioLayoutDao.update(usuarioLayout);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.any(Date.class),Mockito.anyInt());
@@ -48,7 +55,7 @@ public class UsuarioLayoutDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         UsuarioLayout usuarioLayout = new UsuarioLayout();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.any(Date.class),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.any(Date.class),Mockito.anyInt())).thenReturn(0);
         usuarioLayoutDao.update(usuarioLayout);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.any(Date.class),Mockito.anyInt());
     }

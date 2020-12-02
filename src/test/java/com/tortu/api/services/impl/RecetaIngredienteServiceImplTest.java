@@ -54,7 +54,7 @@ public class RecetaIngredienteServiceImplTest {
     @Test(expected = GeneralException.class)
     public void deleteRecetaIngredienteException() {
         Integer id=null;
-        Mockito.doNothing().when(dao).delete(id);
+//        Mockito.doNothing().when(dao).delete(id);
         recetaIngredienteService.deleteRecetaIngrediente(id);
         Mockito.verify(dao,Mockito.times(1)).delete(id);
     }

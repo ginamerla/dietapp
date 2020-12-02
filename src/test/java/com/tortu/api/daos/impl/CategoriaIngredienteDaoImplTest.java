@@ -1,6 +1,5 @@
 package com.tortu.api.daos.impl;
 
-import com.tortu.api.daos.CategoriaIngredienteDao;
 import com.tortu.api.daos.mappers.CategoriaIngredienteRowMapper;
 import com.tortu.api.models.CategoriaIngrediente;
 import com.tortu.api.utils.GeneralException;
@@ -9,26 +8,26 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class CategoriaIngredienteDaoImplTest {
 
     @InjectMocks
-    private CategoriaIngredienteDaoImpl categoriaIngredienteDaoImpl = new CategoriaIngredienteDaoImpl();
+    private CategoriaIngredienteDaoImpl categoriaIngredienteDaoImpl;
     @Mock
     private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
     @Test
     public void save() {
         CategoriaIngrediente categoria = new CategoriaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(1);
+        categoria.setNombre("x");
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyString())).thenReturn(1);
 
         categoriaIngredienteDaoImpl.save(categoria);
 
@@ -37,7 +36,7 @@ public class CategoriaIngredienteDaoImplTest {
     @Test(expected = GeneralException.class)
     public void saveException() {
         CategoriaIngrediente categoria = new CategoriaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString())).thenReturn(0);
 
         categoriaIngredienteDaoImpl.save(categoria);
 
@@ -47,6 +46,8 @@ public class CategoriaIngredienteDaoImplTest {
     @Test
     public void update() {
         CategoriaIngrediente categoria = new CategoriaIngrediente();
+        categoria.setNombre("test");
+        categoria.setIdCategoriaIngrediente(1);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(1);
 
         categoriaIngredienteDaoImpl.update(categoria);
@@ -57,7 +58,7 @@ public class CategoriaIngredienteDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         CategoriaIngrediente categoria = new CategoriaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(22);
 
         categoriaIngredienteDaoImpl.update(categoria);
 

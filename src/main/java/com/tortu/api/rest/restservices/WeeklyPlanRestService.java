@@ -24,7 +24,7 @@ import java.util.List;
  * API WeeklyPlan
  */
 @Service
-@Path("/weeklyplan")
+@Path("/api/v1/weeklyplan")
 public class WeeklyPlanRestService {
     @Autowired
     @Qualifier("createWeeklyPlanValidatorImpl")
@@ -34,6 +34,11 @@ public class WeeklyPlanRestService {
 
     private static final Logger LOG = LoggerFactory.getLogger(WeeklyPlanRestService.class);
 
+    /**
+     * Se crea el plan semanal del usuario
+     * @param weeklyPlanResource informacion elegida por el usuario
+     * @return (se crea el plan)
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +48,11 @@ public class WeeklyPlanRestService {
         return Response.ok().build();
     }
 
+    /**
+     * Obtiene el plan semanal del usuario
+     * @param userId id del usuario
+     * @return json con la informacion del plan semanal
+     */
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,6 +64,12 @@ public class WeeklyPlanRestService {
         return Response.ok(result).build();
     }
 
+    /**
+     * Crea el PDF con el plan semanal
+     * @param userId id del usuario
+     * @return plan semanal en formato PDF
+     * @throws IOException
+     */
     @GET
     @Path("/pdf/{id}")
     @Produces("application/pdf")

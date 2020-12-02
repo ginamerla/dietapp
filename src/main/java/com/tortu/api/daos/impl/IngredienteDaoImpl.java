@@ -4,6 +4,7 @@ import com.tortu.api.daos.IngredienteDao;
 import com.tortu.api.daos.mappers.IngredienteRowMapper;
 import com.tortu.api.models.Ingrediente;
 import com.tortu.api.utils.GeneralException;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,21 @@ import java.util.List;
 /**
  * Capa de acceso a la base de datos
  */
+@Log4j2
 @Component
 public class IngredienteDaoImpl implements IngredienteDao {
-    public static final Logger LOG = LoggerFactory.getLogger(IngredienteDaoImpl.class);
+//    public static final Logger LOG = LoggerFactory.getLogger(IngredienteDaoImpl.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public int save(Ingrediente model) throws GeneralException {
-        LOG.info(String.format("Creando INGREDIENTE: %s",model));
+        log.info("Inserting Ingrediente:{}", model);
+//        LOG.info(String.format("Creando INGREDIENTE: %s",model));
         int updatedRows = jdbcTemplate.update(SAVE,model.getNombre(), model.getIdCategoriaIngrediente());
         if(updatedRows==0){
-            LOG.error("No se pudo insertar en la BD");
+            log.error("Cannot insert Ingrediente in DB");
+//            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser guardado");
         }
         return updatedRows;
@@ -34,33 +38,45 @@ public class IngredienteDaoImpl implements IngredienteDao {
 
     @Override
     public void update(Ingrediente model) throws GeneralException {
-        LOG.info((String.format("Actualizando INGREDIENTE: %s", model)));
+        log.info("Updating Ingrediente:{}", model);
+//        LOG.info((String.format("Actualizando INGREDIENTE: %s", model)));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente(), model.getIdIngrediente());
         if(updatedRows==0){
-            LOG.error("No se pudo actualizar en la BD");
+            log.error("Cannont update Ingrediente in DB");
+//            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser actualizado");
         }
     }
 
     @Override
     public void delete(Integer id) throws GeneralException {
-        LOG.info(String.format("Eliminando INGREDIENTE con id: %d", id));
+        log.info("Deleting Ingrediente id:{}", id);
+//        LOG.info(String.format("Eliminando INGREDIENTE con id: %d", id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
-            LOG.error("No se pudo eliminar en la BD");
+            log.error("Cannot delete Ingrediente from DB");
+//            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser eliminado");
         }
     }
 
     @Override
     public Ingrediente findByiD(Integer id) throws GeneralException {
-        LOG.info(String.format("Consultando INGREDIENTE con id: %d",id));
-        return jdbcTemplate.queryForObject(FINDBYID,new IngredienteRowMapper(),id);
+        log.info("Searching Ingrediente id:{}", id);
+//        LOG.info(String.format("Consultando INGREDIENTE con id: %d",id));
+        Ingrediente ingrediente = null;
+        try{
+            ingrediente = jdbcTemplate.queryForObject(FINDBYID,new IngredienteRowMapper(),id);
+        }catch (Exception e){
+            log.error("Ingrediente not found");
+        }
+        return ingrediente;
     }
 
     @Override
     public List<Ingrediente> findAll() throws GeneralException {
-        LOG.info("Consultando todos los INGREDIENTES");
+        log.info("Searching all ingredientes");
+//        LOG.info("Consultando todos los INGREDIENTES");
         return  jdbcTemplate.query(FIND_ALL, new IngredienteRowMapper());
     }
 }

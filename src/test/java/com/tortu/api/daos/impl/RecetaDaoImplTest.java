@@ -84,7 +84,7 @@ public class RecetaDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         Receta receta = new Receta();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt())).thenReturn(0);
         recetaDao.update(receta);
         Mockito.verify(jdbcTemplate, Mockito.times(1))
                 .update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt());

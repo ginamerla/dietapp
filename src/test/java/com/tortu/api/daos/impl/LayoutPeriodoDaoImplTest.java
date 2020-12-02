@@ -29,6 +29,8 @@ public class LayoutPeriodoDaoImplTest {
     @Test
     public void save() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
+        layoutPeriodo.setIdPeriodo(432);
+        layoutPeriodo.setIdLayout(453);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(),Mockito.anyInt())).thenReturn(1);
         layoutPeriodoDao.save(layoutPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyInt(),Mockito.anyInt());
@@ -36,7 +38,7 @@ public class LayoutPeriodoDaoImplTest {
     @Test(expected = GeneralException.class)
     public void saveException() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
         layoutPeriodoDao.save(layoutPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyInt(),Mockito.anyInt());
     }
@@ -44,6 +46,9 @@ public class LayoutPeriodoDaoImplTest {
     @Test
     public void update() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
+        layoutPeriodo.setIdLayout(12);
+        layoutPeriodo.setIdLayoutPeriodo(423);
+        layoutPeriodo.setIdPeriodo(34);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(1);
         layoutPeriodoDao.update(layoutPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt());
@@ -51,7 +56,7 @@ public class LayoutPeriodoDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         LayoutPeriodo layoutPeriodo = new LayoutPeriodo();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
         layoutPeriodoDao.update(layoutPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt());
     }

@@ -21,7 +21,7 @@ import java.util.List;
  * API ComboDietaUsuario
  */
 @Service
-@Path("/combodietausuario")
+@Path("/api/v1/combodietausuario")
 public class ComboDietaUsuarioRestService {
     @Autowired
     private ComboDietaUsuarioServiceImpl comboService;

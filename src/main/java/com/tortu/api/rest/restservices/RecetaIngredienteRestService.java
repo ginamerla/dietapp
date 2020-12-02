@@ -20,7 +20,7 @@ import java.util.List;
  * API RecetaIngrediente
  */
 @Service
-@Path("/recetaingredientes")
+@Path("/api/v1/recetaingredientes")
 public class RecetaIngredienteRestService {
     @Autowired
     private RecetaIngredienteService recetaIngredienteService;

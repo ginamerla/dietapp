@@ -1,5 +1,6 @@
 package com.tortu.api.daos;
 
+import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.dto.ShoppingIngredientDTO;
 import com.tortu.api.dto.WPIngredientResultDTO;
 import com.tortu.api.dto.WPResultDTO;
@@ -37,6 +38,12 @@ public interface CommonDao {
             "inner join medida m on ri.id_medida = m.id_medida \n" +
             "where ri.id_receta = ?;";
 
+    public static final String FIND_RECIPE_BY_INGREDIENT = "select p.periodo , r.nombre as 'receta' , i.nombre as 'ingrediente', ri.cantidad , m.medida \n" +
+            "from receta r, ingrediente i, receta_ingrediente ri, receta_periodo rp , periodo p , medida m\n" +
+            "where ri.id_receta=r.id_receta and ri.id_ingrediente=i.id_ingrediente and rp.id_receta=r.id_receta and rp.id_periodo=p.id_periodo and ri.id_medida=m.id_medida \n" +
+            "and i.nombre like ? \n" +
+            "group by r.nombre order by p.id_periodo;";
+
     /**
      * Obtiene la lista de ingredientes para las recetas de la semana de un usario
      * @param userId el id del usuario que va a consultar su lista de compras
@@ -58,5 +65,11 @@ public interface CommonDao {
      */
     public List<WPIngredientResultDTO> getRecipeIngredients(Integer recipeId);
 
+    /**
+     * Obtiene la lista de recetas que incluyen el ingrediente enviado
+     * @param ingredient el ingrediente a buscar en las recetas
+     * @return lista de recetas encontradas con su periodo y el ingrediente
+     */
+    public List<RecipeIngredientLookupDTO> getRecipeListByIngredient(String ingredient);
 
 }

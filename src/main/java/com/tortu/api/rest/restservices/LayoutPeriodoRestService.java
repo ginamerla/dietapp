@@ -21,7 +21,7 @@ import java.util.List;
  * API LayoutPeriodo
  */
 @Service
-@Path("/layoutperiodo")
+@Path("/api/v1/layoutperiodo")
 public class LayoutPeriodoRestService {
     @Autowired
     private LayoutPeriodoService layoutPeriodoService;
