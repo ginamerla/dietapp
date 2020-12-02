@@ -20,7 +20,7 @@ import java.util.List;
  * API RecetaPeriodo
  */
 @Service
-@Path("/recetaperiodo")
+@Path("/api/v1/recetaperiodo")
 public class RecetaPeriodoRestService {
     @Autowired
     private RecetaPeriodoService recetaPeriodoService;

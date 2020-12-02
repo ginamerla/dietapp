@@ -27,7 +27,8 @@ public class ComboDietaUsuarioDaoImplTest {
     @Test
     public void save(){
         ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
-
+        comboDietaUsuario.setIdDietaUsuario(1);
+        comboDietaUsuario.setIdRecetaPeriodo(2);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(1);
 
         comboDietaUsuarioDao.save(comboDietaUsuario);
@@ -38,7 +39,7 @@ public class ComboDietaUsuarioDaoImplTest {
     public void saveException(){
         ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
 
         comboDietaUsuarioDao.save(comboDietaUsuario);
 
@@ -47,7 +48,9 @@ public class ComboDietaUsuarioDaoImplTest {
     @Test
     public void update(){
         ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
-
+        comboDietaUsuario.setIdRecetaPeriodo(1);
+        comboDietaUsuario.setIdDietaUsuario(2);
+        comboDietaUsuario.setIdComboDietaUsuario(3);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(1);
 
         comboDietaUsuarioDao.update(comboDietaUsuario);
@@ -58,7 +61,7 @@ public class ComboDietaUsuarioDaoImplTest {
     public void updateException(){
         ComboDietaUsuario comboDietaUsuario = new ComboDietaUsuario();
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(0);
 
         comboDietaUsuarioDao.update(comboDietaUsuario);
 

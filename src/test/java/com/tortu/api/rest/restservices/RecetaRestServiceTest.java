@@ -136,7 +136,7 @@ public class RecetaRestServiceTest {
     @Test
     public void updateReceta() {
         Receta receta = new Receta();
-        Mockito.doNothing().when(validator).validate(receta);
+//        Mockito.doNothing().when(validator).validate(receta);
         Mockito.doNothing().when(recetaService).updateReceta(receta);
         Response response = recetaRestService.updateReceta(receta);
         Mockito.verify(updateRecetaValidator,Mockito.times(1)).validate(receta);

@@ -41,6 +41,9 @@ public class RecetaPeriodoDaoImplTest {
     @Test
     public void update() {
         RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
+        recetaPeriodo.setIdPeriodo(2);
+        recetaPeriodo.setIdReceta(24);
+        recetaPeriodo.setIdRecetaPeriodo(2);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(1);
         dao.update(recetaPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
@@ -48,7 +51,7 @@ public class RecetaPeriodoDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         RecetaPeriodo recetaPeriodo = new RecetaPeriodo();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
         dao.update(recetaPeriodo);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
     }

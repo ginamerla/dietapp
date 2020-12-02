@@ -64,11 +64,11 @@ public class UsuarioDaoImplTest {
         usuario.setNombre("Test Name");
         usuario.setEmail("mail@test.com");
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString())).thenReturn(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
 
         usuarioDao.update(usuario);
 
-        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(), Mockito.anyInt());
 
     }
     @Test(expected = GeneralException.class)
@@ -77,9 +77,9 @@ public class UsuarioDaoImplTest {
         usuario.setIdUsuario(1);
         usuario.setNombre("Test Name");
         usuario.setEmail("mail@test.com");
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString())).thenReturn(0);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
         usuarioDao.update(usuario);
-        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyInt(),Mockito.anyString(), Mockito.anyString());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(), Mockito.anyInt());
     }
 
     /**

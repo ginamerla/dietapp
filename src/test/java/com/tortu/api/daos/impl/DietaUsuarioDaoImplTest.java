@@ -26,6 +26,8 @@ public class DietaUsuarioDaoImplTest {
     @Test
     public void save() {
         DietaUsuario dietaUsuario = new DietaUsuario();
+        dietaUsuario.setIdUsuario(1);
+        dietaUsuario.setDiaSemana("test");
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString())).thenReturn(1);
 
         dietaUsuarioDao.save(dietaUsuario);
@@ -35,7 +37,7 @@ public class DietaUsuarioDaoImplTest {
     @Test(expected = GeneralException.class)
     public void saveException() {
         DietaUsuario dietaUsuario = new DietaUsuario();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString())).thenReturn(0);
 
         dietaUsuarioDao.save(dietaUsuario);
 
@@ -45,6 +47,9 @@ public class DietaUsuarioDaoImplTest {
     @Test
     public void update() {
         DietaUsuario dietaUsuario = new DietaUsuario();
+        dietaUsuario.setDiaSemana("x");
+        dietaUsuario.setIdDietaUsuario(2);
+        dietaUsuario.setIdUsuario(22);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
 
         dietaUsuarioDao.update(dietaUsuario);
@@ -54,7 +59,7 @@ public class DietaUsuarioDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         DietaUsuario dietaUsuario = new DietaUsuario();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
 
         dietaUsuarioDao.update(dietaUsuario);
 

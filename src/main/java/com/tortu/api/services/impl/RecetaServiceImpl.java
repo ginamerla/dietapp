@@ -1,17 +1,22 @@
 package com.tortu.api.services.impl;
 
+import com.sun.javafx.binding.StringFormatter;
 import com.tortu.api.DietAppApplication;
+import com.tortu.api.daos.CommonDao;
 import com.tortu.api.daos.RecetaDao;
+import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.models.Receta;
 import com.tortu.api.models.RecetaIngrediente;
 import com.tortu.api.models.RecetaPeriodo;
 import com.tortu.api.rest.resources.RecetaIngredienteResource;
 import com.tortu.api.rest.resources.RecipeCompleteResource;
+import com.tortu.api.rest.resources.RecipeIngredientLookupResource;
 import com.tortu.api.rest.resources.RecipeIngredientResource;
 import com.tortu.api.services.RecetaIngredienteService;
 import com.tortu.api.services.RecetaPeriodoService;
 import com.tortu.api.services.RecetaService;
 import com.tortu.api.utils.GeneralException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +35,8 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Autowired
     private RecetaDao recetaDao;
-
+    @Autowired
+    private CommonDao commonDao;
     @Autowired
     private RecetaPeriodoService recetaPeriodoService;
     @Autowired
@@ -103,5 +109,30 @@ public class RecetaServiceImpl implements RecetaService {
             recetaIngredienteService.saveRecetaIngrediente(ri);
         }
         LOG.info(String.format("Receta creada: %s", recipe.getRecipeName()));
+    }
+
+    @Override
+    public List<RecipeIngredientLookupDTO> recipeIngredientLookup(String ingredient) throws GeneralException {
+        LOG.info(String.format("Buscando recetas con ingrediente: %s", ingredient));
+        if(StringUtils.isBlank(ingredient)){
+            LOG.error("Ingrediente nulo");
+            throw new GeneralException("El ingrediente a buscar es nulo");
+        }
+        return commonDao.getRecipeListByIngredient(ingredient);
+    }
+
+    @Override
+    public List<Receta> recipeNameLookup(String name) throws GeneralException {
+        LOG.info(String.format("Buscando receta con nombre: %s", name));
+        if(StringUtils.isBlank(name)){
+            LOG.error("Nombre nulo");
+            throw new GeneralException("El nombre de la receta es nulo");
+        }
+        List<Receta> recetas = recetaDao.findRecipeByName(name);
+        if(recetas==null){
+            LOG.warn("No se encontraron recetas");
+            return new ArrayList<>();
+        }
+        return recetas;
     }
 }

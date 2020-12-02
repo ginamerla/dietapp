@@ -6,6 +6,7 @@ import com.tortu.api.rest.resources.UsuarioResource;
 import com.tortu.api.rest.validators.GenericValidator;
 import com.tortu.api.services.UsuarioService;
 import com.tortu.api.utils.GeneralException;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ import java.util.List;
  * @author visilva
  */
 @Service
-@Path("/usuarios")
+@Path("/api/v1/usuarios")
+@Log4j2
 public class UsuarioRestService {
 
     @Autowired
@@ -41,6 +43,7 @@ public class UsuarioRestService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllUsuarios(){
+        log.info("Retrieving all users");
         List<Usuario>usuarioList = usuarioService.findAllUsuarios();
 
         List<UsuarioResource> usuarioResourceList = new ArrayList<UsuarioResource>();

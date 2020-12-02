@@ -80,14 +80,14 @@ public class WeeklyPlanServiceImplTest {
         Mockito.doNothing().when(dietaUsuarioService).deleteDietaUsuario(Mockito.anyInt());
         // fin
         UsuarioLayout usuarioLayout = new UsuarioLayout();
-        Mockito.doNothing().when(usuarioLayoutService).saveUsuarioLayout(usuarioLayout);
+//        Mockito.doNothing().when(usuarioLayoutService).saveUsuarioLayout(usuarioLayout);
 
         Mockito.doNothing().when(dietaUsuarioService).saveDietaUsuario(Mockito.any(DietaUsuario.class));
 
         //paso 4
         List<Integer> bRecipeList = new ArrayList<>();
         List<Integer> expectedLst = new ArrayList<>();
-        Mockito.when(recetaPeriodoService.getRecetaPeriodoIdList(1,bRecipeList)).thenReturn(expectedLst);
+//        Mockito.when(recetaPeriodoService.getRecetaPeriodoIdList(1,bRecipeList)).thenReturn(expectedLst);
         // fin
         //paso 5
 //        List<Integer> duIdList = new ArrayList<>();

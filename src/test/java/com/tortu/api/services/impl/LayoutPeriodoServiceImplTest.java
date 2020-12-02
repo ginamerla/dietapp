@@ -49,7 +49,7 @@ public class LayoutPeriodoServiceImplTest {
     @Test(expected = GeneralException.class)
     public void deleteLayoutPeriodoException() {
         Integer id=null;
-        Mockito.doNothing().when(dao).delete(id);
+//        Mockito.doNothing().when(dao).delete(id);
         service.deleteLayoutPeriodo(id);
         Mockito.verify(dao,Mockito.times(1)).delete(id);
     }

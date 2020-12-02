@@ -4,6 +4,7 @@ import com.tortu.api.daos.RecetaPeriodoDao;
 import com.tortu.api.daos.mappers.RecetaPeriodoRowMapper;
 import com.tortu.api.models.RecetaPeriodo;
 import com.tortu.api.utils.GeneralException;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,17 @@ import java.util.List;
 /**
  * Implementacion de la capa de acceso a la Base de Datos del modelo RecetaPeriodo
  */
+@Log4j2
 @Component
 public class RecetaPeriodoDaoImpl implements RecetaPeriodoDao {
-    private static final Logger LOG = LoggerFactory.getLogger(RecetaPeriodoDaoImpl.class);
+//    private static final Logger LOG = LoggerFactory.getLogger(RecetaPeriodoDaoImpl.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public int save(RecetaPeriodo model) throws GeneralException {
-        LOG.info(String.format("Guardando el Receta_Periodo: %s",model));
+        log.info("Inserting RecetaPeriodo: {}", model);
+//        LOG.info(String.format("Guardando el Receta_Periodo: %s",model));
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(SAVE, new String[]{
@@ -50,39 +53,52 @@ public class RecetaPeriodoDaoImpl implements RecetaPeriodoDao {
 
     @Override
     public void update(RecetaPeriodo model) throws GeneralException {
-        LOG.info(String.format("Actualizando el Receta_Periodo: %s",model));
+        log.info("Updating RecetaPeriodo:{}", model);
+//        LOG.info(String.format("Actualizando el Receta_Periodo: %s",model));
         int updatedRows = jdbcTemplate.update(UPDATE,model.getIdReceta(), model.getIdPeriodo(), model.getIdRecetaPeriodo());
         if(updatedRows==0){
-            LOG.error("No se pudo actualizar la Base de Datos");
+            log.error("Cannot update RecetaPeriodo in DB");
+//            LOG.error("No se pudo actualizar la Base de Datos");
             throw new GeneralException("RecetaPeriodo no pudo ser actualizado");
         }
     }
 
     @Override
     public void delete(Integer id) throws GeneralException {
-        LOG.info(String.format("Eliminando Receta_Periodo con id: %d",id));
+        log.info("Deleting RecetaPeriodo id: {}", id);
+//        LOG.info(String.format("Eliminando Receta_Periodo con id: %d",id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
-            LOG.error("No se pude eliminar de la Base de Datos");
+            log.error("Cannot delete RecetaPeriodo in DB");
+//            LOG.error("No se pude eliminar de la Base de Datos");
             throw new GeneralException("RecetaPeriodo no pudo ser eliminado");
         }
     }
 
     @Override
     public RecetaPeriodo findByiD(Integer id) throws GeneralException {
-        LOG.info(String.format("Consultando RecetaPeriodo con id: %d", id));
-        return jdbcTemplate.queryForObject(FINDBYID, new RecetaPeriodoRowMapper(), id);
+        log.info("Searching RecetaPeriodo id:{}", id);
+//        LOG.info(String.format("Consultando RecetaPeriodo con id: %d", id));
+        RecetaPeriodo recetaPeriodo = null;
+        try{
+            recetaPeriodo = jdbcTemplate.queryForObject(FINDBYID, new RecetaPeriodoRowMapper(), id);
+        }catch (Exception e){
+            log.info("RecetaPeriodo not found");
+        }
+        return recetaPeriodo;
     }
 
     @Override
     public List<RecetaPeriodo> findAll() throws GeneralException {
-        LOG.info("Consultando todos los Receta_Periodo");
+//        LOG.info("Consultando todos los Receta_Periodo");
+        log.info("Searching all RecetaPeriodo");
         return jdbcTemplate.query(FIND_ALL, new RecetaPeriodoRowMapper());
     }
 
     @Override
     public List<Integer> findRecetaPeriodoIdListByPeriodoReceta(Integer periodId, List<Integer> recipeIdList) {
-        LOG.info("Consultando la lista de ids con periodId y recipeId");
+        log.info("Searching periodId and RecipeId List");
+//        LOG.info("Consultando la lista de ids con periodId y recipeId");
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         parameters.addValue("ids", recipeIdList);
