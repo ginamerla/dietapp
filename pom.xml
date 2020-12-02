@@ -19,7 +19,7 @@
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
         <jvm.version>1.8</jvm.version>
         <jvm-test.version>1.8</jvm-test.version>
-        <faster.jackson.version>2.7.0</faster.jackson.version>
+        <faster.jackson.version>2.12.0</faster.jackson.version>
         <spring-security.version>4.1.4.RELEASE</spring-security.version>
         <aspectj.version>1.9.1</aspectj.version>
         <spring-jdbc.version>5.1.9.RELEASE</spring-jdbc.version>
