@@ -20,7 +20,7 @@ import java.util.List;
  * Controlador de la entidad Ingrediente
  */
 @Service
-@Path("/ingredientes")
+@Path("/api/v1/ingredientes")
 public class IngredienteRestService {
     @Autowired
     private IngredienteService ingredienteService;

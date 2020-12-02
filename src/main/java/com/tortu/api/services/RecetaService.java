@@ -1,5 +1,6 @@
 package com.tortu.api.services;
 
+import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.models.Receta;
 import com.tortu.api.rest.resources.RecipeCompleteResource;
 import com.tortu.api.utils.GeneralException;
@@ -53,5 +54,21 @@ public interface RecetaService {
      * @throws GeneralException
      */
     void saveRecipeComplete(RecipeCompleteResource recipe) throws GeneralException;
+
+    /**
+     * Busca las recetas que contengan el ingrediente enviado
+     * @param ingredient lista de caracteres para buscar en ingredientes
+     * @return lista de recetas encontradas con ese ingrediente
+     * @throws GeneralException
+     */
+    List<RecipeIngredientLookupDTO> recipeIngredientLookup(String ingredient) throws GeneralException;
+
+    /**
+     * Busca la receta por nombre
+     * @param name nombre de la receta a buscar
+     * @return lista de recetas encontradas con ese nombre
+     * @throws GeneralException
+     */
+    List<Receta> recipeNameLookup(String name) throws GeneralException;
 
 }

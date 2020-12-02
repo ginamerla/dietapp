@@ -20,7 +20,7 @@ import java.util.List;
  * Controlador del modelo categoria_ingrediente
  */
 @Service
-@Path("/categorias")
+@Path("/api/v1/categorias")
 public class CategoriaIngredienteRestService {
     @Autowired
     private CategoriaIngredienteService categoriaIngredienteService;

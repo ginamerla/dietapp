@@ -20,7 +20,7 @@ import java.util.List;
  * Controlador de Dieta_Usuario
  */
 @Service
-@Path("/dietas")
+@Path("/api/v1/dietas")
 public class DietaUsuarioRestService {
     @Autowired
     private DietaUsuarioService dietaUsuarioService;

@@ -55,7 +55,7 @@ public class IngredienteServiceImplTest {
     @Test(expected = GeneralException.class)
     public void updateIngredienteException() {
         Ingrediente ingrediente = new Ingrediente();
-        Mockito.doThrow(GeneralException.class).when(ingredienteDao).update(ingrediente);
+//        Mockito.doThrow(GeneralException.class).when(ingredienteDao).update(ingrediente);
         ingredienteService.updateIngrediente(ingrediente);
         Mockito.verify(ingredienteService,Mockito.times(1)).updateIngrediente(ingrediente);
     }
@@ -106,7 +106,7 @@ public class IngredienteServiceImplTest {
     @Test(expected = GeneralException.class)
     public void deleteIngredienteException() {
         Integer idIngrediente=null;
-        Mockito.doThrow(GeneralException.class).when(ingredienteDao).delete(idIngrediente);
+//        Mockito.doThrow(GeneralException.class).when(ingredienteDao).delete(idIngrediente);
         ingredienteService.deleteIngrediente(idIngrediente);
         Mockito.verify(ingredienteService,Mockito.times(1)).deleteIngrediente(idIngrediente);
     }

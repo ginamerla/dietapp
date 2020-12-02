@@ -20,7 +20,7 @@ import java.util.List;
  * Controlador del API UsuarioLayout
  */
 @Service
-@Path("/usuariolayout")
+@Path("/api/v1/usuariolayout")
 public class UsuarioLayoutRestService {
     @Autowired
     private UsuarioLayoutService usuarioLayoutService;

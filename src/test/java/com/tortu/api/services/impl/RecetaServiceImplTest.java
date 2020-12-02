@@ -61,7 +61,7 @@ public class RecetaServiceImplTest {
     @Test(expected = GeneralException.class)
     public void updateRecetaException(){
         Receta receta = new Receta();
-        Mockito.doThrow(GeneralException.class).when(recetaDao).update(receta);
+//        Mockito.doThrow(GeneralException.class).when(recetaDao).update(receta);
         recetaService.updateReceta(receta);
     }
 
@@ -121,7 +121,7 @@ public class RecetaServiceImplTest {
     }
     @Test(expected = GeneralException.class)
     public void deleteRecetaException(){
-        Mockito.doThrow(GeneralException.class).when(recetaDao).delete(Mockito.anyInt());
+//        Mockito.doThrow(GeneralException.class).when(recetaDao).delete(Mockito.anyInt());
         recetaService.deleteReceta(null);
     }
 }

@@ -27,7 +27,8 @@ public class IngredienteDaoImplTest {
     @Test
     public void save() {
         Ingrediente ingrediente = new Ingrediente();
-
+        ingrediente.setIdCategoriaIngrediente(23);
+        ingrediente.setNombre("test");
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
 
         ingredienteDao.save(ingrediente);
@@ -38,7 +39,7 @@ public class IngredienteDaoImplTest {
     public void saveException() {
         Ingrediente ingrediente = new Ingrediente();
 
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(0);
 
         ingredienteDao.save(ingrediente);
 
@@ -48,6 +49,9 @@ public class IngredienteDaoImplTest {
     @Test
     public void update() {
         Ingrediente ingrediente = new Ingrediente();
+        ingrediente.setNombre("x");
+        ingrediente.setIdCategoriaIngrediente(2);
+        ingrediente.setIdIngrediente(23);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(1);
 
         ingredienteDao.update(ingrediente);
@@ -57,7 +61,7 @@ public class IngredienteDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         Ingrediente ingrediente = new Ingrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
 
         ingredienteDao.update(ingrediente);
 

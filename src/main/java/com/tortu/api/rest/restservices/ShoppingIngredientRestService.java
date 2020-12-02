@@ -23,7 +23,7 @@ import java.util.List;
  * Regresa la lista de compras de un usuario
  */
 @Service
-@Path("/shoppinglists")
+@Path("/api/v1/shoppinglists")
 public class ShoppingIngredientRestService {
     @Autowired
     private ShoppingIngredientService shoppingIngredientService;

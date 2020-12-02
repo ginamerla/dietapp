@@ -26,6 +26,10 @@ public class RecetaIngredienteDaoImplTest {
     @Test
     public void save() {
         RecetaIngrediente recetaIngrediente = new RecetaIngrediente();
+        recetaIngrediente.setIdMedida(2);
+        recetaIngrediente.setIdIngrediente(34);
+        recetaIngrediente.setCantidad(3.0);
+        recetaIngrediente.setIdReceta(5);
         Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyDouble(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(1);
         recetaIngredienteDao.save(recetaIngrediente);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyDouble(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
@@ -33,7 +37,7 @@ public class RecetaIngredienteDaoImplTest {
     @Test(expected = GeneralException.class)
     public void saveException() {
         RecetaIngrediente recetaIngrediente = new RecetaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyDouble(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyDouble(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
         recetaIngredienteDao.save(recetaIngrediente);
         Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyDouble(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
     }
@@ -41,6 +45,12 @@ public class RecetaIngredienteDaoImplTest {
     @Test
     public void update() {
         RecetaIngrediente recetaIngrediente = new RecetaIngrediente();
+        recetaIngrediente.setIdRecetaIngrediente(88);
+        recetaIngrediente.setIdReceta(2342);
+        recetaIngrediente.setCantidad(4.5);
+        recetaIngrediente.setIdIngrediente(23);
+        recetaIngrediente.setIdMedida(34);
+
         Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyDouble(), Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(1);
         recetaIngredienteDao.update(recetaIngrediente);
         Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(),Mockito.anyDouble(), Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
@@ -48,7 +58,7 @@ public class RecetaIngredienteDaoImplTest {
     @Test(expected = GeneralException.class)
     public void updateException() {
         RecetaIngrediente recetaIngrediente = new RecetaIngrediente();
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyDouble(), Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
+//        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyDouble(), Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt())).thenReturn(0);
         recetaIngredienteDao.update(recetaIngrediente);
         Mockito.verify(jdbcTemplate, Mockito.times(1)).update(Mockito.anyString(),Mockito.anyDouble(), Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt(),Mockito.anyInt());
     }

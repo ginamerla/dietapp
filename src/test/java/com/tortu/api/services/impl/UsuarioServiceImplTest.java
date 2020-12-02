@@ -3,7 +3,6 @@ package com.tortu.api.services.impl;
 import com.tortu.api.daos.UsuarioDao;
 import com.tortu.api.models.Usuario;
 import com.tortu.api.utils.GeneralException;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,7 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 @RunWith(MockitoJUnitRunner.class)
 public class UsuarioServiceImplTest {
 
