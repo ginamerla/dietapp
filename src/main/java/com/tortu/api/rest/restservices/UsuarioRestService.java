@@ -30,6 +30,8 @@ public class UsuarioRestService {
     @Qualifier("createUsuarioValidator")
     private GenericValidator<Usuario> createUsuarioValidator;
 
+    @Autowired
+    @Qualifier("updateUsuarioValidator")
     private GenericValidator<Usuario> updateUsuarioValidator;
 
     @Autowired
