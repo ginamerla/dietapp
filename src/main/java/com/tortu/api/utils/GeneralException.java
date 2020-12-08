@@ -22,4 +22,30 @@ public class GeneralException extends RuntimeException {
     public GeneralException(String message, Throwable e) {
         super(message, e);
     }
+
+    public GeneralException(String message, int code){}
+
+    //todo: agregar las variables de mesnaje y codigo y set y get
+
+    public String message;
+    public int code;
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+
 }
