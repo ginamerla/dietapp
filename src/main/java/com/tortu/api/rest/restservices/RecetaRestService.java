@@ -24,7 +24,7 @@ import java.util.List;
  * Controller de la entidad de Recetas
  */
 @Service
-@Path("/v1/recetas")
+@Path("api/v1/recetas")
 public class RecetaRestService {
 
     @Autowired

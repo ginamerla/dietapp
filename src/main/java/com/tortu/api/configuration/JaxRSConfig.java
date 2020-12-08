@@ -13,6 +13,7 @@ public class JaxRSConfig extends ResourceConfig {
         log.info("Initializing Rest Services...");
         packages("com.tortu.api");
         register(UsuarioRestService.class);
+        register(RecetaRestService.class);
         register(CategoriaIngredienteRestService.class);
         register(IngredienteRestService.class);
         register(DietaUsuarioRestService.class);
