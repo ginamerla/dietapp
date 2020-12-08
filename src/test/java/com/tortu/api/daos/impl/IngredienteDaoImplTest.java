@@ -29,11 +29,11 @@ public class IngredienteDaoImplTest {
         Ingrediente ingrediente = new Ingrediente();
         ingrediente.setIdCategoriaIngrediente(23);
         ingrediente.setNombre("test");
-        Mockito.when(jdbcTemplate.update(Mockito.anyString(),Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
+        Mockito.when(jdbcTemplate.update(Mockito.anyString(), Mockito.anyInt())).thenReturn(1);
 
         ingredienteDao.save(ingrediente);
 
-        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(),Mockito.anyString(), Mockito.anyInt());
+        Mockito.verify(jdbcTemplate,Mockito.times(1)).update(Mockito.anyString(), Mockito.anyInt());
     }
     @Test(expected = GeneralException.class)
     public void saveException() {

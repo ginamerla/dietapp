@@ -13,7 +13,6 @@ public class JaxRSConfig extends ResourceConfig {
         log.info("Initializing Rest Services...");
         packages("com.tortu.api");
         register(UsuarioRestService.class);
-        register(RecetaRestService.class);
         register(CategoriaIngredienteRestService.class);
         register(IngredienteRestService.class);
         register(DietaUsuarioRestService.class);
@@ -24,8 +23,6 @@ public class JaxRSConfig extends ResourceConfig {
         register(ComboDietaUsuarioRestService.class);
         register(ShoppingIngredientRestService.class);
         register(WeeklyPlanRestService.class);
-//        property(ServletProperties.FILTER_FORWARD_ON_404, true);
-//        property("jersey.config.server.response.setStatusOverSendError", true);
         log.info("All Rest services - Added!");
     }
 }
