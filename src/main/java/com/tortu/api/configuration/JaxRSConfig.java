@@ -3,6 +3,7 @@ package com.tortu.api.configuration;
 import com.tortu.api.rest.restservices.*;
 import lombok.extern.log4j.Log4j2;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -23,6 +24,8 @@ public class JaxRSConfig extends ResourceConfig {
         register(ComboDietaUsuarioRestService.class);
         register(ShoppingIngredientRestService.class);
         register(WeeklyPlanRestService.class);
+//        property(ServletProperties.FILTER_FORWARD_ON_404, true);
+//        property("jersey.config.server.response.setStatusOverSendError", true);
         log.info("All Rest services - Added!");
     }
 }

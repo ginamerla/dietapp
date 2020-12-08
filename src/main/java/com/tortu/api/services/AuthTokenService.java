@@ -20,7 +20,7 @@ public interface AuthTokenService {
      * @param tokenId to validate
      */
     @GET("verify/{tokenId}")
-    void validateToken(@Path("tokenId") String tokenId);
+    Call<Token> validateToken(@Path("tokenId") String tokenId);
 
     /**
      * Makes the call to generate a new token
