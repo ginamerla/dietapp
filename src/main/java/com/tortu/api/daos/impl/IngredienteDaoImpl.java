@@ -27,7 +27,7 @@ public class IngredienteDaoImpl implements IngredienteDao {
     public int save(Ingrediente model) throws GeneralException {
         log.info("Inserting Ingrediente:{}", model);
 //        LOG.info(String.format("Creando INGREDIENTE: %s",model));
-        int updatedRows = jdbcTemplate.update(SAVE,model.getNombre(), model.getIdCategoriaIngrediente());
+        int updatedRows = jdbcTemplate.update(SAVE,model.getIdCategoriaIngrediente());
         if(updatedRows==0){
             log.error("Cannot insert Ingrediente in DB");
 //            LOG.error("No se pudo insertar en la BD");

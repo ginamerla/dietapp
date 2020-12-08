@@ -22,7 +22,7 @@ public class CreateUsuarioValidatorImpl implements GenericValidator <Usuario> {
             throw new GeneralException("El USUARIO es nulo");
         }
 
-        if(StringUtils.isBlank(usuario.getNombre())){
+        if(StringUtils.isEmpty(usuario.getNombre())){
             throw new GeneralException("El NOMBRE del usuario es nulo o vacio");
         }
 
