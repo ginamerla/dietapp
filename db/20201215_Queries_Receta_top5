@@ -1,0 +1,36 @@
+use dietapp;
+/**
+ * Combo dieta usuario
+ */
+select u.nombre as "user", p.periodo, du.dia_semana, r.nombre
+from dietapp.combo_dieta_usuario cdu,
+	dietapp.receta_periodo rp,
+	receta r,
+	periodo p,
+	dietapp.dieta_usuario du,
+	usuario u
+where cdu.id_receta_periodo = rp.id_receta_periodo
+	and rp.id_receta = r.id_receta
+	and rp.id_periodo = p.id_periodo
+	and cdu.id_dieta_usuario = du.id_dieta_usuario
+	and du.id_usuario = u.id_usuario
+order by u.id_usuario, field(dia_semana, "lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo")
+;
+
+/**
+ * Top 5 recetas
+ */
+select r.nombre, count(r.nombre)
+from dietapp.combo_dieta_usuario cdu,
+	dietapp.receta_periodo rp,
+	receta r,
+	periodo p,
+	dietapp.dieta_usuario du,
+	usuario u
+where cdu.id_receta_periodo = rp.id_receta_periodo
+	and rp.id_receta = r.id_receta
+	and rp.id_periodo = p.id_periodo
+	and cdu.id_dieta_usuario = du.id_dieta_usuario
+	and du.id_usuario = u.id_usuario
+group by r.nombre order by count(r.nombre) desc limit 5
+;
