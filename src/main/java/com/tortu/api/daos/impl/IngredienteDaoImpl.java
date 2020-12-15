@@ -19,18 +19,15 @@ import java.util.List;
 @Log4j2
 @Component
 public class IngredienteDaoImpl implements IngredienteDao {
-//    public static final Logger LOG = LoggerFactory.getLogger(IngredienteDaoImpl.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public int save(Ingrediente model) throws GeneralException {
         log.info("Inserting Ingrediente:{}", model);
-//        LOG.info(String.format("Creando INGREDIENTE: %s",model));
-        int updatedRows = jdbcTemplate.update(SAVE,model.getIdCategoriaIngrediente());
+        int updatedRows = jdbcTemplate.update(SAVE,model.getNombre(), model.getIdCategoriaIngrediente());
         if(updatedRows==0){
             log.error("Cannot insert Ingrediente in DB");
-//            LOG.error("No se pudo insertar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser guardado");
         }
         return updatedRows;
@@ -39,11 +36,9 @@ public class IngredienteDaoImpl implements IngredienteDao {
     @Override
     public void update(Ingrediente model) throws GeneralException {
         log.info("Updating Ingrediente:{}", model);
-//        LOG.info((String.format("Actualizando INGREDIENTE: %s", model)));
         int updatedRows = jdbcTemplate.update(UPDATE, model.getNombre(), model.getIdCategoriaIngrediente(), model.getIdIngrediente());
         if(updatedRows==0){
             log.error("Cannont update Ingrediente in DB");
-//            LOG.error("No se pudo actualizar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser actualizado");
         }
     }
@@ -51,11 +46,9 @@ public class IngredienteDaoImpl implements IngredienteDao {
     @Override
     public void delete(Integer id) throws GeneralException {
         log.info("Deleting Ingrediente id:{}", id);
-//        LOG.info(String.format("Eliminando INGREDIENTE con id: %d", id));
         int updatedRows = jdbcTemplate.update(DELETE,id);
         if(updatedRows==0){
             log.error("Cannot delete Ingrediente from DB");
-//            LOG.error("No se pudo eliminar en la BD");
             throw  new GeneralException("El INGREDIENTE no pudo ser eliminado");
         }
     }
@@ -63,7 +56,6 @@ public class IngredienteDaoImpl implements IngredienteDao {
     @Override
     public Ingrediente findByiD(Integer id) throws GeneralException {
         log.info("Searching Ingrediente id:{}", id);
-//        LOG.info(String.format("Consultando INGREDIENTE con id: %d",id));
         Ingrediente ingrediente = null;
         try{
             ingrediente = jdbcTemplate.queryForObject(FINDBYID,new IngredienteRowMapper(),id);
@@ -76,7 +68,6 @@ public class IngredienteDaoImpl implements IngredienteDao {
     @Override
     public List<Ingrediente> findAll() throws GeneralException {
         log.info("Searching all ingredientes");
-//        LOG.info("Consultando todos los INGREDIENTES");
         return  jdbcTemplate.query(FIND_ALL, new IngredienteRowMapper());
     }
 }
