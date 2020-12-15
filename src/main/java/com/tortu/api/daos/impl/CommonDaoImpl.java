@@ -1,14 +1,8 @@
 package com.tortu.api.daos.impl;
 
 import com.tortu.api.daos.CommonDao;
-import com.tortu.api.daos.mappers.RecipeIngredientLookupDTORowMapper;
-import com.tortu.api.daos.mappers.ShoppingIngredientDTORowMapper;
-import com.tortu.api.daos.mappers.WPIngredientResultDTORowMapper;
-import com.tortu.api.daos.mappers.WeeklyPlanResultDTORowMapper;
-import com.tortu.api.dto.RecipeIngredientLookupDTO;
-import com.tortu.api.dto.ShoppingIngredientDTO;
-import com.tortu.api.dto.WPIngredientResultDTO;
-import com.tortu.api.dto.WPResultDTO;
+import com.tortu.api.daos.mappers.*;
+import com.tortu.api.dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +53,11 @@ public class CommonDaoImpl implements CommonDao {
         return jdbcTemplate.query(FIND_RECIPE_BY_INGREDIENT, new RecipeIngredientLookupDTORowMapper(), param);
     }
 
+    @Override
+    public List<PopularRecipe> getTop5Recipes() {
+        log.info("Searching the top 5 recipes in the BD...");
+        return jdbcTemplate.query(TOP_5_RECIPE, new PopularRecipeRowMapper());
+    }
 
 
 }

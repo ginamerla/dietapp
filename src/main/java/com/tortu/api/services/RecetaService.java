@@ -1,5 +1,6 @@
 package com.tortu.api.services;
 
+import com.tortu.api.dto.PopularRecipe;
 import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.models.Receta;
 import com.tortu.api.rest.resources.RecipeCompleteResource;
@@ -70,5 +71,12 @@ public interface RecetaService {
      * @throws GeneralException
      */
     List<Receta> recipeNameLookup(String name) throws GeneralException;
+
+    /**
+     * Gets the top 5 recipes
+     * @return list with 5 PopularRecipes
+     * @throws GeneralException
+     */
+    List<PopularRecipe> getPopularRecipes() throws GeneralException;
 
 }

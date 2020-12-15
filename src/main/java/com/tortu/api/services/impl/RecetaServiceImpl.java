@@ -1,24 +1,20 @@
 package com.tortu.api.services.impl;
 
-import com.sun.javafx.binding.StringFormatter;
-import com.tortu.api.DietAppApplication;
 import com.tortu.api.daos.CommonDao;
 import com.tortu.api.daos.RecetaDao;
+import com.tortu.api.dto.PopularRecipe;
 import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.models.Receta;
 import com.tortu.api.models.RecetaIngrediente;
 import com.tortu.api.models.RecetaPeriodo;
-import com.tortu.api.rest.resources.RecetaIngredienteResource;
 import com.tortu.api.rest.resources.RecipeCompleteResource;
-import com.tortu.api.rest.resources.RecipeIngredientLookupResource;
 import com.tortu.api.rest.resources.RecipeIngredientResource;
 import com.tortu.api.services.RecetaIngredienteService;
 import com.tortu.api.services.RecetaPeriodoService;
 import com.tortu.api.services.RecetaService;
 import com.tortu.api.utils.GeneralException;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +24,9 @@ import java.util.List;
 /**
  * Implementacion del servicio de Receta
  */
+@Log4j2
 @Service
 public class RecetaServiceImpl implements RecetaService {
-
-    public static final Logger LOG = LoggerFactory.getLogger(RecetaServiceImpl.class);
 
     @Autowired
     private RecetaDao recetaDao;
@@ -44,15 +39,15 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public int saveReceta(Receta receta) throws GeneralException {
-        LOG.info(String.format("Guardando la receta: %s", receta));
+        log.info("Guardando la receta: {}", receta);
         return  recetaDao.save(receta);
     }
 
     @Override
     public void updateReceta(Receta receta) throws GeneralException {
-        LOG.info(String.format("Actualizando la receta: %s",receta));
+        log.info("Actualizando la receta: {}",receta);
         if(receta.getIdReceta()==null){
-            LOG.error("IdReceta es nulo");
+            log.error("IdReceta es nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         recetaDao.update(receta);
@@ -60,9 +55,9 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public Receta findReceta(Integer idReceta) throws GeneralException {
-        LOG.info(String.format("Consultando la receta con id: %s", idReceta));
+        log.info("Consultando la receta con id: {}", idReceta);
         if(idReceta==null){
-            LOG.error("idReceta es nulo");
+            log.error("idReceta es nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         return recetaDao.findByiD(idReceta);
@@ -70,10 +65,10 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public List<Receta> findAllRecetas() {
-        LOG.info("Consultando todas las recetas");
+        log.info("Consultando todas las recetas");
         List<Receta> recetaList = recetaDao.findAll();
         if(recetaList==null){
-            LOG.warn("No se encontraron Recetas");
+            log.warn("No se encontraron Recetas");
             return new ArrayList<>();
         }
         return recetaList;
@@ -81,9 +76,9 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public void deleteReceta(Integer idReceta) throws GeneralException {
-        LOG.info(String.format("Eliminando la receta con id: %s",idReceta));
+        log.info("Eliminando la receta con id: {}",idReceta);
         if(idReceta==null){
-            LOG.error("idReceta nulo");
+            log.error("idReceta nulo");
             throw new GeneralException("El id de la receta es nulo");
         }
         recetaDao.delete(idReceta);
@@ -91,7 +86,7 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public void saveRecipeComplete(RecipeCompleteResource recipe) throws GeneralException {
-        LOG.info(String.format("Creando receta completa: %s", recipe.getRecipeName()));
+        log.info("Creando receta completa: {}", recipe.getRecipeName());
         Receta newRecipe=new Receta();
         newRecipe.setNombre(recipe.getRecipeName());
         int newRecipeId = saveReceta(newRecipe);
@@ -108,14 +103,14 @@ public class RecetaServiceImpl implements RecetaService {
             ri.setIdReceta(newRecipeId);
             recetaIngredienteService.saveRecetaIngrediente(ri);
         }
-        LOG.info(String.format("Receta creada: %s", recipe.getRecipeName()));
+        log.info("Receta creada: {}", recipe.getRecipeName());
     }
 
     @Override
     public List<RecipeIngredientLookupDTO> recipeIngredientLookup(String ingredient) throws GeneralException {
-        LOG.info(String.format("Buscando recetas con ingrediente: %s", ingredient));
+        log.info("Buscando recetas con ingrediente: {}", ingredient);
         if(StringUtils.isBlank(ingredient)){
-            LOG.error("Ingrediente nulo");
+            log.error("Ingrediente nulo");
             throw new GeneralException("El ingrediente a buscar es nulo");
         }
         return commonDao.getRecipeListByIngredient(ingredient);
@@ -123,16 +118,27 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public List<Receta> recipeNameLookup(String name) throws GeneralException {
-        LOG.info(String.format("Buscando receta con nombre: %s", name));
+        log.info("Buscando receta con nombre: {}", name);
         if(StringUtils.isBlank(name)){
-            LOG.error("Nombre nulo");
+            log.error("Nombre nulo");
             throw new GeneralException("El nombre de la receta es nulo");
         }
         List<Receta> recetas = recetaDao.findRecipeByName(name);
         if(recetas==null){
-            LOG.warn("No se encontraron recetas");
+            log.warn("No se encontraron recetas");
             return new ArrayList<>();
         }
         return recetas;
+    }
+
+    @Override
+    public List<PopularRecipe> getPopularRecipes() throws GeneralException {
+        log.info("Buscando recetas mas populares...");
+        List<PopularRecipe> recipes = commonDao.getTop5Recipes();
+        if(recipes==null){
+            log.info("No se encontraron recetas");
+            return new ArrayList<>();
+        }
+        return recipes;
     }
 }

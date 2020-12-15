@@ -1,9 +1,6 @@
 package com.tortu.api.daos;
 
-import com.tortu.api.dto.RecipeIngredientLookupDTO;
-import com.tortu.api.dto.ShoppingIngredientDTO;
-import com.tortu.api.dto.WPIngredientResultDTO;
-import com.tortu.api.dto.WPResultDTO;
+import com.tortu.api.dto.*;
 
 import java.util.List;
 
@@ -44,6 +41,20 @@ public interface CommonDao {
             "and i.nombre like ? \n" +
             "group by r.nombre order by p.id_periodo;";
 
+    public static final String TOP_5_RECIPE = "select r.nombre, count(r.nombre) as total\n" +
+            "from dietapp.combo_dieta_usuario cdu,\n" +
+            "\tdietapp.receta_periodo rp,\n" +
+            "\treceta r,\n" +
+            "\tperiodo p,\n" +
+            "\tdietapp.dieta_usuario du,\n" +
+            "\tusuario u\n" +
+            "where cdu.id_receta_periodo = rp.id_receta_periodo\n" +
+            "\tand rp.id_receta = r.id_receta\n" +
+            "\tand rp.id_periodo = p.id_periodo\n" +
+            "\tand cdu.id_dieta_usuario = du.id_dieta_usuario\n" +
+            "\tand du.id_usuario = u.id_usuario\n" +
+            "group by r.nombre order by count(r.nombre) desc limit 5";
+
     /**
      * Obtiene la lista de ingredientes para las recetas de la semana de un usario
      * @param userId el id del usuario que va a consultar su lista de compras
@@ -71,5 +82,11 @@ public interface CommonDao {
      * @return lista de recetas encontradas con su periodo y el ingrediente
      */
     public List<RecipeIngredientLookupDTO> getRecipeListByIngredient(String ingredient);
+
+    /**
+     * Get the 5 most popular recipes
+     * @return list with 5 Popular recipes
+     */
+    public List<PopularRecipe> getTop5Recipes();
 
 }

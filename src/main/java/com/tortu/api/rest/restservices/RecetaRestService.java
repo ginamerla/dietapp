@@ -1,7 +1,9 @@
 package com.tortu.api.rest.restservices;
 
+import com.tortu.api.dto.PopularRecipe;
 import com.tortu.api.dto.RecipeIngredientLookupDTO;
 import com.tortu.api.models.Receta;
+import com.tortu.api.rest.mappers.PopularRecipeResourceMapper;
 import com.tortu.api.rest.mappers.RecetaResourceMapper;
 import com.tortu.api.rest.mappers.RecipeIngredientLookupResourceMapper;
 import com.tortu.api.rest.resources.*;
@@ -35,6 +37,9 @@ public class RecetaRestService {
 
     @Autowired
     private RecipeIngredientLookupResourceMapper recipeIngredientLookupResourceMapper;
+
+    @Autowired
+    private PopularRecipeResourceMapper popularRecipeResourceMapper;
 
     @Autowired
     @Qualifier("createRecetaValidator")
@@ -188,5 +193,18 @@ public class RecetaRestService {
             return Response.ok(resourceList).build();
         }
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/top5")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPopularRecipes(){
+        List<PopularRecipe> recipes = recetaService.getPopularRecipes();
+        List<PopularRecipeResource> resources = new ArrayList<>();
+        for(PopularRecipe recipe:recipes){
+            PopularRecipeResource resource = popularRecipeResourceMapper.map(recipe);
+            resources.add(resource);
+        }
+        return Response.ok(resources).build();
     }
 }
